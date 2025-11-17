@@ -8,3 +8,4 @@ export * from './notes.repository';
 export * from './medical-metrics.repository';
 export * from './health-provider-schedule.repository';
 export * from './health-provider-exceptions.repository';
+export * from './subscription.repository';
