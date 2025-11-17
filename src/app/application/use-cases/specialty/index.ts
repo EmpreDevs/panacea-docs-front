@@ -1,0 +1,5 @@
+export * from './create-specialty.use-case'
+export * from './delete-specialty.use-case'
+export * from './find-all-specialties.use-case'
+export * from './find-specialty-by-id.use-case'
+export * from './update-specialty.use-case'

@@ -1,8 +1,9 @@
-import { inject } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Auth, User } from "@domain/models";
 import { AuthRepository } from "@domain/repositories";
 import { AuthAdapter } from "@infra/adapters/auth/auth.adapter";
 
+@Injectable()
 export class AuthImpRepository implements AuthRepository {
   private readonly authAdapter = inject(AuthAdapter);
 
