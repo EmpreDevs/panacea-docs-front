@@ -1,0 +1,15 @@
+import { inject, Injectable } from "@angular/core";
+import { HealthProviderExceptions } from "@domain/models/health-provider-exceptions.model";
+import { HealthProviderExceptionsRepository } from "@domain/repositories";
+import { BaseAdapter } from "./common/base.adapter";
+import { HttpClient } from "@infra/http/http.client";
+import { environment } from "@envs/environment";
+
+@Injectable({ providedIn: 'root' })
+export class HealthProviderExceptionsAdapter extends BaseAdapter<HealthProviderExceptions> implements HealthProviderExceptionsRepository{
+  private readonly apiUrl = `${environment.apiUrl}/health-provider-exceptions`
+
+  constructor(private readonly http: HttpClient) {
+    super(http, 'health-provider-exceptions')
+  }
+}

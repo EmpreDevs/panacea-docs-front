@@ -6,3 +6,5 @@ export * from './schedule.repository';
 export * from './patient.repository';
 export * from './notes.repository';
 export * from './medical-metrics.repository';
+export * from './health-provider-schedule.repository';
+export * from './health-provider-exceptions.repository';
