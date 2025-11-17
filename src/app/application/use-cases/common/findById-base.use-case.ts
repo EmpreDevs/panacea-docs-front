@@ -1,6 +1,6 @@
 import { CrudRepository } from "@domain/repositories/common/crud.repository";
 
-export abstract class FindById<T>{
+export abstract class FindByIdUseCase<T>{
   constructor(private _repository: CrudRepository<T>) {}
   execute(id: string) {
     return this._repository.findById(id)
