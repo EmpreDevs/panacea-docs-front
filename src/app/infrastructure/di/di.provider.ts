@@ -13,6 +13,8 @@ import { patientToken } from "./tokens/patient.token";
 import { PatientImpRepository } from "@infra/repositories/patient.imp-repository";
 import { notesToken } from "./tokens/notes.token";
 import { NotesImpRepository } from "@infra/repositories/notes.imp-repository";
+import { medicalMetricsToken } from "./tokens/medical-metrics.token";
+import { MedicalMetricsImpRepository } from "@infra/repositories/medical-metrics.imp-repository";
 
 export const diProvider: Provider[] = [
   { provide: authToken, useClass: AuthImpRepository },
@@ -21,5 +23,6 @@ export const diProvider: Provider[] = [
   { provide: medicalOfficeToken, useClass: MedicalOfficeImpRepository },
   { provide: scheduleToken, useClass: ScheduleImpRepository },
   { provide: patientToken, useClass: PatientImpRepository },
-  { provide: notesToken, useClass: NotesImpRepository }
+  { provide: notesToken, useClass: NotesImpRepository },
+  { provide: medicalMetricsToken, useClass: MedicalMetricsImpRepository }
 ]

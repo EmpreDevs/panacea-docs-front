@@ -5,3 +5,4 @@ export * from './medical-office.repository';
 export * from './schedule.repository';
 export * from './patient.repository';
 export * from './notes.repository';
+export * from './medical-metrics.repository';

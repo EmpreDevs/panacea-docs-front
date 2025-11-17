@@ -5,3 +5,4 @@ export * from './medical-office.model';
 export * from './schedule.model';
 export * from './patient.model';
 export * from './notes.model';
+export * from './medical-metrics.model';
