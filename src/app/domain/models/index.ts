@@ -4,3 +4,4 @@ export * from './health-provider.model';
 export * from './medical-office.model';
 export * from './schedule.model';
 export * from './patient.model';
+export * from './notes.model';

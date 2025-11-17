@@ -4,3 +4,4 @@ export * from './health-provider.repository';
 export * from './medical-office.repository';
 export * from './schedule.repository';
 export * from './patient.repository';
+export * from './notes.repository';
