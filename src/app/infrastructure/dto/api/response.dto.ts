@@ -1,3 +1,5 @@
-export interface ResponseDTO<T> {}
+export interface ResponseDTO<T> {
+  data: T;
+}
 
 export interface HTTPResponse {}
