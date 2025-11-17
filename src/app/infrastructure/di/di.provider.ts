@@ -21,6 +21,8 @@ import { healthProviderExceptionsToken } from "./tokens/health-provider-exceptio
 import { HealthProviderExceptionsImpRepository } from "@infra/repositories/health-provider-exceptions.imp-repository";
 import { subscriptionToken } from "./tokens/subscription.token";
 import { SubscriptionImpRepository } from "@infra/repositories/subscription.imp-repository";
+import { planToken } from "./tokens/plan.token";
+import { PlanImpRepository } from "@infra/repositories/plan.imp-repository";
 
 export const diProvider: Provider[] = [
   { provide: authToken, useClass: AuthImpRepository },
@@ -33,5 +35,6 @@ export const diProvider: Provider[] = [
   { provide: medicalMetricsToken, useClass: MedicalMetricsImpRepository },
   { provide: healthProviderScheduleToken, useClass: HealthProviderScheduleImpRepository },
   { provide: healthProviderExceptionsToken, useClass: HealthProviderExceptionsImpRepository },
-  { provide: subscriptionToken, useClass: SubscriptionImpRepository }
+  { provide: subscriptionToken, useClass: SubscriptionImpRepository },
+  { provide: planToken, useClass: PlanImpRepository }
 ]
