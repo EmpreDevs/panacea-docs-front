@@ -7,10 +7,13 @@ import { healthProviderToken } from "./tokens/health-provider.token";
 import { HealthProviderImpRepository } from "@infra/repositories/health-provider.imp-repository";
 import { medicalOfficeToken } from "./tokens/medical-office.token";
 import { MedicalOfficeImpRepository } from "@infra/repositories/medical-office.imp-repository";
+import { scheduleToken } from "./tokens/schedule.token";
+import { ScheduleImpRepository } from "@infra/repositories/schedule.imp-repository";
 
 export const diProvider: Provider[] = [
   { provide: authToken, useClass: AuthImpRepository },
   { provide: specialityToken, useClass: SpecialityImpRepository },
   { provide: healthProviderToken, useClass: HealthProviderImpRepository },
-  { provide: medicalOfficeToken, useClass: MedicalOfficeImpRepository }
+  { provide: medicalOfficeToken, useClass: MedicalOfficeImpRepository },
+  { provide: scheduleToken, useClass: ScheduleImpRepository }
 ]
