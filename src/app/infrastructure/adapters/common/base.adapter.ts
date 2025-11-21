@@ -15,19 +15,19 @@ export abstract class BaseAdapter<T> implements CrudRepository<T> {
   async create(payload: Partial<T>): Promise<T> {
     const response = await this.httpClient.post<T>(this.urlAPI)
       .body(payload)
-      .excecute()
+      .execute()
     return response.data
   }
   async findById(id: string): Promise<T> {
     const url = `${this.urlAPI}/${id}`
     const response = await this.httpClient.get<T>(url)
-      .excecute()
+      .execute()
     return response.data
   }
   async findAll(filters: any): Promise<T[]> {
     const response = await this.httpClient.get<T[]>(this.urlAPI)
       .filters(filters)
-      .excecute()
+      .execute()
 
     return response.data
   }
@@ -35,14 +35,14 @@ export abstract class BaseAdapter<T> implements CrudRepository<T> {
     const url = `${this.urlAPI}/${id}`
     const response = await this.httpClient.put<T>(url)
       .body(payload)
-      .excecute()
+      .execute()
     
     return response.data
   }
   async delete(id: string): Promise<T> {
     const url = `${this.urlAPI}/${id}`
     const response = await this.httpClient.delete<T>(url)
-      .excecute()
+      .execute()
     
     return response.data
   }
