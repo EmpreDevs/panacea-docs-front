@@ -1,7 +1,7 @@
 import { CrudRepository } from "@domain/repositories/common/crud.repository";
 import { BaseAdapter } from "@infra/adapters/common/base.adapter";
 
-export abstract class BaseImpRepository<T> implements CrudRepository<T> {
+export abstract class BaseImpRepository<T extends { id: string }> implements CrudRepository<T> {
   constructor(private readonly _adapter: BaseAdapter<T>) {}
 
   create(payload: Partial<T>): Promise<T> {

@@ -11,3 +11,4 @@ export * from './health-provider-exceptions.model';
 export * from './subscription.model';
 export * from './plan.model';
 export * from './payment.model';
+export * from './speciality.model'

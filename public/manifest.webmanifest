@@ -1,9 +1,18 @@
 {
-  "name": "agendaMedica",
-  "short_name": "agendaMedica",
+  "name": "Agenda Médica Professional",
+  "short_name": "AgendaMed",
+  "description": "Sistema de gestión de citas médicas profesional",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
   "display": "standalone",
+  "orientation": "portrait",
   "scope": "./",
   "start_url": "./",
+  "id": "agenda-medica-app",
+  "categories": ["medical", "health", "productivity"],
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
   "icons": [
     {
       "src": "icons/icon-72x72.png",
@@ -53,5 +62,9 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ]
+  ],
+  "screenshots": [],
+  "shortcuts": [],
+  "prefer_related_applications": false,
+  "related_applications": []
 }
