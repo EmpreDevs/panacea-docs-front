@@ -15,7 +15,7 @@ export class AuthFacade {
 
   async login(email: string, password: string) {
     const auth = await this.loginUC.execute(email, password)
-    this.authState.saveUserData(auth)
+    this.authState.saveUserData(auth.user)
     this.authState.saveAccessToken(auth.token)
     this.authState.saveRefreshToken(auth.refreshToken)
   }

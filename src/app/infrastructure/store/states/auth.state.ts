@@ -135,19 +135,18 @@ export class AuthState implements OnDestroy {
   }
 
   // 👤 ESTRATEGIA 3: DATOS DE USUARIO (no sensibles)
-  async saveUserData(userData: Auth): Promise<void> {
+  async saveUserData(userData: User): Promise<void> {
     try {
-      const user= userData.user
       await this.dbReady;
 
       // Datos no sensibles pueden ir en localStorage
       const publicData = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        avatar: user.avatar,
-        preferences: user.preferences
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        role: userData.role,
+        avatar: userData.avatar,
+        preferences: userData.preferences
       };
 
       // Guardar en IDB para mejor performance
