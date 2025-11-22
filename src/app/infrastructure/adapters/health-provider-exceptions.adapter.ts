@@ -4,12 +4,16 @@ import { HealthProviderExceptionsRepository } from "@domain/repositories";
 import { BaseAdapter } from "./common/base.adapter";
 import { HttpClient } from "@infra/http/http.client";
 import { environment } from "@envs/environment";
+import { OfflineDBService } from "@infra/pwa/services/offline-db.service";
 
 @Injectable({ providedIn: 'root' })
 export class HealthProviderExceptionsAdapter extends BaseAdapter<HealthProviderExceptions> implements HealthProviderExceptionsRepository{
   private readonly apiUrl = `${environment.apiUrl}/health-provider-exceptions`
 
-  constructor(private readonly http: HttpClient) {
-    super(http, 'health-provider-exceptions')
+  constructor(
+    private readonly http: HttpClient,
+    private readonly dbService: OfflineDBService,
+  ) {
+    super(http, 'health-provider-exceptions', dbService)
   }
 }
