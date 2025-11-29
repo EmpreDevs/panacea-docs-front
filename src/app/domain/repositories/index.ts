@@ -11,3 +11,4 @@ export * from './health-provider-exceptions.repository';
 export * from './subscription.repository';
 export * from './plan.repository';
 export * from './payment.repository';
+export * from './tenant.repository';
