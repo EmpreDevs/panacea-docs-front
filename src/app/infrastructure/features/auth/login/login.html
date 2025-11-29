@@ -1,0 +1,44 @@
+<form class="space-y-5">
+	<!-- Campo de email -->
+	<div class="space-y-2">
+		<app-ui-input
+			id="email"
+			name="email"
+			type="email"
+			label="Correo electrónico"
+			[icon]="MailIcon"
+		/>
+	</div>
+
+	<!-- Campo de contraseña -->
+	<div class="space-y-2">
+		<app-ui-input
+			id="password"
+			name="password"
+			type="password"
+			label="Contraseña"
+			[icon]="KeyRoundIcon"
+		/>
+	</div>
+
+	<!-- Checkbox recordar -->
+	<div class="flex items-center justify-end">
+		<a
+			routerLink="/auth/forgot-password"
+			class="link"
+		>
+			¿Olvidó la contraseña?
+		</a>
+	</div>
+
+	<!-- Botón de inicio de sesión -->
+	<app-ui-button type="submit">
+		<span class="flex items-center space-x-2">
+			<span>Iniciar Sesión</span>
+			<lucide-icon
+				[img]="LogIn"
+				class="w-5 h-5"
+			></lucide-icon>
+		</span>
+	</app-ui-button>
+</form>

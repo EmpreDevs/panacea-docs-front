@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-health-50: #ecfdf5;
+	--color-health-100: #d1fae5;
+	--color-health-200: #a7f3d0;
+	--color-health-300: #6ee7b7;
+	--color-health-400: #34d399;
+	--color-health-500: #10b981;
+	--color-health-600: #059669;
+	--color-health-700: #047857;
+	--color-health-800: #065f46;
+	--color-health-900: #064e3b;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Sora:wght@100..800&display=swap");
+
+* {
+	font-family: "Sora", sans-serif;
+}
+
+/* Estilos base para light y dark mode */
+html {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+	@apply bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100;
+}
+.link {
+	@apply text-health-600 dark:text-health-400 hover:underline cursor-pointer;
+}
+
+.font-dm {
+	font-family: "DM Sans", sans-serif !important;
+}
+
+.safe-top {
+	padding-top: env(safe-area-inset-top, 0);
+}
+
+.safe-bottom {
+	padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.breathe {
+	animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+}
+
+/* Animaciones para estados de validación */
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in-from-top {
+	from {
+		transform: translateY(-0.5rem);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes zoom-in {
+	from {
+		transform: scale(0.8);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* Clases de animación */
+.animate-in {
+	animation-fill-mode: both;
+}
+
+.fade-in {
+	animation: fade-in 0.3s ease-out;
+}
+
+.slide-in-from-top-2 {
+	animation: slide-in-from-top 0.3s ease-out;
+}
+
+.zoom-in {
+	animation: zoom-in 0.3s ease-out;
+}
