@@ -19,7 +19,7 @@ export class UiInput {
 	@Input() isDisabled = false
 	@Input() readonly = false
 	@Input() label = ''
-	@Input() icon: LucideIconData | undefined
+	@Input() icon?: LucideIconData
 
 	public valueChanges = new Subject<string>()
 	public destroy$ = new Subject<void>()
