@@ -7,7 +7,6 @@ import { SyncService } from '@infra/pwa/services/sync.service'
 	selector: 'app-root',
 	imports: [RouterOutlet],
 	templateUrl: './app.html',
-	styleUrl: './app.scss',
 })
 export class App {
 	private db = inject(OfflineDBService)

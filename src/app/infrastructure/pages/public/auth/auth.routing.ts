@@ -5,6 +5,9 @@ import { RegisterPage } from './register-page/register-page'
 import { ValidateEmailPage } from './validate-email-page/validate-email-page'
 import { ResetPasswordPage } from './reset-password-page/reset-password-page'
 import { ForgotPasswordPage } from './forgot-password-page/forgot-password-page'
+import { RegisterPlanSelectionPage } from './register-page/sub-pages/register-plan-selection-page/register-plan-selection-page'
+import { RegisterTenantPage } from './register-page/sub-pages/register-tenant-page/register-tenant-page'
+import { RegisterUserPage } from './register-page/sub-pages/register-user-page/register-user-page'
 
 export const authRoutes: Routes = [
 	{
@@ -37,5 +40,24 @@ export const authRoutes: Routes = [
 	{
 		path: 'register',
 		component: RegisterPage,
+		children: [
+			{
+				path: '',
+				redirectTo: 'tenant',
+				pathMatch: 'full',
+			},
+			{
+				path: 'plan-selection',
+				component: RegisterPlanSelectionPage,
+			},
+			{
+				path: 'tenant',
+				component: RegisterTenantPage,
+			},
+			{
+				path: 'user',
+				component: RegisterUserPage,
+			},
+		],
 	},
 ]
