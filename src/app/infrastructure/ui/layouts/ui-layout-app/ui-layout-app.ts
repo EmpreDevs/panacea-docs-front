@@ -8,7 +8,7 @@ import {
 	UsersIcon,
 	LucideAngularModule,
 } from 'lucide-angular'
-import { Logo, UiIsotipo } from '@infra/ui/atoms'
+import { Logo, UiIsotipo, UiDarkmode } from '@infra/ui/atoms'
 
 interface NavItem {
 	name: string
@@ -18,7 +18,7 @@ interface NavItem {
 
 @Component({
 	selector: 'app-ui-layout-app',
-	imports: [NgClass, LucideAngularModule, UiIsotipo, Logo],
+	imports: [NgClass, LucideAngularModule, UiIsotipo, Logo, UiDarkmode],
 	templateUrl: './ui-layout-app.html',
 	styles: ``,
 })
