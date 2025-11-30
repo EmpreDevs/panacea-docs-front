@@ -1,10 +1,10 @@
 import { Component, computed, input } from '@angular/core'
-import { RouterLink } from '@angular/router'
+import { RouterLink, RouterLinkActive } from '@angular/router'
 import { LinkColor, LinkVariant } from './link.type'
 
 @Component({
 	selector: 'app-ui-link',
-	imports: [RouterLink],
+	imports: [RouterLink, RouterLinkActive],
 	templateUrl: './ui-link.html',
 	styles: ``,
 })
@@ -12,13 +12,17 @@ export class UiLink {
 	link = input<string[]>([])
 	variant = input<LinkVariant>('link')
 	color = input<LinkColor>('primary')
+	underline = input<boolean>(true)
+	active = input<string[]>([])
+	css = input<string>('')
 
 	linkClasses = computed(() => {
+		const css = this.css()
 		// Clases base comunes a todos los botones
 		const baseClasses =
 			this.variant() !== 'link'
-				? 'flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer'
-				: ''
+				? `flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer ${css}`
+				: css
 
 		if (this.variant() === 'button') {
 			switch (this.color()) {
@@ -67,27 +71,28 @@ export class UiLink {
 					return `${baseClasses} border-2 border-health-500 text-health-500 bg-transparent hover:bg-health-50 dark:hover:bg-health-900 focus:ring-health-500`
 			}
 		} else if (this.variant() === 'link') {
+			const undeline = this.underline() ? 'hover:underline underline-offset-4' : ''
 			switch (this.color()) {
 				case 'health':
-					return `${baseClasses} text-health-600 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-health-600  ${undeline}`
 				case 'primary':
-					return `${baseClasses} text-primary-600 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-primary-600 ${undeline}`
 				case 'secondary':
-					return `${baseClasses} text-secondary-600 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-secondary-600 ${undeline}`
 				case 'accent':
-					return `${baseClasses} text-accent-500 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-accent-500 ${undeline}`
 				case 'success':
-					return `${baseClasses} text-success-500 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-success-500  ${undeline}`
 				case 'error':
-					return `${baseClasses} text-error-500 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-error-500  ${undeline}`
 				case 'warning':
-					return `${baseClasses} text-warning-500 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-warning-500  ${undeline}`
 				case 'info':
-					return `${baseClasses} text-info-500 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-info-500  ${undeline}`
 				case 'neutral':
-					return `${baseClasses} text-neutral-500 dark:text-neutral-400 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-neutral-500 dark:text-neutral-400  ${undeline}`
 				default:
-					return `${baseClasses} text-health-500 bg-transparent underline-offset-4 hover:underline`
+					return `${baseClasses} text-health-500  ${undeline}`
 			}
 		}
 
