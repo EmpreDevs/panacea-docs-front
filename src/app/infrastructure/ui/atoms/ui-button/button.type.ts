@@ -1,3 +1,12 @@
 export type ButtonType = 'button' | 'submit' | 'reset'
 export type ButtonVariant = 'solid' | 'outline' | 'link'
-export type ButtonColor = 'health' | 'indigo' | 'error' | 'warning' | 'info' | 'neutral'
+export type ButtonColor =
+	| 'health'
+	| 'primary'
+	| 'secondary'
+	| 'accent'
+	| 'error'
+	| 'warning'
+	| 'info'
+	| 'neutral'
+	| 'success'

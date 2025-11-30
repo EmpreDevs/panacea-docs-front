@@ -2,7 +2,7 @@ import { Component, DestroyRef, effect, inject, signal, untracked } from '@angul
 import { CheckIcon, LucideAngularModule } from 'lucide-angular'
 import { NgClass } from '@angular/common'
 import { RouterOutlet, RouterLinkWithHref, ActivatedRoute, Router, NavigationEnd } from '@angular/router'
-import { Logo } from '@infra/ui/atoms'
+import { Logo, UiDarkmode, UiCard } from '@infra/ui/atoms'
 import { filter } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
@@ -16,7 +16,7 @@ type Step = {
 
 @Component({
 	selector: 'app-register-page',
-	imports: [Logo, RouterOutlet, RouterLinkWithHref, LucideAngularModule, NgClass],
+	imports: [Logo, RouterOutlet, RouterLinkWithHref, LucideAngularModule, NgClass, UiDarkmode, UiCard],
 	templateUrl: './register-page.html',
 })
 export class RegisterPage {
