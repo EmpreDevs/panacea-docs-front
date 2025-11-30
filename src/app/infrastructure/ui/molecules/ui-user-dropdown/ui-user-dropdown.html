@@ -1,0 +1,57 @@
+<div class="relative user-dropdown-container">
+	<button
+		(click)="toggleDropdown()"
+		class="relative flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+		type="button"
+	>
+		<span class="absolute -inset-1.5"></span>
+		<span class="sr-only">Open user menu</span>
+		<img
+			src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+			alt="User avatar"
+			class="size-8 rounded-full bg-gray-50 outline -outline-offset-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10"
+		/>
+		<span class="hidden lg:flex lg:items-center">
+			<span
+				aria-hidden="true"
+				class="ml-4 text-sm/6 font-semibold text-gray-900 dark:text-white"
+			>
+				Tom Cook
+			</span>
+			<lucide-angular
+				[img]="isOpen() ? chevronUp : chevronDown"
+				class="ml-2 size-5 text-gray-400 dark:text-gray-500 transition-transform duration-200"
+			/>
+		</span>
+	</button>
+
+	<!-- Dropdown Menu -->
+	@if (isOpen()) {
+	<div
+		class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black/5 dark:ring-white/10 focus:outline-none animate-in fade-in zoom-in-95 duration-100"
+	>
+		<div
+			class="py-1"
+			role="menu"
+			aria-orientation="vertical"
+			aria-labelledby="user-menu-button"
+		>
+			<a
+				href="#"
+				class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+				role="menuitem"
+			>
+				Cuenta
+			</a>
+
+			<a
+				href="#"
+				class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border-t border-gray-200 dark:border-gray-700"
+				role="menuitem"
+			>
+				Cerrar sesión
+			</a>
+		</div>
+	</div>
+	}
+</div>
