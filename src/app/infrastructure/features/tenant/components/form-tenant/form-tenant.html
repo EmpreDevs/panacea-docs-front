@@ -1,1 +1,86 @@
-<p>form-tenant works!</p>
+<form>
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-6">
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="billingName"
+				name="billingName"
+				label="Nombre/Razón social"
+			/>
+		</div>
+		<div class="md:col-span-2 lg:col-span-1">
+			<app-ui-input
+				id="billingRfc"
+				name="billingRfc"
+				label="RFC"
+			/>
+		</div>
+		<div class="md:col-span-2 lg:col-span-1">
+			<app-ui-input
+				id="billingPhone"
+				name="billingPhone"
+				label="Teléfono"
+				type="tel"
+			/>
+		</div>
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="billingEmail"
+				name="billingEmail"
+				label="Correo electrónico"
+				type="email"
+			/>
+		</div>
+
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="billingAddress"
+				name="billingAddress"
+				label="Dirección"
+			/>
+		</div>
+		<div class="md:col-span-2 lg:col-span-1">
+			<app-ui-input
+				id="city"
+				name="city"
+				label="Ciudad"
+			/>
+		</div>
+		<div class="md:col-span-2 lg:col-span-1">
+			<app-ui-input
+				id="state"
+				name="state"
+				label="Estado"
+			/>
+		</div>
+		<div class="md:col-span-2 lg:col-span-1">
+			<app-ui-input
+				id="billingCodePostal"
+				name="billingCodePostal"
+				label="Código postal"
+			/>
+		</div>
+		<div class="md:col-span-2 lg:col-span-1">
+			<app-ui-input
+				id="billingCountry"
+				name="billingCountry"
+				label="País"
+			/>
+		</div>
+	</div>
+	<div class="mt-4 flex justify-between items-center">
+		<app-ui-button
+			variant="outline"
+			color="neutral"
+			type="reset"
+		>
+			Cancelar
+		</app-ui-button>
+		<app-ui-button
+			variant="solid"
+			color="indigo"
+			type="submit"
+		>
+			Continuar
+		</app-ui-button>
+	</div>
+</form>

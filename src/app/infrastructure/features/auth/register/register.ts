@@ -1,11 +1,11 @@
 import { Component } from '@angular/core'
-import { UiInput } from '@infra/ui/molecules'
 import { UiButton } from '@infra/ui/atoms'
+import { UiInput } from '@infra/ui/molecules'
 
 @Component({
-	selector: 'app-form-tenant',
+	selector: 'app-register',
 	imports: [UiInput, UiButton],
-	templateUrl: './form-tenant.html',
+	templateUrl: './register.html',
 	styles: ``,
 })
-export class FormTenant {}
+export class Register {}

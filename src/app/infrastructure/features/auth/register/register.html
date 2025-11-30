@@ -1,0 +1,51 @@
+<form>
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-8">
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="username"
+				name="username"
+				label="Nombre"
+			/>
+		</div>
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="email"
+				name="email"
+				label="Correo electrónico"
+				type="email"
+			/>
+		</div>
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="password"
+				name="password"
+				label="Contraseña"
+				type="password"
+			/>
+		</div>
+		<div class="md:col-span-4 lg:col-span-2">
+			<app-ui-input
+				id="repeatPassword"
+				name="repeatPassword"
+				label="Repetir contraseña"
+				type="password"
+			/>
+		</div>
+	</div>
+	<div class="mt-4 flex justify-between items-center">
+		<app-ui-button
+			variant="outline"
+			color="neutral"
+			type="reset"
+		>
+			Cancelar
+		</app-ui-button>
+		<app-ui-button
+			variant="solid"
+			color="indigo"
+			type="submit"
+		>
+			Continuar
+		</app-ui-button>
+	</div>
+</form>
