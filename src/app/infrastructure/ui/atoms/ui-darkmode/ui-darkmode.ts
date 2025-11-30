@@ -15,11 +15,11 @@ export class UiDarkmode {
 
 	constructor() {
 		effect(() => {
-			const currentTheme = this.themeService.getCurrentTheme()
+			const currentTheme = this.themeService.getTheme()
 			this.icon.set(currentTheme === 'light' ? MoonStarIcon : SunIcon)
 		})
 		effect(() => {
-			this.theme.set(this.themeService.getCurrentTheme())
+			this.theme.set(this.themeService.getTheme())
 		})
 	}
 

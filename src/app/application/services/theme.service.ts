@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core'
+import { Injectable, Renderer2, RendererFactory2, signal } from '@angular/core'
 
 @Injectable({
 	providedIn: 'root',
@@ -6,6 +6,7 @@ import { Injectable, Renderer2, RendererFactory2 } from '@angular/core'
 export class ThemeService {
 	private renderer: Renderer2
 	private readonly STORAGE_KEY = 'themeMode'
+	getTheme = signal<'light' | 'dark'>('light')
 
 	constructor(rendererFactory: RendererFactory2) {
 		this.renderer = rendererFactory.createRenderer(null, null)
@@ -27,6 +28,7 @@ export class ThemeService {
 	}
 
 	private applyTheme(themeMode: 'light' | 'dark'): void {
+		this.getTheme.set(themeMode)
 		const htmlElement = this.renderer.selectRootElement('html', true)
 
 		if (themeMode === 'dark') {
