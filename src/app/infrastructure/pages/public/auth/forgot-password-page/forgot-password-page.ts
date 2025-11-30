@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
-import { RouterLink } from '@angular/router'
 import { ForgotPassword } from '@infra/features/auth'
+import { UiLink } from '@infra/ui/atoms'
 
 @Component({
 	selector: 'app-forgot-password-page',
-	imports: [RouterLink, ForgotPassword],
+	imports: [ForgotPassword, UiLink],
 	templateUrl: './forgot-password-page.html',
 })
 export class ForgotPasswordPage {}

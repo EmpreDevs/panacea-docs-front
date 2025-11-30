@@ -1,12 +1,5 @@
+import { ThemeColor } from '@infra/ui/types'
+
 export type ButtonType = 'button' | 'submit' | 'reset'
 export type ButtonVariant = 'solid' | 'outline' | 'link'
-export type ButtonColor =
-	| 'health'
-	| 'primary'
-	| 'secondary'
-	| 'accent'
-	| 'error'
-	| 'warning'
-	| 'info'
-	| 'neutral'
-	| 'success'
+export type ButtonColor = ThemeColor

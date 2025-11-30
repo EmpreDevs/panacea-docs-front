@@ -23,12 +23,13 @@
 
 	<!-- Checkbox recordar -->
 	<div class="flex items-center justify-end">
-		<a
-			routerLink="/auth/forgot-password"
-			class="link"
+		<app-ui-link
+			[link]="['/auth/forgot-password']"
+			variant="link"
+			color="health"
 		>
 			¿Olvidó la contraseña?
-		</a>
+		</app-ui-link>
 	</div>
 
 	<!-- Botón de inicio de sesión -->

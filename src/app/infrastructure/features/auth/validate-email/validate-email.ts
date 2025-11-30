@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core'
-import { RouterLink } from '@angular/router'
 import { CheckIcon, LoaderCircleIcon, LucideAngularModule, ServerCrashIcon } from 'lucide-angular'
+import { UiLink } from '@infra/ui/atoms'
 
 type VerificationStatus = 'verifying' | 'verified' | 'unverifiable'
 
 @Component({
 	selector: 'app-validate-email',
-	imports: [LucideAngularModule, RouterLink],
+	imports: [LucideAngularModule, UiLink],
 	templateUrl: './validate-email.html',
 	styles: ``,
 })

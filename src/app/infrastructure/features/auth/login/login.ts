@@ -1,12 +1,12 @@
 import { Component } from '@angular/core'
 import { KeyRoundIcon, LogIn, LucideAngularModule, MailIcon } from 'lucide-angular'
-import { UiButton } from '@infra/ui/atoms'
+import { UiButton, UiLink } from '@infra/ui/atoms'
 import { UiInput } from '@infra/ui/molecules'
 import { RouterLink } from '@angular/router'
 
 @Component({
 	selector: 'app-login',
-	imports: [LucideAngularModule, UiInput, UiButton, RouterLink],
+	imports: [LucideAngularModule, UiInput, UiButton, RouterLink, UiLink],
 	templateUrl: './login.html',
 	styles: ``,
 })

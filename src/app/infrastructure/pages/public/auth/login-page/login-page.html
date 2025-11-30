@@ -9,11 +9,12 @@
 	<!-- Link de registro -->
 	<p class="text-center text-sm text-slate-600 dark:text-slate-400 pt-4">
 		¿No tienes cuenta?
-		<a
-			[routerLink]="['/auth/register']"
-			class="font-semibold link"
+		<app-ui-link
+			[link]="['/auth/register']"
+			variant="link"
+			color="health"
 		>
 			Regístrate gratis
-		</a>
+		</app-ui-link>
 	</p>
 </div>

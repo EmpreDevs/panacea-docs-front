@@ -1,0 +1,10 @@
+export type ThemeColor =
+	| 'health'
+	| 'primary'
+	| 'secondary'
+	| 'accent'
+	| 'error'
+	| 'warning'
+	| 'info'
+	| 'neutral'
+	| 'success'

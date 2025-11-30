@@ -20,12 +20,12 @@
 
 		<h3 class="text-xl font-semibold mt-4 text-health-600">¡Email Verificado!</h3>
 		<p class="text-gray-500 mb-6">Tu cuenta está lista para ser utilizada.</p>
-		<a
-			[routerLink]="['/auth/login']"
-			class="link"
+		<app-ui-link
+			[link]="['/auth/login']"
+			color="health"
 		>
 			Iniciar Sesión
-		</a>
+		</app-ui-link>
 	</div>
 	} @if (status === 'unverifiable') {
 
