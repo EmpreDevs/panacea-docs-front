@@ -1,9 +1,11 @@
 <button
-	class="p-2 md:p-3 rounded-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+	class="p-2 md:p-3 rounded-xl backdrop-blur-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
 	id="theme-toggle"
 	title="Toggles light & dark"
 	aria-label="auto"
 	aria-live="polite"
+	[class.text-yellow-400]="theme() === 'dark'"
+	[class.text-blue-800]="theme() === 'light'"
 	(click)="toggleDarkMode()"
 >
 	<lucide-angular

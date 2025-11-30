@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
+import { ThemeService } from '@app/services'
 import { OfflineDBService } from '@infra/pwa/services/offline-db.service'
 import { SyncService } from '@infra/pwa/services/sync.service'
 
@@ -11,6 +12,7 @@ import { SyncService } from '@infra/pwa/services/sync.service'
 export class App {
 	private db = inject(OfflineDBService)
 	private syncService = inject(SyncService)
+	private themeService = inject(ThemeService)
 
 	async ngOnInit() {
 		console.log('🚀 PWA con IndexedDB iniciada')
