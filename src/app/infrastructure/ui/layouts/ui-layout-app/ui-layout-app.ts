@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common'
-import { Component, computed, signal } from '@angular/core'
+import { Component, computed, inject, signal } from '@angular/core'
 import {
 	CalendarCheckIcon,
 	CalendarIcon,
@@ -9,6 +9,8 @@ import {
 	LucideAngularModule,
 } from 'lucide-angular'
 import { Logo, UiIsotipo, UiDarkmode } from '@infra/ui/atoms'
+import { BreadcrumbService } from '@app/services'
+import { UiBreadcrumbs } from '@infra/ui/molecules'
 
 interface NavItem {
 	name: string
@@ -18,11 +20,12 @@ interface NavItem {
 
 @Component({
 	selector: 'app-ui-layout-app',
-	imports: [NgClass, LucideAngularModule, UiIsotipo, Logo, UiDarkmode],
+	imports: [NgClass, LucideAngularModule, UiIsotipo, Logo, UiDarkmode, UiBreadcrumbs],
 	templateUrl: './ui-layout-app.html',
 	styles: ``,
 })
 export class UiLayoutApp {
+	breadcrumbService = inject(BreadcrumbService)
 	// Estado para la vista activa, usando Angular Signals
 	activeView = signal<string>('citasHoy')
 

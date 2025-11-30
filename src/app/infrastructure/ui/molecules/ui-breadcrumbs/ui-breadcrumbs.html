@@ -1,0 +1,34 @@
+<nav
+	aria-label="Breadcrumb"
+	class="mb-8 hidden lg:flex"
+>
+	<ol
+		role="list"
+		class="flex items-center space-x-4"
+	>
+		<li>
+			<div>
+				<app-ui-link
+					[link]="['/']"
+					color="neutral"
+				>
+					<lucide-angular [img]="home" />
+					<span class="sr-only">Home</span>
+				</app-ui-link>
+			</div>
+		</li>
+		@for (breadcrumb of breadcrumbs; track $index) {
+		<li>
+			<div class="flex items-center">
+				<lucide-angular [img]="chevronRight" />
+				<app-ui-link
+					[link]="[breadcrumb.url]"
+					color="neutral"
+				>
+					{{ breadcrumb.label }}
+				</app-ui-link>
+			</div>
+		</li>
+		}
+	</ol>
+</nav>
