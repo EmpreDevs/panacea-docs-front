@@ -1,10 +1,9 @@
 import { Component, signal, HostListener } from '@angular/core'
-import { NgClass } from '@angular/common'
 import { ChevronDownIcon, ChevronUpIcon, LucideAngularModule } from 'lucide-angular'
 
 @Component({
 	selector: 'app-ui-user-dropdown',
-	imports: [NgClass, LucideAngularModule],
+	imports: [LucideAngularModule],
 	templateUrl: './ui-user-dropdown.html',
 	styles: ``,
 })
