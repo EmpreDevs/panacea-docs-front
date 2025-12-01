@@ -1,4 +1,8 @@
-<form class="space-y-5">
+<form
+	class="space-y-5"
+	(ngSubmit)="Login()"
+	[formGroup]="authForm"
+>
 	<!-- Campo de email -->
 	<div class="space-y-2">
 		<app-ui-input
@@ -6,6 +10,7 @@
 			name="email"
 			type="email"
 			label="Correo electrónico"
+			formControlName="email"
 			[icon]="MailIcon"
 		/>
 	</div>
@@ -17,6 +22,7 @@
 			name="password"
 			type="password"
 			label="Contraseña"
+			formControlName="password"
 			[icon]="KeyRoundIcon"
 		/>
 	</div>
@@ -33,7 +39,10 @@
 	</div>
 
 	<!-- Botón de inicio de sesión -->
-	<app-ui-button type="submit">
+	<app-ui-button
+		type="submit"
+		[loading]="loading()"
+	>
 		<span class="flex items-center space-x-2">
 			<span>Iniciar Sesión</span>
 			<lucide-icon

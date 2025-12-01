@@ -4,8 +4,14 @@
 		<h2 class="text-2xl font-sora font-bold text-slate-800 dark:text-white">Bienvenido de vuelta</h2>
 	</div>
 
-	<app-login />
+	<app-login
+		(formSubmited)="Login($event)"
+		[loading]="$loading()"
+	/>
 
+	<div class="text-error-500 py-2">
+		<p>* {{ $error() }}</p>
+	</div>
 	<!-- Link de registro -->
 	<p class="text-center text-sm text-slate-600 dark:text-slate-400 pt-4">
 		¿No tienes cuenta?

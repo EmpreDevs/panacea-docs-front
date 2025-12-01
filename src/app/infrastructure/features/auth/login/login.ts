@@ -1,16 +1,32 @@
-import { Component } from '@angular/core'
+import { Component, inject, input, output } from '@angular/core'
 import { KeyRoundIcon, LogIn, LucideAngularModule, MailIcon } from 'lucide-angular'
 import { UiButton, UiLink } from '@infra/ui/atoms'
 import { UiInput } from '@infra/ui/molecules'
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 
 @Component({
 	selector: 'app-login',
-	imports: [LucideAngularModule, UiInput, UiButton, UiLink],
+	imports: [LucideAngularModule, UiInput, UiButton, UiLink, ReactiveFormsModule],
 	templateUrl: './login.html',
 	styles: ``,
 })
 export class Login {
+	readonly fb = inject(FormBuilder)
+
+	loading = input<boolean>(false)
+	formSubmited = output<FormGroup>()
+
 	readonly MailIcon = MailIcon
 	readonly KeyRoundIcon = KeyRoundIcon
 	readonly LogIn = LogIn
+
+	authForm: FormGroup = this.fb.group({
+		email: ['', [Validators.required, Validators.email]],
+		password: ['', [Validators.required]],
+	})
+
+	Login() {
+		console.log(this.authForm.value)
+		this.formSubmited.emit(this.authForm)
+	}
 }
