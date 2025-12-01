@@ -20,11 +20,24 @@ export class AuthFacade {
 	private readonly resetPasswordUC = inject(ResetPasswordUseCase)
 	private readonly authState = inject(AuthState)
 
-	async login(email: string, password: string) {
-		const auth = await this.loginUC.execute(email, password)
-		this.authState.saveUserData(auth.user)
-		this.authState.saveAccessToken(auth.token)
-		this.authState.saveRefreshToken(auth.refreshToken)
+	async login(email: string, password: string): Promise<boolean> {
+		try {
+			this.authState.setLoading(true)
+			const auth = await this.loginUC.execute(email, password)
+			this.authState.saveUserData(auth.user)
+			this.authState.saveAccessToken(auth.token)
+			this.authState.saveRefreshToken(auth.refreshToken)
+			this.authState.setLoading(false)
+			return this.authState.isAuthenticated()
+		} catch (error: any) {
+			let errorMessage: string = 'Ocurrió un error desconocido.'
+			if (error instanceof Error) {
+				errorMessage = error.message
+			}
+			this.authState.setError(errorMessage)
+			this.authState.setLoading(false)
+			return false
+		}
 	}
 	forgotPassword(email: string) {
 		return this.forgoPasswordUC.execute(email)
@@ -45,5 +58,11 @@ export class AuthFacade {
 
 	isAuthenticated() {
 		return this.authState.isAuthenticated
+	}
+	loading() {
+		return this.authState.isLoading
+	}
+	errors() {
+		return this.authState.error
 	}
 }
