@@ -7,10 +7,11 @@ import { ButtonColor, ButtonType, ButtonVariant } from './button.type'
 	templateUrl: './ui-button.html',
 })
 export class UiButton {
-	@Input({ required: true }) type: ButtonType = 'submit'
+	@Input() type: ButtonType = 'submit'
 	@Input() disabled = false
 	variant = input<ButtonVariant>('solid')
 	color = input<ButtonColor>('health')
+	loading = input<boolean>(false)
 
 	clasesBtn = computed(() => {
 		// Clases base comunes a todos los botones
