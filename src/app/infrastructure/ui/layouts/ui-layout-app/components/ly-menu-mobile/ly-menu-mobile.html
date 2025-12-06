@@ -1,6 +1,6 @@
 <nav class="fixed inset-x-0 bottom-0 bg-surface border-t border-on-surface/10 shadow-2xl lg:hidden z-30">
 	<div class="flex justify-around items-center h-16">
-		@for (item of navItems; track item.view) {
+		@for (item of navItems; track $index; let i = $index) {
 		<a
 			(click)="setActiveView(item.view)"
 			[ngClass]="{

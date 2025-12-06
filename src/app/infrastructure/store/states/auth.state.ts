@@ -484,52 +484,6 @@ export class AuthState implements OnDestroy {
 		}
 	}
 
-	// 🔐 MÉTODOS PÚBLICOS DE AUTENTICACIÓN
-	async login(credentials: { email: string; password: string }): Promise<void> {
-		try {
-			this.isLoading$.set(true)
-			this.error$.set(null)
-
-			const response = await fetch('/api/auth/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(credentials),
-				credentials: 'include',
-			})
-
-			if (!response.ok) {
-				const error = await response.json()
-				throw new Error(error.message || 'Login failed')
-			}
-
-			const data = await response.json()
-
-			// Guardar tokens
-			if (data.accessToken) {
-				await this.saveAccessToken(data.accessToken)
-			}
-
-			if (data.refreshToken) {
-				await this.saveRefreshToken(data.refreshToken)
-			}
-
-			// Guardar datos del usuario
-			if (data.user) {
-				await this.saveUserData(data.user)
-			}
-
-			this.isLogued$.set(true)
-		} catch (error: any) {
-			console.error('Login failed:', error)
-			this.error$.set(error.message || 'Login failed')
-			throw error
-		} finally {
-			this.isLoading$.set(false)
-		}
-	}
-
 	async logout(): Promise<void> {
 		await this.clearSession()
 	}

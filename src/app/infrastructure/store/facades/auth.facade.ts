@@ -24,9 +24,11 @@ export class AuthFacade {
 		try {
 			this.authState.setLoading(true)
 			const auth = await this.loginUC.execute(email, password)
-			this.authState.saveUserData(auth.user)
-			this.authState.saveAccessToken(auth.token)
-			this.authState.saveRefreshToken(auth.refreshToken)
+			await Promise.all([
+				this.authState.saveUserData(auth.user),
+				this.authState.saveAccessToken(auth.token),
+				this.authState.saveRefreshToken(auth.refreshToken),
+			])
 			this.authState.setLoading(false)
 			return this.authState.isAuthenticated()
 		} catch (error: any) {
@@ -42,8 +44,12 @@ export class AuthFacade {
 	forgotPassword(email: string) {
 		return this.forgoPasswordUC.execute(email)
 	}
-	logout() {
-		return this.logoutUC.execute()
+	async logout() {
+		this.authState.setLoading(true)
+		const response = await this.logoutUC.execute()
+		this.authState.setLoading(false)
+		this.authState.logout()
+		return response
 	}
 	register(user: User) {
 		return this.registerUC.execute(user)
