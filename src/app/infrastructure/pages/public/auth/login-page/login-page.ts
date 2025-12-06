@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Login } from '@infra/features/auth'
+import { NotificacionLib } from '@infra/libraries'
 import { AuthFacade } from '@infra/store/facades'
 import { UiLink } from '@infra/ui/atoms'
 
@@ -15,6 +16,7 @@ export class LoginPage {
 	authFacade = inject(AuthFacade)
 	$loading = this.authFacade.loading()
 	$error = this.authFacade.errors()
+	notifications = inject(NotificacionLib)
 
 	async Login(form: FormGroup) {
 		const { email, password } = form.value
@@ -22,6 +24,7 @@ export class LoginPage {
 		console.log(isAuthenticated)
 
 		if (isAuthenticated) {
+			this.notifications.success('Bienvenido')
 			this.router.navigate(['/app'])
 		}
 	}
