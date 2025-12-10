@@ -14,12 +14,6 @@ export class LoginUseCase {
 			throw new Error('Contraseña inválida')
 		}
 
-		// Simular login para credenciales de prueba
-		if (email === 'admin@example.com' && password === 'Dracka911*') {
-			return await this.simulate()
-		}
-
-		// Login real con el repositorio
 		return this.repository.login(email, password)
 	}
 
@@ -28,28 +22,8 @@ export class LoginUseCase {
 		return emailRegex.test(email)
 	}
 	validPassword(password: string): boolean {
+		return true
 		const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 		return passwordRegex.test(password)
-	}
-
-	simulate(): Promise<Auth> {
-		return new Promise(resolve => {
-			setTimeout(() => {
-				resolve({
-					user: {
-						id: '1',
-						name: 'John Doe',
-						email: 'john.doe@example.com',
-						role: 'admin',
-						avatar: 'https://example.com/avatar.jpg',
-						preferences: {},
-						password: '*******',
-					},
-					token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNzk2MTAwODQ4fQ.0VoSUsIvbzqWrchXvuFLpVoMEc1rcjGdEvTkEQ77CUQ',
-					refreshToken:
-						'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNzk2MTAwODQ4fQ.0VoSUsIvbzqWrchXvuFLpVoMEc1rcjGdEvTkEQ77CUQ',
-				})
-			}, 2000)
-		})
 	}
 }

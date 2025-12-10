@@ -16,15 +16,12 @@ export class LoginPage {
 	authFacade = inject(AuthFacade)
 	$loading = this.authFacade.loading()
 	$error = this.authFacade.errors()
-	notifications = inject(NotificacionLib)
 
 	async Login(form: FormGroup) {
 		const { email, password } = form.value
 		const isAuthenticated = await this.authFacade.login(email, password)
-		console.log(isAuthenticated)
 
 		if (isAuthenticated) {
-			this.notifications.success('Bienvenido')
 			this.router.navigate(['/app'])
 		}
 	}

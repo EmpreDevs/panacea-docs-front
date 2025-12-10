@@ -27,8 +27,8 @@ export class AuthState implements OnDestroy {
 	readonly error = this.error$.asReadonly()
 
 	readonly isAuthenticated = computed(() => this.isLogued$() && this.user$() !== null)
-	readonly userName = computed(() => this.user$()?.name ?? 'Guest')
-	readonly userRole = computed(() => this.user$()?.role ?? null)
+	readonly userName = computed(() => this.user$()?.username ?? 'Guest')
+	readonly userRole = computed(() => this.user$()?.roleName ?? null)
 
 	private db!: IDBPDatabase<AuthDB>
 	private dbReady: Promise<void>
@@ -91,9 +91,6 @@ export class AuthState implements OnDestroy {
 				if (userData) {
 					this.user$.set(userData)
 					this.isLogued$.set(true)
-
-					// Configurar auto-refresh de tokens
-					await this.setupTokenRefresh()
 				}
 			}
 		} catch (error) {
@@ -114,9 +111,6 @@ export class AuthState implements OnDestroy {
 			// Actualizar estado
 			this.isLogued$.set(true)
 			this.error$.set(null)
-
-			// Configurar auto-refresh
-			await this.setupTokenRefresh()
 		} catch (error) {
 			console.error('Error saving access token:', error)
 			this.error$.set('Failed to save access token')
@@ -155,7 +149,8 @@ export class AuthState implements OnDestroy {
 				id: userData.id,
 				name: userData.name,
 				email: userData.email,
-				role: userData.role,
+				roleName: userData.roleName,
+				roleId: userData.roleId,
 				avatar: userData.avatar,
 				preferences: userData.preferences,
 			}
@@ -301,82 +296,6 @@ export class AuthState implements OnDestroy {
 			}
 
 			return null
-		}
-	}
-
-	// 🔄 AUTO-REFRESH DE TOKENS
-	private async setupTokenRefresh(): Promise<void> {
-		try {
-			// Cancelar timer existente si hay uno
-			if (this.refreshTimer) {
-				clearTimeout(this.refreshTimer)
-			}
-
-			const accessToken = await this.getFromIDB('access_token')
-			if (!accessToken) return
-
-			const decrypted = this.decrypt(accessToken)
-			const decoded = this.decodeToken(decrypted)
-
-			if (!decoded || !decoded.exp) return
-
-			// Programar refresh 5 minutos antes de expirar
-			const refreshTime = decoded.exp * 1000 - 5 * 60 * 1000
-			const timeUntilRefresh = refreshTime - Date.now()
-
-			if (timeUntilRefresh > 0) {
-				this.refreshTimer = window.setTimeout(() => {
-					this.refreshAccessToken()
-				}, timeUntilRefresh)
-			} else {
-				// Si ya está por expirar, refrescar inmediatamente
-				await this.refreshAccessToken()
-			}
-		} catch (error) {
-			console.error('Failed to setup token refresh:', error)
-		}
-	}
-
-	// 🔄 REFRESCAR ACCESS TOKEN
-	private async refreshAccessToken(): Promise<void> {
-		try {
-			this.isLoading$.set(true)
-
-			const refreshToken = await this.getFromIDB('refresh_token')
-			if (!refreshToken) {
-				throw new Error('No refresh token available')
-			}
-
-			const decrypted = this.decrypt(refreshToken)
-
-			// Llamar al endpoint de refresh (implementar según tu backend)
-			const response = await fetch('/api/auth/refresh', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ refreshToken: decrypted }),
-				credentials: 'include',
-			})
-
-			if (!response.ok) {
-				throw new Error('Failed to refresh token')
-			}
-
-			const data = await response.json()
-			await this.saveAccessToken(data.accessToken)
-
-			if (data.refreshToken) {
-				await this.saveRefreshToken(data.refreshToken)
-			}
-
-			this.error$.set(null)
-		} catch (error) {
-			console.error('Failed to refresh access token:', error)
-			this.error$.set('Session expired. Please login again.')
-			await this.clearSession()
-		} finally {
-			this.isLoading$.set(false)
 		}
 	}
 
@@ -540,16 +459,6 @@ export class AuthState implements OnDestroy {
 			if (!encrypted) return null
 
 			const token = this.decrypt(encrypted)
-
-			// Verificar si el token es válido antes de devolverlo
-			if (!this.isTokenValid(token)) {
-				// Intentar refrescar
-				await this.refreshAccessToken()
-
-				// Obtener el nuevo token
-				const newEncrypted = await this.getFromIDB('access_token')
-				return newEncrypted ? this.decrypt(newEncrypted) : null
-			}
 
 			return token
 		} catch (error) {

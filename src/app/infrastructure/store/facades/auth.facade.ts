@@ -26,8 +26,7 @@ export class AuthFacade {
 			const auth = await this.loginUC.execute(email, password)
 			await Promise.all([
 				this.authState.saveUserData(auth.user),
-				this.authState.saveAccessToken(auth.token),
-				this.authState.saveRefreshToken(auth.refreshToken),
+				this.authState.saveAccessToken(auth.accessToken),
 			])
 			this.authState.setLoading(false)
 			return this.authState.isAuthenticated()

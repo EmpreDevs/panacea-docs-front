@@ -3,6 +3,7 @@ import { KeyRoundIcon, LogIn, LucideAngularModule, MailIcon } from 'lucide-angul
 import { UiButton, UiLink } from '@infra/ui/atoms'
 import { UiInput } from '@infra/ui/molecules'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { NotificacionLib } from '@infra/libraries'
 
 @Component({
 	selector: 'app-login',
@@ -12,6 +13,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class Login {
 	readonly fb = inject(FormBuilder)
+	readonly notification = inject(NotificacionLib)
 
 	loading = input<boolean>(false)
 	formSubmited = output<FormGroup>()
@@ -26,7 +28,10 @@ export class Login {
 	})
 
 	Login() {
-		console.log(this.authForm.value)
-		this.formSubmited.emit(this.authForm)
+		if (this.authForm.valid) {
+			this.formSubmited.emit(this.authForm)
+		} else {
+			this.authForm.markAllAsTouched()
+		}
 	}
 }

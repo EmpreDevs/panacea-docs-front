@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router'
 import { guestGuard, loguedGuard } from '@infra/guards'
 import { AppPage } from '@infra/pages/private/app-page/app-page'
-import { LogoutPage } from '@infra/pages/public/auth/logout-page/logout-page'
+import { LogoutPage } from '@infra/pages/private/logout-page/logout-page'
 
 export const routes: Routes = [
 	{
