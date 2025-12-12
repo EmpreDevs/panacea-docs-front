@@ -21,7 +21,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'app',
-		component: AppPage,
+		loadChildren: () => import('./infrastructure/pages/private/main.routing').then(m => m.authRoutes),
 		canActivate: [loguedGuard],
 	},
 ]

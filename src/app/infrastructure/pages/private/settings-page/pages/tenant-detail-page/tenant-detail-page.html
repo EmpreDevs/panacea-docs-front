@@ -1,0 +1,60 @@
+<app-ui-card
+	[shadow]="false"
+	rounded="lg"
+>
+	<div class="flex justify-between items-center">
+		<h2 class="text-base/7 font-semibold">Información de facturación</h2>
+		<app-ui-button
+			type="button"
+			variant="outline"
+			color="info"
+		>
+			<lucide-icon
+				[img]="pencil"
+				[size]="18"
+			></lucide-icon>
+			<span class="hidden lg:block">Editar</span>
+		</app-ui-button>
+	</div>
+
+	<dl
+		class="mt-6 divide-y divide-gray-100 border-t border-gray-200 text-sm/6 dark:divide-white/5 dark:border-white/5"
+	>
+		<div class="py-6 sm:flex">
+			<dt class="font-medium sm:w-64 sm:flex-none sm:pr-6">Razón social</dt>
+			<dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+				<div>Oncoespecialidades SA de CV</div>
+			</dd>
+		</div>
+		<div class="py-6 sm:flex">
+			<dt class="font-medium sm:w-64 sm:flex-none sm:pr-6">RFC</dt>
+			<dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+				<div>ONCO1234123ER</div>
+			</dd>
+		</div>
+		<div class="py-6 sm:flex">
+			<dt class="font-medium sm:w-64 sm:flex-none sm:pr-6">Domicilio fiscal</dt>
+			<dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+				<div>calle 123, colonia centro, cuernavaca, Morelos, Mexico, C.P. 62000</div>
+			</dd>
+		</div>
+		<div class="py-6 sm:flex">
+			<dt class="font-medium sm:w-64 sm:flex-none sm:pr-6">Uso CFDI</dt>
+			<dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+				<div>Gastos en general</div>
+			</dd>
+		</div>
+		<div class="py-6 sm:flex">
+			<dt class="font-medium sm:w-64 sm:flex-none sm:pr-6">Teléfono</dt>
+			<dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+				<div>55 1234 5678</div>
+			</dd>
+		</div>
+		<div class="py-6 sm:flex">
+			<dt class="font-medium sm:w-64 sm:flex-none sm:pr-6">E-mail</dt>
+			<dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+				<div>gersom.sim@gmail.com</div>
+			</dd>
+		</div>
+	</dl>
+</app-ui-card>

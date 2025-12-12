@@ -1,0 +1,37 @@
+<app-ui-layout-app>
+	<div class="lg:flex">
+		<h1 class="sr-only">General Settings</h1>
+
+		<aside
+			class="flex overflow-x-auto lg:block lg:w-48 lg:flex-none lg:border-0 sticky top-20 h-[calc(100vh-20rem)]"
+		>
+			<nav class="flex-none px-4 sm:px-6 lg:px-0">
+				<ul
+					role="list"
+					class="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col"
+				>
+					@for (item of navItems; track item.view) {
+					<li>
+						<app-ui-link
+							[link]="[item.view]"
+							color="neutral"
+							[underline]="false"
+							css="flex gap-x-3 py-2 pr-3 pl-2 text-sm/6"
+							[active]="['text-primary-600']"
+						>
+							<lucide-angular [img]="item.icon" />
+							{{ item.name }}
+						</app-ui-link>
+					</li>
+					}
+				</ul>
+			</nav>
+		</aside>
+
+		<main class="px-4 sm:px-6 lg:flex-auto lg:px-0">
+			<div class="mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none lg:px-5 pt-4 lg:pt-0">
+				<router-outlet></router-outlet>
+			</div>
+		</main>
+	</div>
+</app-ui-layout-app>
