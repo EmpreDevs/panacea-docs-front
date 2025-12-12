@@ -45,6 +45,11 @@ export class BreadcrumbService {
 		}
 
 		for (const child of children) {
+			// Skip if snapshot is not yet initialized
+			if (!child.snapshot) {
+				continue
+			}
+
 			const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/')
 
 			if (routeURL) {
