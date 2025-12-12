@@ -16,7 +16,7 @@ export class UiButton {
 	clasesBtn = computed(() => {
 		// Clases base comunes a todos los botones
 		const baseClasses =
-			'flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer'
+			'flex w-full justify-center items-center gap-2 rounded-md px-3 py-1.5 text-sm/6 font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer'
 
 		if (this.variant() === 'solid') {
 			switch (this.color()) {
@@ -58,7 +58,7 @@ export class UiButton {
 				case 'warning':
 					return `${baseClasses} border-2 border-warning-500 text-warning-500 bg-transparent hover:bg-warning-50 dark:hover:bg-warning-900 focus:ring-warning-500`
 				case 'info':
-					return `${baseClasses} border-2 border-primary-300 text-primary-400 bg-transparent hover:bg-primary-500 dark:hover:bg-primary-900 focus:ring-primary-500`
+					return `${baseClasses} border-2 border-primary-300 text-primary-400 bg-transparent hover:bg-primary-500 dark:hover:bg-primary-900 hover:text-white dark:hover:text-white focus:ring-primary-500`
 				case 'neutral':
 					return `${baseClasses} border-2 border-neutral-400 text-neutral-600 dark:border-neutral-500 dark:text-neutral-400 bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:ring-neutral-500`
 				default:
