@@ -19,39 +19,34 @@ export class MenuService {
 		{
 			name: 'Dashboard',
 			icon: HouseIcon,
-			view: '/dashboard',
+			view: '/app/dashboard',
 		},
 		{
 			name: 'Hoy',
 			icon: CalendarCheckIcon,
-			view: '/today',
+			view: '/app/appointments/today',
 		},
 		{
 			name: 'Agenda',
 			icon: CalendarIcon,
-			view: '/appointments',
+			view: '/app/appointments',
 		},
 		{
 			name: 'Pacientes',
 			icon: UsersIcon,
-			view: '/patients',
+			view: '/app/patients',
 		},
 	]
 	secondaryMenuItems: INavItem[] = [
 		{
-			name: 'Info. consultorio',
-			icon: HousePlusIcon,
-			view: '/medical-office',
-		},
-		{
 			name: 'Bloqueos de citas',
 			icon: CalendarX2Icon,
-			view: '/block-appointments',
+			view: '/app/block-appointments',
 		},
 		{
 			name: 'Horario de medico',
 			icon: CalendarCogIcon,
-			view: '/doctor-schedule',
+			view: '/app/doctor-schedule',
 		},
 	]
 
@@ -59,22 +54,22 @@ export class MenuService {
 		{
 			name: 'Hoy',
 			icon: CalendarCheckIcon,
-			view: '/today',
+			view: '/app/appointments/today',
 		},
 		{
 			name: 'Agenda',
 			icon: CalendarIcon,
-			view: '/today',
+			view: '/app/appointments',
 		},
 		{
 			name: 'Pacientes',
 			icon: UsersIcon,
-			view: '/patients',
+			view: '/app/patients',
 		},
 		{
 			name: 'Configuración',
 			icon: SettingsIcon,
-			view: '/patients',
+			view: '/app/patients',
 		},
 	]
 

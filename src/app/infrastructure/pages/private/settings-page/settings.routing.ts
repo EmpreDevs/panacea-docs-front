@@ -15,7 +15,7 @@ export const authRoutes: Routes = [
 			breadcrumb: 'Settings',
 		},
 		children: [
-			{ path: '', redirectTo: 'tenant-detail', pathMatch: 'full' },
+			{ path: '', redirectTo: 'medical-office', pathMatch: 'full' },
 			{ path: 'tenant', component: TenantDetailPage },
 			{ path: 'profile', component: AccountDetailPage },
 			{ path: 'users', component: UsersDetailPage },
