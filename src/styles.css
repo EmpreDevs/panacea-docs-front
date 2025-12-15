@@ -217,3 +217,7 @@ html {
 .zoom-in {
 	animation: zoom-in 0.3s ease-out;
 }
+.fc .fc-day-today {
+	background-color: #e3f2fd !important; /* Azul claro */
+	/* O cualquier color que prefieras */
+}
