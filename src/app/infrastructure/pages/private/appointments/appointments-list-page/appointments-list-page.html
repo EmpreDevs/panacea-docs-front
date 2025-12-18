@@ -1,3 +1,13 @@
+<app-appointment-detail
+	[appointment]="appointmentSelected"
+	[launchView]="launchView"
+	(closeView)="closeView()"
+></app-appointment-detail>
 <app-ui-card>
-	<full-calendar [options]="calendarOptions"></full-calendar>
+	<app-appointment-list
+		[events]="appointments"
+		(eventClick)="launchViewDetail($event)"
+		(eventDrop)="updateAppointment($event)"
+		(createEvent)="createAppointment($event)"
+	></app-appointment-list>
 </app-ui-card>

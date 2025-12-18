@@ -13,3 +13,4 @@ export * from './plan.model';
 export * from './payment.model';
 export * from './speciality.model'
 export * from './tenant.model'
+export * from './appointment.model'

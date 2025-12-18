@@ -12,3 +12,4 @@ export * from './subscription.repository';
 export * from './plan.repository';
 export * from './payment.repository';
 export * from './tenant.repository';
+export * from './appointment.repository';

@@ -1,77 +1,179 @@
 import { Component } from '@angular/core'
-import { CalendarOptions } from '@fullcalendar/core'
-import { FullCalendarModule } from '@fullcalendar/angular'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import listPlugin from '@fullcalendar/list'
+import { Appointment } from '@domain/models'
 import { UiCard } from '@infra/ui/atoms'
-import esLocale from '@fullcalendar/core/locales/es'
+import { UiCalendar } from '@infra/ui/organism'
+import { AppointmentDetail } from '@infra/features/appointments/appointment-detail/appointment-detail'
+import { AppointmentList } from '@infra/features/appointments/appointment-list/appointment-list'
 
 @Component({
 	selector: 'app-appointments-list-page',
-	imports: [FullCalendarModule, UiCard],
+	imports: [UiCard, AppointmentDetail, AppointmentList],
 	templateUrl: './appointments-list-page.html',
 	styles: ``,
 })
 export class AppointmentsListPage {
-	calendarOptions: CalendarOptions = {
-		initialView: 'listWeek',
-		hiddenDays: [0],
-		slotDuration: '00:10:00',
-		scrollTime: '08:00',
-		businessHours: [
-			{
-				daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
-				startTime: '08:00', // 8am
-				endTime: '18:00', // 6pm
+	appointmentSelected: Appointment | null = null
+	appointments: Appointment[] = [
+		{
+			id: '1',
+			title: 'Consulta General - Dr. García',
+			startDate: new Date('2025-12-18T09:00:00'),
+			endDate: new Date('2025-12-18T09:30:00'),
+			estimation: 30,
+			patientId: 'patient-001',
+			healthProviderId: 'doctor-garcia',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'María González',
+				appointmentType: 'Consulta General',
+				status: 'confirmed',
 			},
-			{
-				daysOfWeek: [4, 5, 6], // Thursday, Friday
-				startTime: '10:00', // 10am
-				endTime: '16:00', // 4pm
+		},
+		{
+			id: '2',
+			title: 'Control Prenatal - Dra. Martínez',
+			startDate: new Date('2025-12-18T10:00:00'),
+			endDate: new Date('2025-12-18T11:00:00'),
+			estimation: 60,
+			patientId: 'patient-002',
+			healthProviderId: 'doctor-martinez',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Ana Rodríguez',
+				appointmentType: 'Control Prenatal',
+				status: 'confirmed',
+				notes: 'Semana 24',
 			},
-		],
-		themeSystem: 'bootstrap5',
-		locale: esLocale,
-		plugins: [timeGridPlugin, interactionPlugin, dayGridPlugin, listPlugin],
-		droppable: true,
-		editable: true,
-		selectable: true,
-		height: 'calc(100vh - 250px)',
-		headerToolbar: {
-			left: 'prev,next,listWeek',
-			center: 'title',
-			right: 'timeGridDay,timeGridWeek,dayGridMonth', // user can switch between the two
 		},
-		navLinks: true,
-		events: [
-			{ title: 'event 1', date: '2025-12-12', description: 'description for All Day Event' },
-			{ title: 'event 2', date: '2025-12-13' },
-			{ title: 'event 2', date: '2026-01-14' },
-			{ title: 'event 2', date: '2026-02-15' },
-			{ title: 'event 2', date: '2026-03-16' },
-			{ title: 'event 2', date: '2026-04-17' },
-		],
-		eventDisplay: 'block',
-		eventColor: '#378006',
-		eventBackgroundColor: '#378006',
-		eventTextColor: '#fff',
-		eventClick: arg => {
-			console.log(arg)
+		{
+			id: '3',
+			title: 'Revisión Cardiológica - Dr. López',
+			startDate: new Date('2025-12-19T14:00:00'),
+			endDate: new Date('2025-12-19T14:45:00'),
+			estimation: 45,
+			patientId: 'patient-003',
+			healthProviderId: 'doctor-lopez',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Carlos Pérez',
+				appointmentType: 'Cardiología',
+				status: 'pending',
+			},
 		},
-		eventDrop: arg => {
-			console.log(arg)
+		{
+			id: '4',
+			title: 'Consulta Pediátrica - Dra. Torres',
+			startDate: new Date('2025-12-20T08:30:00'),
+			endDate: new Date('2025-12-20T09:00:00'),
+			estimation: 30,
+			patientId: 'patient-004',
+			healthProviderId: 'doctor-torres',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Sofía Ramírez',
+				appointmentType: 'Pediatría',
+				status: 'confirmed',
+				notes: 'Control de vacunas',
+			},
 		},
-		eventResize: arg => {
-			console.log(arg)
+		{
+			id: '5',
+			title: 'Terapia Física - Lic. Fernández',
+			startDate: new Date('2025-12-20T15:00:00'),
+			endDate: new Date('2025-12-20T16:00:00'),
+			estimation: 60,
+			patientId: 'patient-005',
+			healthProviderId: 'therapist-fernandez',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Roberto Sánchez',
+				appointmentType: 'Fisioterapia',
+				status: 'confirmed',
+				notes: 'Sesión 5/10',
+			},
 		},
-		select: arg => {
-			console.log(arg)
+		{
+			id: '6',
+			title: 'Consulta Dermatológica - Dra. Hernández',
+			startDate: new Date('2025-12-23T11:00:00'),
+			endDate: new Date('2025-12-23T11:30:00'),
+			estimation: 30,
+			patientId: 'patient-006',
+			healthProviderId: 'doctor-hernandez',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Laura Jiménez',
+				appointmentType: 'Dermatología',
+				status: 'pending',
+			},
 		},
+		{
+			id: '7',
+			title: 'Examen de Laboratorio',
+			startDate: new Date('2025-12-24T07:00:00'),
+			endDate: new Date('2025-12-24T07:15:00'),
+			estimation: 15,
+			patientId: 'patient-007',
+			healthProviderId: 'lab-tech-001',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Diego Morales',
+				appointmentType: 'Laboratorio',
+				status: 'confirmed',
+				notes: 'En ayunas',
+			},
+		},
+		{
+			id: '8',
+			title: 'Consulta Odontológica - Dr. Vargas',
+			startDate: new Date('2026-01-08T16:00:00'),
+			endDate: new Date('2026-01-08T16:45:00'),
+			estimation: 45,
+			patientId: 'patient-008',
+			healthProviderId: 'dentist-vargas',
+			tenantId: 'clinic-001',
+			properties: {
+				patientName: 'Patricia Castro',
+				appointmentType: 'Odontología',
+				status: 'confirmed',
+				notes: 'Limpieza dental',
+			},
+		},
+	]
+
+	launchView = false
+
+	launchViewDetail(appointment: Appointment) {
+		this.appointmentSelected = appointment
+		this.launchView = true
 	}
 
-	handleDateClick(arg: any) {
-		alert('date click! ' + arg.dateStr)
+	closeView() {
+		this.launchView = false
+		this.appointmentSelected = null
+	}
+
+	updateAppointment(event: Appointment) {
+		this.appointments = this.appointments.map(appointment => {
+			if (appointment.id === event.id) {
+				return event
+			}
+			return appointment
+		})
+		this.appointmentSelected = event
+		this.launchView = true
+	}
+	createAppointment(date: Date) {
+		this.appointmentSelected = {
+			id: 'new',
+			title: 'New Appointment',
+			startDate: date,
+			endDate: date,
+			patientId: 'patient-008',
+			healthProviderId: 'dentist-vargas',
+			tenantId: 'clinic-001',
+			estimation: 45,
+		}
+		this.launchView = true
 	}
 }
