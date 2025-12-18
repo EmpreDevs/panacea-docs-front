@@ -221,3 +221,6 @@ html {
 	background-color: #e3f2fd !important; /* Azul claro */
 	/* O cualquier color que prefieras */
 }
+.dark .fc .fc-day-today {
+	background-color: #075985 !important; /* Azul oscuro (primary-800) para dark mode */
+}
