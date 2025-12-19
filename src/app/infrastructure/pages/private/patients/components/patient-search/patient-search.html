@@ -1,0 +1,17 @@
+<div class="mb-2">
+	<label for="patientSearch">Buscar paciente</label>
+	<app-ui-async-select
+		[items]="patients()"
+		[loading]="isLoading()"
+		[selectedValue]="selectedPatientId()"
+		[placeholder]="'Buscar paciente por nombre...'"
+		[displayKeys]="['firstName', 'lastName']"
+		[valueKey]="'id'"
+		[minChars]="3"
+		[debounceTime]="500"
+		[clearable]="true"
+		(search)="onSearch($event)"
+		(select)="onSelectPatient($event)"
+		(clear)="onClearPatient()"
+	/>
+</div>
