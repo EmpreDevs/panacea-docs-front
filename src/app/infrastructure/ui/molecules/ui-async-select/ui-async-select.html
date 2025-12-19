@@ -1,0 +1,117 @@
+<div class="relative w-full z-50">
+	<!-- Input Container -->
+	<div class="relative">
+		<input
+			#searchInput
+			type="text"
+			[(ngModel)]="searchTerm"
+			(input)="onSearchChange($event)"
+			(focus)="onInputFocus()"
+			(blur)="closeDropdown()"
+			(click)="onInputClick()"
+			(keydown)="onKeyDown($event)"
+			[placeholder]="placeholder()"
+			[disabled]="disabled()"
+			class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed transition-colors duration-200"
+			autocomplete="off"
+		/>
+
+		<!-- Loading Spinner -->
+		@if (loading()) {
+			<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+				<app-ui-icon
+					name="loader-circle"
+					class="animate-spin"
+					[size]="18"
+				/>
+			</div>
+		}
+
+		<!-- Clear Button -->
+		@if (!loading() && clearable() && selectedItem() && !disabled()) {
+			<button
+				type="button"
+				(mousedown)="clearSelection()"
+				class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none transition-colors duration-200"
+			>
+				<svg
+					class="w-5 h-5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M6 18L18 6M6 6l12 12"
+					></path>
+				</svg>
+			</button>
+		}
+
+		<!-- Chevron Icon (cuando hay items disponibles) o Search Icon -->
+		@if (!loading() && !selectedItem()) {
+			<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+				@if (items().length > 0) {
+					<button
+						type="button"
+						(click)="toggleDropdown()"
+						class="cursor-pointer z-10 pointer-events-auto"
+					>
+						<span
+							class="block transition-transform duration-300"
+							[class.rotate-180]="isOpen()"
+						>
+							<app-ui-icon
+								name="chevron-down"
+								[size]="18"
+							/>
+						</span>
+					</button>
+				} @else {
+					<app-ui-icon
+						name="search"
+						[size]="18"
+					/>
+				}
+			</div>
+		}
+	</div>
+
+	<!-- Dropdown -->
+	@if (isOpen()) {
+		<div
+			class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+		>
+			<!-- Items List -->
+			@if (items().length > 0) {
+				<ul class="py-1">
+					@for (item of items(); track trackByFn($index, item)) {
+						<li
+							(mousedown)="selectItem(item)"
+							[class.bg-blue-50]="highlightedIndex() === $index"
+							class="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors duration-150"
+						>
+							<div class="flex items-center">
+								<span class="text-sm text-gray-900">{{ getDisplayValue(item) }}</span>
+							</div>
+						</li>
+					}
+				</ul>
+			}
+
+			<!-- Empty State -->
+			@if (items().length === 0 && !loading() && searchTerm().length >= minChars()) {
+				<div class="px-4 py-8 text-center flex flex-col items-center">
+					<app-ui-icon
+						name="frown"
+						[size]="32"
+						class="text-gray-300"
+					/>
+					<p class="mt-2 text-sm text-gray-500">{{ emptyMessage() }}</p>
+				</div>
+			}
+		</div>
+	}
+</div>
