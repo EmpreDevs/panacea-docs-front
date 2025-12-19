@@ -1,5 +1,7 @@
 import { Component, computed, input } from '@angular/core'
-import { LucideAngularModule, XIcon } from 'lucide-angular'
+
+import { ChevronDownIcon, FrownIcon, LoaderCircleIcon, LucideAngularModule, SearchIcon, XIcon } from 'lucide-angular'
+
 import { IconName } from './icon.type'
 
 @Component({
@@ -14,6 +16,10 @@ export class UiIcon {
 	icon = computed(() => {
 		const icons: Record<string, any> = {
 			close: XIcon,
+			'loader-circle': LoaderCircleIcon,
+			search: SearchIcon,
+			'chevron-down': ChevronDownIcon,
+			frown: FrownIcon,
 		}
 
 		return icons[this.name()]

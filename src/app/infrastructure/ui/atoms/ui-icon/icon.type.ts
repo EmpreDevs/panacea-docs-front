@@ -1,1 +1,1 @@
-export type IconName = 'close'
+export type IconName = 'close' | 'loader-circle' | 'search' | 'chevron-down' | 'frown'
