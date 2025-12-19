@@ -1,13 +1,15 @@
 import { Component } from '@angular/core'
+
 import { Appointment } from '@domain/models'
-import { UiCard } from '@infra/ui/atoms'
-import { UiCalendar } from '@infra/ui/organism'
+
 import { AppointmentDetail } from '@infra/features/appointments/appointment-detail/appointment-detail'
+import { AppointmentForm } from '@infra/features/appointments/appointment-form/appointment-form'
 import { AppointmentList } from '@infra/features/appointments/appointment-list/appointment-list'
+import { UiCard } from '@infra/ui/atoms'
 
 @Component({
 	selector: 'app-appointments-list-page',
-	imports: [UiCard, AppointmentDetail, AppointmentList],
+	imports: [UiCard, AppointmentDetail, AppointmentList, AppointmentForm],
 	templateUrl: './appointments-list-page.html',
 	styles: ``,
 })
@@ -142,6 +144,8 @@ export class AppointmentsListPage {
 	]
 
 	launchView = false
+	launchForm = false
+	dateToCreate: Date | null = null
 
 	launchViewDetail(appointment: Appointment) {
 		this.appointmentSelected = appointment
@@ -150,6 +154,11 @@ export class AppointmentsListPage {
 
 	closeView() {
 		this.launchView = false
+		this.appointmentSelected = null
+	}
+
+	closeForm() {
+		this.launchForm = false
 		this.appointmentSelected = null
 	}
 
@@ -164,16 +173,7 @@ export class AppointmentsListPage {
 		this.launchView = true
 	}
 	createAppointment(date: Date) {
-		this.appointmentSelected = {
-			id: 'new',
-			title: 'New Appointment',
-			startDate: date,
-			endDate: date,
-			patientId: 'patient-008',
-			healthProviderId: 'dentist-vargas',
-			tenantId: 'clinic-001',
-			estimation: 45,
-		}
-		this.launchView = true
+		this.dateToCreate = date
+		this.launchForm = true
 	}
 }

@@ -2,7 +2,13 @@
 	[appointment]="appointmentSelected"
 	[launchView]="launchView"
 	(closeView)="closeView()"
-></app-appointment-detail>
+/>
+<app-appointment-form
+	[appointment]="appointmentSelected"
+	[launchForm]="launchForm"
+	(closeForm)="closeForm()"
+	[startEvent]="dateToCreate"
+/>
 <app-ui-card>
 	<app-appointment-list
 		[events]="appointments"
