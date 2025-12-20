@@ -4,8 +4,12 @@
 	title="Nueva cita"
 >
 	<div>
-		<form [formGroup]="form">
+		<form
+			[formGroup]="form"
+			(ngSubmit)="onSubmit()"
+		>
 			<app-ui-modal-body>
+				<label for="patientId">Paciente</label>
 				<app-patient-search (patientSelected)="onPatientSelected($event)" />
 
 				<app-ui-input
@@ -19,7 +23,8 @@
 					id="estimation"
 					name="estimation"
 					formControlName="estimation"
-					label="Estimacion"
+					label="Duración estimada"
+					type="number"
 				/>
 
 				<app-ui-input
@@ -27,14 +32,7 @@
 					name="startDate"
 					type="datetime-local"
 					formControlName="startDate"
-					label="Fecha"
-				/>
-
-				<app-ui-input
-					id="endDate"
-					name="endDate"
-					formControlName="endDate"
-					label="Fecha"
+					label="Fecha y hora"
 				/>
 			</app-ui-modal-body>
 			<app-ui-modal-footer>
