@@ -136,7 +136,9 @@
 
 /* Estilos base para light y dark mode */
 html {
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 .link {
@@ -222,5 +224,5 @@ html {
 	/* O cualquier color que prefieras */
 }
 .dark .fc .fc-day-today {
-	background-color: #075985 !important; /* Azul oscuro (primary-800) para dark mode */
+	background-color: #334155 !important; /* Azul oscuro (primary-800) para dark mode */
 }

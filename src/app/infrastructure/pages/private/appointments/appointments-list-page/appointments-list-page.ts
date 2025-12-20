@@ -1,19 +1,21 @@
-import { Component } from '@angular/core'
+import { Component, computed, signal } from '@angular/core'
 
 import { Appointment } from '@domain/models'
 
 import { AppointmentDetail } from '@infra/features/appointments/appointment-detail/appointment-detail'
 import { AppointmentForm } from '@infra/features/appointments/appointment-form/appointment-form'
 import { AppointmentList } from '@infra/features/appointments/appointment-list/appointment-list'
-import { UiCard } from '@infra/ui/atoms'
+import { UiButton, UiCard, UiIcon } from '@infra/ui/atoms'
 
 @Component({
 	selector: 'app-appointments-list-page',
-	imports: [UiCard, AppointmentDetail, AppointmentList, AppointmentForm],
+	imports: [UiCard, AppointmentDetail, AppointmentList, AppointmentForm, UiButton, UiIcon],
 	templateUrl: './appointments-list-page.html',
 	styles: ``,
 })
 export class AppointmentsListPage {
+	openSidebar = signal(false)
+	viewSelect = signal<'list' | 'detail' | 'form'>('list')
 	appointmentSelected: Appointment | null = null
 	appointments: Appointment[] = [
 		{
@@ -143,22 +145,18 @@ export class AppointmentsListPage {
 		},
 	]
 
-	launchView = false
-	launchForm = false
 	dateToCreate: Date | null = null
-
-	launchViewDetail(appointment: Appointment) {
-		this.appointmentSelected = appointment
-		this.launchView = true
-	}
+	titleSidebar = computed(() => {
+		return this.viewSelect() === 'form' ? 'Nueva Cita' : 'Detalle de Cita'
+	})
 
 	closeView() {
-		this.launchView = false
-		this.appointmentSelected = null
+		this.viewSelect.set('list')
+		this.openSidebar.set(false)
 	}
 
 	closeForm() {
-		this.launchForm = false
+		this.viewSelect.set('list')
 		this.appointmentSelected = null
 	}
 
@@ -169,11 +167,16 @@ export class AppointmentsListPage {
 			}
 			return appointment
 		})
-		this.appointmentSelected = event
-		this.launchView = true
+		this.launchViewDetail(event)
 	}
 	createAppointment(date: Date) {
+		this.viewSelect.set('form')
 		this.dateToCreate = date
-		this.launchForm = true
+		this.openSidebar.set(true)
+	}
+	launchViewDetail(appointment: Appointment) {
+		this.viewSelect.set('detail')
+		this.appointmentSelected = appointment
+		this.openSidebar.set(true)
 	}
 }

@@ -1,6 +1,9 @@
 import { Component, input, output } from '@angular/core'
-import { Appointment } from '@domain/models'
+
 import { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
+
+import { Appointment } from '@domain/models'
+
 import { UiCalendar } from '@infra/ui/organism'
 
 @Component({
@@ -10,6 +13,7 @@ import { UiCalendar } from '@infra/ui/organism'
 	styles: ``,
 })
 export class AppointmentList {
+	view = input<'dayGridMonth' | 'timeGridWeek' | 'timeGridDay'>('timeGridWeek')
 	events = input<Appointment[]>([])
 
 	eventDrop = output<Appointment>()

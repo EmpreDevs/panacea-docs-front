@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+
 import { INavItem } from '@app/interfaces'
 import {
 	CalendarCheckIcon,
@@ -6,7 +7,6 @@ import {
 	CalendarIcon,
 	CalendarX2Icon,
 	HouseIcon,
-	HousePlusIcon,
 	SettingsIcon,
 	UsersIcon,
 } from 'lucide-angular'
@@ -22,14 +22,14 @@ export class MenuService {
 			view: '/app/dashboard',
 		},
 		{
-			name: 'Hoy',
-			icon: CalendarCheckIcon,
-			view: '/app/appointments/today',
-		},
-		{
 			name: 'Agenda',
 			icon: CalendarIcon,
 			view: '/app/appointments',
+		},
+		{
+			name: 'Hoy',
+			icon: CalendarCheckIcon,
+			view: '/app/appointments/today',
 		},
 		{
 			name: 'Pacientes',

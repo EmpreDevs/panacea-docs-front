@@ -1,6 +1,16 @@
 import { Component, computed, input } from '@angular/core'
 
-import { ChevronDownIcon, FrownIcon, LoaderCircleIcon, LucideAngularModule, SearchIcon, XIcon } from 'lucide-angular'
+import {
+	ChevronDownIcon,
+	FrownIcon,
+	LoaderCircleIcon,
+	LucideAngularModule,
+	PencilIcon,
+	SaveIcon,
+	SearchIcon,
+	Trash2Icon,
+	XIcon,
+} from 'lucide-angular'
 
 import { IconName } from './icon.type'
 
@@ -20,6 +30,9 @@ export class UiIcon {
 			search: SearchIcon,
 			'chevron-down': ChevronDownIcon,
 			frown: FrownIcon,
+			pencil: PencilIcon,
+			save: SaveIcon,
+			trash: Trash2Icon,
 		}
 
 		return icons[this.name()]

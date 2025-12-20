@@ -1,38 +1,28 @@
-<app-ui-modal
-	[isOpen]="launchView()"
-	(closeModal)="closeModal()"
-	title="Detalle"
->
-	<div>
-		<app-ui-modal-body>
-			<ul role="list">
-				<li class="text-lg font-semibold mb-4">
-					{{ appointment()?.title }}
-				</li>
-				<li
-					class="overflow-hidden rounded-xl outline outline-gray-200 dark:-outline-offset-1 dark:outline-white/10"
-				>
-					<dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6 dark:divide-white/10">
-						<div class="flex justify-between gap-x-4 py-3">
-							<dt class="text-gray-500 dark:text-gray-400">Inicio</dt>
-							<dd class="text-gray-700 dark:text-gray-300">
-								<time [attr.datetime]="appointment()?.startDate">
-									{{ appointment()?.startDate | date : 'medium' }}
-								</time>
-							</dd>
+@let schedule = appointment();
+@if (schedule) {
+	<ul role="list">
+		<li class="text-lg font-semibold mb-4">
+			{{ schedule.title }}
+		</li>
+		<li class="overflow-hidden rounded-xl outline outline-gray-200 dark:-outline-offset-1 dark:outline-white/10">
+			<dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6 dark:divide-white/10">
+				<div class="flex justify-between gap-x-4 py-3">
+					<dt class="text-gray-500 dark:text-gray-400">Inicio</dt>
+					<dd class="text-gray-700 dark:text-gray-300">
+						<time [attr.datetime]="schedule.startDate">
+							{{ schedule.startDate | date: 'medium' }}
+						</time>
+					</dd>
+				</div>
+				<div class="flex justify-between gap-x-4 py-3">
+					<dt class="text-gray-500 dark:text-gray-400">Fin</dt>
+					<dd class="flex items-start gap-x-2">
+						<div class="font-medium text-gray-900 dark:text-white">
+							{{ schedule.endDate | date: 'medium' }}
 						</div>
-						<div class="flex justify-between gap-x-4 py-3">
-							<dt class="text-gray-500 dark:text-gray-400">Fin</dt>
-							<dd class="flex items-start gap-x-2">
-								<div class="font-medium text-gray-900 dark:text-white">
-									{{ appointment()?.endDate | date : 'medium' }}
-								</div>
-							</dd>
-						</div>
-					</dl>
-				</li>
-				<li class="text-lg font-semibold mb-4"></li>
-			</ul>
-		</app-ui-modal-body>
-	</div>
-</app-ui-modal>
+					</dd>
+				</div>
+			</dl>
+		</li>
+	</ul>
+}

@@ -1,57 +1,57 @@
-<app-ui-modal
-	[isOpen]="launchForm()"
-	(closeModal)="closeModal()"
-	title="Nueva cita"
+<form
+	[formGroup]="form"
+	(ngSubmit)="onSubmit()"
 >
-	<div>
-		<form
-			[formGroup]="form"
-			(ngSubmit)="onSubmit()"
-		>
-			<app-ui-modal-body>
-				<label for="patientId">Paciente</label>
-				<app-patient-search (patientSelected)="onPatientSelected($event)" />
+	<app-ui-modal-body>
+		<app-ui-form-group>
+			<label for="patientId">Paciente</label>
+			<app-patient-search (patientSelected)="onPatientSelected($event)" />
+		</app-ui-form-group>
 
-				<app-ui-input
-					id="title"
-					name="title"
-					formControlName="title"
-					label="Titulo"
-				/>
+		<app-ui-form-group>
+			<app-ui-input
+				id="title"
+				name="title"
+				formControlName="title"
+				label="Titulo"
+			/>
+		</app-ui-form-group>
 
-				<app-ui-input
-					id="estimation"
-					name="estimation"
-					formControlName="estimation"
-					label="Duración estimada"
-					type="number"
-				/>
+		<app-ui-form-group>
+			<app-ui-input
+				id="estimation"
+				name="estimation"
+				formControlName="estimation"
+				label="Duración estimada"
+				type="number"
+			/>
+		</app-ui-form-group>
 
-				<app-ui-input
-					id="startDate"
-					name="startDate"
-					type="datetime-local"
-					formControlName="startDate"
-					label="Fecha y hora"
-				/>
-			</app-ui-modal-body>
-			<app-ui-modal-footer>
-				<div class="flex w-full justify-between gap-2 items-center">
-					<app-ui-button
-						color="neutral"
-						variant="outline"
-						(click)="closeModal()"
-					>
-						Cancelar
-					</app-ui-button>
-					<app-ui-button
-						color="primary"
-						type="submit"
-					>
-						Guardar
-					</app-ui-button>
-				</div>
-			</app-ui-modal-footer>
-		</form>
-	</div>
-</app-ui-modal>
+		<app-ui-form-group>
+			<app-ui-input
+				id="startDate"
+				name="startDate"
+				type="datetime-local"
+				formControlName="startDate"
+				label="Fecha y hora"
+			/>
+		</app-ui-form-group>
+	</app-ui-modal-body>
+	<app-ui-modal-footer>
+		<div class="flex w-full justify-between gap-2 items-center">
+			<app-ui-button
+				color="neutral"
+				variant="outline"
+				(click)="resetForm()"
+			>
+				Cancelar
+			</app-ui-button>
+			<app-ui-button
+				color="primary"
+				type="submit"
+			>
+				Guardar
+			</app-ui-button>
+		</div>
+	</app-ui-modal-footer>
+</form>

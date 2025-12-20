@@ -1,5 +1,5 @@
 <app-ui-calendar
-	view="timeGridWeek"
+	[view]="view()"
 	[events]="events()"
 	(eventClick)="clickOnEvent($event)"
 	(eventDrop)="dropEvent($event)"

@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router'
+
 import { AppPage } from './app-page/app-page'
-import { PatientsDetailPage, PatientsListPage } from './patients'
-import { AppointmentsListPage, AppointmentsTodayListPage } from './appointments'
+import { AppointmentsListPage } from './appointments'
+import { BlockAppointmentsPage } from './block-appointments-page/block-appointments-page'
 import { DashboardPage } from './dashboard-page/dashboard-page'
 import { DoctorSchedulePage } from './doctor-schedule-page/doctor-schedule-page'
-import { BlockAppointmentsPage } from './block-appointments-page/block-appointments-page'
+import { PatientsDetailPage, PatientsListPage } from './patients'
 
 export const authRoutes: Routes = [
 	{
@@ -22,10 +23,7 @@ export const authRoutes: Routes = [
 			},
 			{
 				path: 'appointments',
-				children: [
-					{ path: '', component: AppointmentsListPage },
-					{ path: 'today', component: AppointmentsTodayListPage },
-				],
+				children: [{ path: '', component: AppointmentsListPage }],
 			},
 			{ path: 'doctor-schedule', component: DoctorSchedulePage },
 			{ path: 'block-appointments', component: BlockAppointmentsPage },

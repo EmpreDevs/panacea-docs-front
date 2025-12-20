@@ -6,12 +6,11 @@ import { Appointment, Patient } from '@domain/models'
 import { CreateAppointmentDto, UpdateAppointmentDto } from '@infra/dto'
 import { PatientSearch } from '@infra/pages/private/patients/components/patient-search/patient-search'
 import { UiButton } from '@infra/ui/atoms'
-import { UiInput, UiModalBody, UiModalFooter } from '@infra/ui/molecules'
-import { UiModal } from '@infra/ui/organism'
+import { UiFormGroup, UiInput, UiModalBody, UiModalFooter } from '@infra/ui/molecules'
 
 @Component({
 	selector: 'app-appointment-form',
-	imports: [UiModal, UiModalBody, ReactiveFormsModule, UiModalFooter, PatientSearch, UiButton, UiInput],
+	imports: [UiInput, UiButton, UiModalBody, UiModalFooter, PatientSearch, ReactiveFormsModule, UiFormGroup],
 	templateUrl: './appointment-form.html',
 	styles: ``,
 })
@@ -22,10 +21,9 @@ export class AppointmentForm {
 	startEvent = input<Date | null>(null)
 	healthProviderId = input<string>()
 	tenantId = input<string>()
-	launchForm = input<boolean>(false)
 
-	closeForm = output<void>()
 	formSubmit = output<CreateAppointmentDto | UpdateAppointmentDto>()
+	cancelForm = output<void>()
 
 	form = this.fb.nonNullable.group({
 		startDate: [new Date(), Validators.required],
@@ -70,19 +68,12 @@ export class AppointmentForm {
 		})
 	}
 
-	closeModal() {
-		this.closeForm.emit()
-	}
-
 	onSubmit() {
-		console.log(this.form.value)
-
 		if (!this.form.valid) {
 			this.form.markAllAsTouched()
 			return
 		}
 		const value = this.form.getRawValue()
-		// Convertir null a undefined para properties si es necesario
 		const formData = {
 			...value,
 			properties: value.properties ?? undefined,
@@ -91,9 +82,11 @@ export class AppointmentForm {
 	}
 
 	onPatientSelected(patient: Patient) {
-		console.log(patient)
 		this.form.patchValue({
 			patientId: patient.id,
 		})
+	}
+	resetForm() {
+		this.cancelForm.emit()
 	}
 }
