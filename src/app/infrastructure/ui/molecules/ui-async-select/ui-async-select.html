@@ -82,7 +82,7 @@
 	<!-- Dropdown -->
 	@if (isOpen()) {
 		<div
-			class="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+			class="absolute z-50 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-500 rounded-lg shadow-lg max-h-60 overflow-y-auto"
 		>
 			<!-- Items List -->
 			@if (items().length > 0) {
@@ -91,10 +91,10 @@
 						<li
 							(mousedown)="selectItem(item)"
 							[class.bg-blue-50]="highlightedIndex() === $index"
-							class="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors duration-150"
+							class="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-150"
 						>
 							<div class="flex items-center">
-								<span class="text-sm text-gray-900">{{ getDisplayValue(item) }}</span>
+								<span class="text-sm text-on-surface">{{ getDisplayValue(item) }}</span>
 							</div>
 						</li>
 					}
