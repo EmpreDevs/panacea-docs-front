@@ -5,12 +5,12 @@ import { environment } from '@envs/environment'
 import { BaseModel } from '@domain/models/common/base.model'
 import { CrudRepository } from '@domain/repositories/common/crud.repository'
 
-import { CreateDto, UpdateDto } from '@infra/dto'
+import { CreateDto, IMapper, UpdateDto } from '@infra/dto'
 import { HttpClient } from '@infra/http/http.client'
 import { PwaService } from '@infra/pwa/services'
 import { OfflineDBService } from '@infra/pwa/services/offline-db.service'
 
-export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository<T> {
+export abstract class BaseAdapter<T extends BaseModel, D = any> implements CrudRepository<T> {
 	private API = environment.apiUrl
 	private urlAPI: string
 	private pwaService = inject(PwaService)
@@ -19,11 +19,13 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 		private readonly httpClient: HttpClient,
 		private readonly path: string,
 		private readonly db: OfflineDBService,
+		private readonly mapper: IMapper<T, D>,
 	) {
 		this.urlAPI = `${this.API}/${path}`
 	}
 
-	async create(payload: CreateDto<T>): Promise<T> {
+	async create(body: CreateDto<T>): Promise<T> {
+		const payload = this.mapper.toDto(body as any)
 		if (!this.pwaService.isOnline()) {
 			// Crear ID temporal
 			const tempId = `temp_${Date.now()}`
@@ -35,15 +37,15 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 			})
 
 			return {
-				...payload,
+				...body,
 				id: tempId,
 				_syncPending: true,
 			} as T
 		}
 
 		try {
-			const response = await this.httpClient.post<T>(this.urlAPI).body(payload).execute()
-			return response.data
+			const response = await this.httpClient.post<D>(this.urlAPI).body(payload).execute()
+			return this.mapper.toModel(response.data)
 		} catch (error) {
 			// Si falla, guardar en IDB como fallback
 			console.error('❌ Error en red, guardando para sincronización:', error)
@@ -68,7 +70,7 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 		// Si hay conexión
 		try {
 			const url = `${this.urlAPI}/${id}`
-			const response = await this.httpClient.get<T>(url).execute()
+			const response = await this.httpClient.get<D>(url).execute()
 
 			// Guardar en cache
 			await this.db.saveToCache(
@@ -78,12 +80,12 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 				60 * 60 * 1000, // 1 hora
 			)
 
-			return response.data
+			return this.mapper.toModel(response.data)
 		} catch (error) {
 			// Intentar cache como fallback
-			const cached = await this.db.getFromCache<T>(cacheKey)
+			const cached = await this.db.getFromCache<D>(cacheKey)
 			if (cached) {
-				return cached
+				return this.mapper.toModel(cached)
 			}
 			throw error
 		}
@@ -95,10 +97,10 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 		if (!this.pwaService.isOnline()) {
 			console.log('📵 Offline - Buscando en cache IDB')
 
-			const cached = await this.db.getFromCache<T[]>(cacheKey)
+			const cached = await this.db.getFromCache<D[]>(cacheKey)
 			if (cached) {
 				console.log('✅ Datos obtenidos del cache IDB')
-				return cached
+				return cached.map(item => this.mapper.toModel(item))
 			}
 
 			console.warn('⚠️ No hay datos en cache')
@@ -107,7 +109,7 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 
 		// Si hay conexión, buscar en API
 		try {
-			const response = await this.httpClient.get<T[]>(this.urlAPI).filters(filters).execute()
+			const response = await this.httpClient.get<D[]>(this.urlAPI).filters(filters).execute()
 
 			// Guardar en cache IDB
 			await this.db.saveToCache(
@@ -117,22 +119,23 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 				24 * 60 * 60 * 1000, // 24 horas
 			)
 
-			return response.data
+			return response.data.map(item => this.mapper.toModel(item))
 		} catch (error) {
 			// Si falla, intentar cache IDB
 			console.error('❌ Error de red, intentando cache:', error)
 
-			const cached = await this.db.getFromCache<T[]>(cacheKey)
+			const cached = await this.db.getFromCache<D[]>(cacheKey)
 			if (cached) {
 				console.log('✅ Usando cache IDB como fallback')
-				return cached
+				return cached.map(item => this.mapper.toModel(item))
 			}
 
 			throw error
 		}
 	}
 	// UPDATE con cola de sincronización
-	async update(payload: UpdateDto<T>, id: string): Promise<T> {
+	async update(body: UpdateDto<T>, id: string): Promise<T> {
+		const payload = this.mapper.toDto(body as any)
 		// Si no hay conexión, guardar en IDB
 		if (!this.pwaService.isOnline()) {
 			console.log('📵 Offline - Guardando actualización en cola')
@@ -141,26 +144,26 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 
 			// Actualizar cache local si existe
 			const cacheKey = `${this.path}_${id}`
-			const cached = await this.db.getFromCache<T>(cacheKey)
+			const cached = await this.db.getFromCache<D>(cacheKey)
 			if (cached) {
 				const updated = { ...cached, ...payload }
 				await this.db.saveToCache(this.path, cacheKey, updated)
-				return updated
+				return this.mapper.toModel(updated)
 			}
 
-			return { ...payload, id, _syncPending: true } as T
+			return { ...body, id, _syncPending: true } as T
 		}
 
 		// Si hay conexión
 		try {
 			const url = `${this.urlAPI}/${id}`
-			const response = await this.httpClient.put<T>(url).body(payload).execute()
+			const response = await this.httpClient.put<D>(url).body(payload).execute()
 
 			// Actualizar cache
 			const cacheKey = `${this.path}_${id}`
 			await this.db.saveToCache(this.path, cacheKey, response.data)
 
-			return response.data
+			return this.mapper.toModel(response.data)
 		} catch (error) {
 			// Guardar para sincronización si falla
 			await this.db.addPendingOperation(this.path, 'update', payload, { originalId: id })
@@ -186,12 +189,12 @@ export abstract class BaseAdapter<T extends BaseModel> implements CrudRepository
 		// Si hay conexión
 		try {
 			const url = `${this.urlAPI}/${id}`
-			const response = await this.httpClient.delete<T>(url).execute()
+			const response = await this.httpClient.delete<D>(url).execute()
 
 			// Limpiar cache relacionado
 			// await this.db.clearEntityCache(this.path);
 
-			return response.data
+			return this.mapper.toModel(response.data)
 		} catch (error) {
 			// Guardar para sincronización si falla
 			await this.db.addPendingOperation(this.path, 'delete', {}, { originalId: id })

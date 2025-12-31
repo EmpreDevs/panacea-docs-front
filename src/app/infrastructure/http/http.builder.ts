@@ -1,4 +1,5 @@
 import { INotification } from '@infra/libraries/interfaces'
+
 import { ResponseDTO } from '../dto/api/response.dto'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
@@ -29,7 +30,7 @@ export class HTTPBuilder<T> {
 		return this
 	}
 
-	body(body: Record<string, any>): this {
+	body(body: any): this {
 		this._body = body
 		return this
 	}
