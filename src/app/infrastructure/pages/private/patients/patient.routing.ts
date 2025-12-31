@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router'
 
 import { PatientCreatePage } from './patient-create-page/patient-create-page'
+import { PATIENT_PATHS } from './patient-paths'
 import { PatientsDetailPage } from './patients-detail-page/patients-detail-page'
 import { PatientsListPage } from './patients-list-page/patients-list-page'
 
@@ -16,14 +17,14 @@ export const patientsRoutes: Routes = [
 				component: PatientsListPage,
 			},
 			{
-				path: 'detail/:id',
+				path: PATIENT_PATHS.DETAIL,
 				component: PatientsDetailPage,
 				data: {
 					breadcrumb: 'Detalle',
 				},
 			},
 			{
-				path: 'new',
+				path: PATIENT_PATHS.NEW,
 				component: PatientCreatePage,
 				data: {
 					breadcrumb: 'Nuevo',
