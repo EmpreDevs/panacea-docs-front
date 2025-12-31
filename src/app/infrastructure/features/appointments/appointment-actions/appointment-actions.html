@@ -1,0 +1,35 @@
+<div class="flex justify-center gap-2">
+	<app-ui-button
+		variant="outline"
+		color="neutral"
+		(click)="closeView()"
+	>
+		<app-ui-icon
+			name="close"
+			[size]="20"
+		/>
+		<span class="hidden lg:inline">Cerrar</span>
+	</app-ui-button>
+	<app-ui-button
+		variant="outline"
+		color="info"
+		(click)="editView()"
+	>
+		<app-ui-icon
+			name="pencil"
+			[size]="20"
+		/>
+		<span class="hidden lg:inline">Editar</span>
+	</app-ui-button>
+	<app-ui-button
+		variant="outline"
+		color="error"
+		(click)="deleteView()"
+	>
+		<app-ui-icon
+			name="trash"
+			[size]="20"
+		/>
+		<span class="hidden lg:inline">Eliminar</span>
+	</app-ui-button>
+</div>

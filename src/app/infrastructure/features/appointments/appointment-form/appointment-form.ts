@@ -5,12 +5,22 @@ import { Appointment, Patient } from '@domain/models'
 
 import { CreateAppointmentDto, UpdateAppointmentDto } from '@infra/dto'
 import { PatientSearch } from '@infra/pages/private/patients/components/patient-search/patient-search'
-import { UiButton } from '@infra/ui/atoms'
+import { UiButton, UiIcon, UiLink } from '@infra/ui/atoms'
 import { UiFormGroup, UiInput, UiModalBody, UiModalFooter } from '@infra/ui/molecules'
 
 @Component({
 	selector: 'app-appointment-form',
-	imports: [UiInput, UiButton, UiModalBody, UiModalFooter, PatientSearch, ReactiveFormsModule, UiFormGroup],
+	imports: [
+		UiInput,
+		UiButton,
+		UiModalBody,
+		UiModalFooter,
+		PatientSearch,
+		ReactiveFormsModule,
+		UiFormGroup,
+		UiLink,
+		UiIcon,
+	],
 	templateUrl: './appointment-form.html',
 	styles: ``,
 })
@@ -18,7 +28,7 @@ export class AppointmentForm {
 	fb = inject(FormBuilder)
 
 	appointment = input<Appointment | null>(null)
-	startEvent = input<Date | null>(null)
+	startEvent = input<Date>(new Date())
 	healthProviderId = input<string>()
 	tenantId = input<string>()
 

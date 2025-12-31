@@ -226,3 +226,42 @@ html {
 .dark .fc .fc-day-today {
 	background-color: #334155 !important; /* Azul oscuro (primary-800) para dark mode */
 }
+
+.dark .fc .fc-list-day .fc-cell-shaded {
+	background-color: #334155 !important;
+}
+.fc-event.fc-list-event:hover td {
+	background-color: #d1fae5 !important; /* Health-100 */
+}
+.dark .fc-event.fc-list-event:hover td {
+	background-color: #059669 !important; /* Health-600 */
+}
+
+/* Títulos del header del calendario */
+.fc .fc-toolbar-title {
+	font-size: 1.3rem; /* Tamaño por defecto */
+}
+
+/* Para móviles */
+@media (max-width: 768px) {
+	.fc .fc-toolbar-title {
+		font-size: 1.2rem; /* Más pequeño en móvil */
+	}
+}
+
+@media (max-width: 480px) {
+	.fc .fc-toolbar-title {
+		font-size: 1.1rem; /* Aún más pequeño */
+	}
+}
+
+/* Títulos de los eventos */
+.fc-event-title {
+	font-size: 14px;
+}
+
+@media (max-width: 768px) {
+	.fc-event-title {
+		font-size: 11px;
+	}
+}

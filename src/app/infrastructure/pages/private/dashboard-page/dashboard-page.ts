@@ -1,9 +1,8 @@
 import { Component } from '@angular/core'
-import { UiLayoutApp } from '@infra/ui/layouts'
 
 @Component({
 	selector: 'app-dashboard-page',
-	imports: [UiLayoutApp],
+	imports: [],
 	templateUrl: './dashboard-page.html',
 	styles: ``,
 })

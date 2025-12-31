@@ -1,28 +1,29 @@
-import { Component, computed, signal } from '@angular/core'
+import { Component, computed, inject, signal } from '@angular/core'
+
+import { ScreenSize, ScreenSizeService } from '@app/services'
 
 import { Appointment } from '@domain/models'
 
-import { AppointmentDetail } from '@infra/features/appointments/appointment-detail/appointment-detail'
-import { AppointmentForm } from '@infra/features/appointments/appointment-form/appointment-form'
-import { AppointmentList } from '@infra/features/appointments/appointment-list/appointment-list'
-import { UiButton, UiCard, UiIcon } from '@infra/ui/atoms'
+import { AppointmentList, AppointmentSidebar, AppointmentSidebarView } from '@infra/features/appointments'
+import { UiCard } from '@infra/ui/atoms'
 
 @Component({
 	selector: 'app-appointments-list-page',
-	imports: [UiCard, AppointmentDetail, AppointmentList, AppointmentForm, UiButton, UiIcon],
+	imports: [UiCard, AppointmentList, AppointmentSidebar],
 	templateUrl: './appointments-list-page.html',
 	styles: ``,
 })
 export class AppointmentsListPage {
+	screenSizeService = inject(ScreenSizeService)
 	openSidebar = signal(false)
-	viewSelect = signal<'list' | 'detail' | 'form'>('list')
+	viewSelect = signal<AppointmentSidebarView>(AppointmentSidebarView.None)
 	appointmentSelected: Appointment | null = null
 	appointments: Appointment[] = [
 		{
 			id: '1',
 			title: 'Consulta General - Dr. García',
-			startDate: new Date('2025-12-18T09:00:00'),
-			endDate: new Date('2025-12-18T09:30:00'),
+			startDate: new Date('2025-12-29T09:00:00'),
+			endDate: new Date('2025-12-29T09:30:00'),
 			estimation: 30,
 			patientId: 'patient-001',
 			healthProviderId: 'doctor-garcia',
@@ -36,8 +37,8 @@ export class AppointmentsListPage {
 		{
 			id: '2',
 			title: 'Control Prenatal - Dra. Martínez',
-			startDate: new Date('2025-12-18T10:00:00'),
-			endDate: new Date('2025-12-18T11:00:00'),
+			startDate: new Date('2025-12-29T10:00:00'),
+			endDate: new Date('2025-12-29T11:00:00'),
 			estimation: 60,
 			patientId: 'patient-002',
 			healthProviderId: 'doctor-martinez',
@@ -52,8 +53,8 @@ export class AppointmentsListPage {
 		{
 			id: '3',
 			title: 'Revisión Cardiológica - Dr. López',
-			startDate: new Date('2025-12-19T14:00:00'),
-			endDate: new Date('2025-12-19T14:45:00'),
+			startDate: new Date('2025-12-29T14:00:00'),
+			endDate: new Date('2025-12-29T14:45:00'),
 			estimation: 45,
 			patientId: 'patient-003',
 			healthProviderId: 'doctor-lopez',
@@ -67,8 +68,8 @@ export class AppointmentsListPage {
 		{
 			id: '4',
 			title: 'Consulta Pediátrica - Dra. Torres',
-			startDate: new Date('2025-12-20T08:30:00'),
-			endDate: new Date('2025-12-20T09:00:00'),
+			startDate: new Date('2025-12-29T08:30:00'),
+			endDate: new Date('2025-12-29T09:00:00'),
 			estimation: 30,
 			patientId: 'patient-004',
 			healthProviderId: 'doctor-torres',
@@ -83,8 +84,8 @@ export class AppointmentsListPage {
 		{
 			id: '5',
 			title: 'Terapia Física - Lic. Fernández',
-			startDate: new Date('2025-12-20T15:00:00'),
-			endDate: new Date('2025-12-20T16:00:00'),
+			startDate: new Date('2025-12-29T15:00:00'),
+			endDate: new Date('2025-12-29T16:00:00'),
 			estimation: 60,
 			patientId: 'patient-005',
 			healthProviderId: 'therapist-fernandez',
@@ -99,8 +100,8 @@ export class AppointmentsListPage {
 		{
 			id: '6',
 			title: 'Consulta Dermatológica - Dra. Hernández',
-			startDate: new Date('2025-12-23T11:00:00'),
-			endDate: new Date('2025-12-23T11:30:00'),
+			startDate: new Date('2025-12-29T11:00:00'),
+			endDate: new Date('2025-12-29T11:30:00'),
 			estimation: 30,
 			patientId: 'patient-006',
 			healthProviderId: 'doctor-hernandez',
@@ -114,8 +115,8 @@ export class AppointmentsListPage {
 		{
 			id: '7',
 			title: 'Examen de Laboratorio',
-			startDate: new Date('2025-12-24T07:00:00'),
-			endDate: new Date('2025-12-24T07:15:00'),
+			startDate: new Date('2025-12-29T07:00:00'),
+			endDate: new Date('2025-12-29T07:15:00'),
 			estimation: 15,
 			patientId: 'patient-007',
 			healthProviderId: 'lab-tech-001',
@@ -145,19 +146,18 @@ export class AppointmentsListPage {
 		},
 	]
 
-	dateToCreate: Date | null = null
-	titleSidebar = computed(() => {
-		return this.viewSelect() === 'form' ? 'Nueva Cita' : 'Detalle de Cita'
+	dateToCreate = new Date()
+	ScreenSize = ScreenSize
+
+	isMobile = computed(() => {
+		return this.screenSizeService.currentSize !== ScreenSize.LARGE_DESKTOP
 	})
+	toggleModal = signal(false)
 
-	closeView() {
-		this.viewSelect.set('list')
-		this.openSidebar.set(false)
-	}
-
-	closeForm() {
-		this.viewSelect.set('list')
+	closeSidebar() {
+		this.viewSelect.set(AppointmentSidebarView.None)
 		this.appointmentSelected = null
+		this.openSidebar.set(false)
 	}
 
 	updateAppointment(event: Appointment) {
@@ -170,13 +170,18 @@ export class AppointmentsListPage {
 		this.launchViewDetail(event)
 	}
 	createAppointment(date: Date) {
-		this.viewSelect.set('form')
+		this.viewSelect.set(AppointmentSidebarView.Form)
 		this.dateToCreate = date
 		this.openSidebar.set(true)
 	}
 	launchViewDetail(appointment: Appointment) {
-		this.viewSelect.set('detail')
+		this.viewSelect.set(AppointmentSidebarView.Detail)
 		this.appointmentSelected = appointment
-		this.openSidebar.set(true)
+		this.toggleModal.set(true)
+	}
+	closeModal() {
+		console.log('closeModal')
+		this.appointmentSelected = null
+		this.toggleModal.set(false)
 	}
 }

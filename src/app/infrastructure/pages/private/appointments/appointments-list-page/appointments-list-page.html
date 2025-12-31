@@ -1,64 +1,15 @@
-@let showSidebar = openSidebar();
+<app-ui-card rounded="sm">
+	<app-appointment-list
+		[events]="appointments"
+		(eventClick)="launchViewDetail($event)"
+		(eventDrop)="updateAppointment($event)"
+		(createEvent)="createAppointment($event)"
+	></app-appointment-list>
+</app-ui-card>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-3">
-	<div
-		[class.col-span-2]="showSidebar"
-		[class.col-span-3]="!showSidebar"
-	>
-		<app-ui-card rounded="sm">
-			<app-appointment-list
-				[events]="appointments"
-				(eventClick)="launchViewDetail($event)"
-				(eventDrop)="updateAppointment($event)"
-				(createEvent)="createAppointment($event)"
-			></app-appointment-list>
-		</app-ui-card>
-	</div>
-	<div
-		class=""
-		[class.hidden]="!showSidebar"
-		[class.col-span-1]="showSidebar"
-	>
-		<app-ui-card rounded="sm">
-			<div class="flex flex-col gap-2">
-				<h2 class="text-xl text-center text-health-600 font-semibold">{{ titleSidebar() }}</h2>
-				@if (viewSelect() === 'form') {
-					<app-appointment-form [startEvent]="dateToCreate" />
-				}
-				@if (viewSelect() === 'detail') {
-					<app-appointment-detail [appointment]="appointmentSelected" />
-					<div class="flex justify-center gap-2 mt-4">
-						<app-ui-button
-							variant="outline"
-							color="neutral"
-							(click)="closeView()"
-						>
-							<app-ui-icon
-								name="close"
-								[size]="20"
-							/>
-						</app-ui-button>
-						<app-ui-button
-							variant="outline"
-							color="info"
-						>
-							<app-ui-icon
-								name="pencil"
-								[size]="20"
-							/>
-						</app-ui-button>
-						<app-ui-button
-							variant="outline"
-							color="error"
-						>
-							<app-ui-icon
-								name="trash"
-								[size]="20"
-							/>
-						</app-ui-button>
-					</div>
-				}
-			</div>
-		</app-ui-card>
-	</div>
-</div>
+<app-appointment-sidebar
+	[viewSelect]="viewSelect()"
+	[appointmentSelected]="appointmentSelected"
+	(Close)="closeSidebar()"
+	[date]="dateToCreate"
+/>

@@ -6,6 +6,7 @@ import {
 	LoaderCircleIcon,
 	LucideAngularModule,
 	PencilIcon,
+	PlusIcon,
 	SaveIcon,
 	SearchIcon,
 	Trash2Icon,
@@ -33,6 +34,7 @@ export class UiIcon {
 			pencil: PencilIcon,
 			save: SaveIcon,
 			trash: Trash2Icon,
+			plus: PlusIcon,
 		}
 
 		return icons[this.name()]

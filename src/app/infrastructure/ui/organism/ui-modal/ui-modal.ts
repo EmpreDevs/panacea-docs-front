@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { Component, input, output } from '@angular/core'
+
 import { UiIcon } from '@infra/ui/atoms'
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
@@ -16,7 +17,6 @@ export class UiModal {
 	size = input<ModalSize>('md')
 	showCloseButton = input<boolean>(true)
 	showHeader = input<boolean>(true)
-	showFooter = input<boolean>(true)
 	isOpen = input<boolean>(false)
 
 	// outputs

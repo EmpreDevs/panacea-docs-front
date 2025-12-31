@@ -1,0 +1,27 @@
+<app-ui-modal
+	[title]="titleSidebar()"
+	[isOpen]="modalVisible()"
+	(closeModal)="close()"
+>
+	@if (viewSelect() === view.Detail) {
+		<app-ui-modal-body>
+			<app-appointment-detail [appointment]="appointmentSelected()"></app-appointment-detail>
+		</app-ui-modal-body>
+		<app-ui-modal-footer>
+			<app-appointment-actions
+				(Cancel)="Close.emit()"
+				(Edit)="Edit.emit()"
+				(Delete)="Delete.emit()"
+			/>
+		</app-ui-modal-footer>
+	}
+	@if (viewSelect() !== view.Detail) {
+		<app-appointment-form
+			[appointment]="appointmentSelected()"
+			[healthProviderId]="healthProviderId()"
+			[tenantId]="tenantId()"
+			[startEvent]="date()"
+			(cancelForm)="close()"
+		/>
+	}
+</app-ui-modal>

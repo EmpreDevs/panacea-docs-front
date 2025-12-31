@@ -5,7 +5,16 @@
 	<app-ui-modal-body>
 		<app-ui-form-group>
 			<label for="patientId">Paciente</label>
-			<app-patient-search (patientSelected)="onPatientSelected($event)" />
+			<div class="flex items-center gap-2 w-full">
+				<app-patient-search (patientSelected)="onPatientSelected($event)" />
+				<app-ui-link
+					[link]="['/app/patients/new']"
+					variant="button"
+					color="info"
+				>
+					<app-ui-icon name="plus" />
+				</app-ui-link>
+			</div>
 		</app-ui-form-group>
 
 		<app-ui-form-group>
@@ -43,6 +52,7 @@
 				color="neutral"
 				variant="outline"
 				(click)="resetForm()"
+				type="button"
 			>
 				Cancelar
 			</app-ui-button>
