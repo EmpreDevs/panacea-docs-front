@@ -1,0 +1,10 @@
+export interface IPatientFormDto {
+	firstName: string
+	lastName: string
+	email: string
+	phone: string
+	address: string
+	dateBirth: Date
+	gender: string
+	healthProviderId: string
+}
