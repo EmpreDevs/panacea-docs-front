@@ -1,0 +1,82 @@
+@let patientList = patients();
+<table class="mt-6 w-full text-left whitespace-nowrap">
+	<colgroup>
+		<col class="w-full sm:w-4/12" />
+		<col class="lg:w-4/12" />
+		<col class="lg:w-2/12" />
+		<col class="lg:w-1/12" />
+		<col class="lg:w-1/12" />
+	</colgroup>
+	<thead class="border-b border-gray-200 text-sm/6 dark:border-white/15">
+		<tr>
+			<th
+				scope="col"
+				class="py-2 pr-8 pl-4 font-semibold sm:pl-6 lg:pl-8"
+			>
+				Nombre
+			</th>
+			<th
+				scope="col"
+				class="hidden py-2 pr-8 pl-0 font-semibold sm:table-cell"
+			>
+				E-mail
+			</th>
+			<th
+				scope="col"
+				class="py-2 pr-4 pl-0 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20"
+			>
+				Teléfono
+			</th>
+			<th
+				scope="col"
+				class="hidden py-2 pr-8 pl-0 font-semibold md:table-cell lg:pr-20"
+			>
+				Edad
+			</th>
+		</tr>
+	</thead>
+	<tbody class="divide-y divide-gray-100 dark:divide-white/10">
+		@for (patient of patientList; track patient.id) {
+			<tr>
+				<td class="py-4 pr-8 pl-4 sm:pl-6 lg:pl-8">
+					<a [routerLink]="linkdetails()(patient.id)">
+						<div class="flex items-center gap-x-4">
+							<app-ui-avatar
+								[legend]="patient.fullName"
+								[color]="
+									patient.gender === 'male' ? 'bg-primary-500 text-white' : 'bg-accent-500 text-white'
+								"
+								[rounded]="true"
+							/>
+							<div class="truncate text-sm/6 font-medium text-gray-900 dark:text-white">
+								{{ patient.fullName }}
+							</div>
+						</div>
+					</a>
+				</td>
+				<td class="hidden py-4 pr-4 pl-0 sm:table-cell sm:pr-8">
+					<a href="mailto:{{ patient.email }}">{{ patient.email }}</a>
+				</td>
+				<td class="py-4 pr-4 pl-0 text-sm/6 sm:pr-8 lg:pr-20">
+					<a href="tel:{{ patient.phone }}">{{ patient.phone }}</a>
+				</td>
+				<td class="hidden py-4 pr-8 pl-0 text-sm/6 text-gray-500 md:table-cell lg:pr-20 dark:text-gray-400">
+					{{ patient.age }}
+				</td>
+			</tr>
+		} @empty {
+			<tr>
+				<td
+					colspan="5"
+					class="py-4 pr-8 pl-4 sm:pl-6 lg:pl-8"
+				>
+					<div class="text-center">
+						<div class="text-sm/6 font-medium text-gray-400 dark:text-gray-600">
+							No hay pacientes registrados
+						</div>
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

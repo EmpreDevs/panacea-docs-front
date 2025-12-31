@@ -35,7 +35,7 @@ export class PatientFacade extends BaseFacade<Patient> {
 		//const patients = await this.findAllUseCase.execute(filters)
 		this.state.setLoading(false)
 		const PATIENTS_EXAMPLE: Patient[] = [
-			{
+			new Patient({
 				id: '7b2a1-45c8',
 				firstName: 'Juan',
 				lastName: 'Pérez',
@@ -45,8 +45,8 @@ export class PatientFacade extends BaseFacade<Patient> {
 				dateBirth: new Date(1985, 4, 15), // 15 de Mayo de 1985
 				healthProviderId: '1',
 				gender: 'male',
-			},
-			{
+			}),
+			new Patient({
 				id: '3f9d2-98b1',
 				firstName: 'María',
 				lastName: 'García',
@@ -56,8 +56,9 @@ export class PatientFacade extends BaseFacade<Patient> {
 				dateBirth: new Date(1992, 10, 22), // 22 de Noviembre de 1992
 				healthProviderId: '1',
 				gender: 'female',
-			},
+			}),
 		]
+
 		return PATIENTS_EXAMPLE.filter(patient => patient.firstName.toLowerCase().includes(searchTerm.toLowerCase()))
 	}
 }

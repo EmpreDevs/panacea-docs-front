@@ -1,0 +1,22 @@
+@let letters = capitalize();
+@let img = src();
+
+@if (img) {
+	<img
+		[class]="classes()"
+		[src]="img"
+		[alt]="alt()"
+	/>
+	<img
+		class="w-10 h-10 rounded-base"
+		[src]="img"
+		[alt]="alt()"
+	/>
+} @else {
+	<div
+		class="relative inline-flex items-center justify-center overflow-hidden"
+		[class]="classes()"
+	>
+		<span class="font-medium">{{ letters }}</span>
+	</div>
+}

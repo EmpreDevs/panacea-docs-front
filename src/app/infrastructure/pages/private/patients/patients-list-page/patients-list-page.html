@@ -5,76 +5,23 @@
 	<div class="">
 		<div class="flex justify-between items-center">
 			<h2 class="px-4 text-base/7 font-semibold sm:px-6 lg:px-8">Listado de pacientes</h2>
-			<div class="flex gap-2">
-				<app-ui-button
-					variant="outline"
-					color="info"
+			<div class="flex gap-2 items-center">
+				<app-ui-search-query />
+				<app-ui-link
+					[link]="routeCreate"
+					variant="button"
 				>
-					<lucide-angular
-						[img]="search"
-						size="18"
+					<app-ui-icon
+						name="plus"
+						[size]="20"
 					/>
-				</app-ui-button>
-				<app-ui-button>Nuevo paciente</app-ui-button>
+					Paciente
+				</app-ui-link>
 			</div>
 		</div>
-		<table class="mt-6 w-full text-left whitespace-nowrap">
-			<colgroup>
-				<col class="w-full sm:w-4/12" />
-				<col class="lg:w-4/12" />
-				<col class="lg:w-2/12" />
-				<col class="lg:w-1/12" />
-				<col class="lg:w-1/12" />
-			</colgroup>
-			<thead class="border-b border-gray-200 text-sm/6 dark:border-white/15">
-				<tr>
-					<th
-						scope="col"
-						class="py-2 pr-8 pl-4 font-semibold sm:pl-6 lg:pl-8"
-					>
-						Nombre
-					</th>
-					<th
-						scope="col"
-						class="hidden py-2 pr-8 pl-0 font-semibold sm:table-cell"
-					>
-						E-mail
-					</th>
-					<th
-						scope="col"
-						class="py-2 pr-4 pl-0 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20"
-					>
-						Teléfono
-					</th>
-					<th
-						scope="col"
-						class="hidden py-2 pr-8 pl-0 font-semibold md:table-cell lg:pr-20"
-					>
-						Edad
-					</th>
-				</tr>
-			</thead>
-			<tbody class="divide-y divide-gray-100 dark:divide-white/10">
-				<tr>
-					<td class="py-4 pr-8 pl-4 sm:pl-6 lg:pl-8">
-						<div class="flex items-center gap-x-4">
-							<img
-								src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-								alt=""
-								class="size-8 rounded-full bg-gray-100 dark:bg-gray-800 dark:outline dark:outline-white/10"
-							/>
-							<div class="truncate text-sm/6 font-medium text-gray-900 dark:text-white">
-								Michael Foster
-							</div>
-						</div>
-					</td>
-					<td class="hidden py-4 pr-4 pl-0 sm:table-cell sm:pr-8">michael.foster@example.com</td>
-					<td class="py-4 pr-4 pl-0 text-sm/6 sm:pr-8 lg:pr-20">123456789</td>
-					<td class="hidden py-4 pr-8 pl-0 text-sm/6 text-gray-500 md:table-cell lg:pr-20 dark:text-gray-400">
-						25
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<app-patient-list
+			[patients]="patients"
+			[linkdetails]="routeDetails"
+		/>
 	</div>
 </app-ui-card>

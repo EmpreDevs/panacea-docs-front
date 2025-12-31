@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, output } from '@angular/core'
+import { Component, inject, output } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 
 import { PatientFormDto } from '@app/interfaces/features'
@@ -14,7 +14,6 @@ import { UiFormGroup, UiInput, UiSelect } from '@infra/ui/molecules'
 })
 export class PatientForm {
 	fb = inject(FormBuilder)
-	healthProviderId = input<string>('')
 
 	formSubmit = output<PatientFormDto>()
 
@@ -26,7 +25,6 @@ export class PatientForm {
 		address: ['', [Validators.required]],
 		dateBirth: [new Date(), [Validators.required]],
 		gender: ['', [Validators.required]],
-		healthProviderId: [''],
 	})
 
 	genderOptions = [
@@ -34,12 +32,6 @@ export class PatientForm {
 		{ label: 'Femenino', value: 'female' },
 		{ label: 'Otro', value: 'other' },
 	]
-
-	constructor() {
-		effect(() => {
-			this.form.patchValue({ healthProviderId: this.healthProviderId() })
-		})
-	}
 
 	submit() {
 		if (!this.form.valid) {

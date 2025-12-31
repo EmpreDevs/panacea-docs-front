@@ -1,7 +1,9 @@
-import { Injectable, signal, WritableSignal, computed, OnDestroy } from '@angular/core'
-import { Auth, User } from '@domain/models'
-import { DBSchema, IDBPDatabase, openDB } from 'idb'
+import { Injectable, OnDestroy, computed, signal } from '@angular/core'
+
 import * as CryptoJS from 'crypto-js'
+import { DBSchema, IDBPDatabase, openDB } from 'idb'
+
+import { User } from '@domain/models'
 
 interface AuthDB extends DBSchema {
 	auth: {

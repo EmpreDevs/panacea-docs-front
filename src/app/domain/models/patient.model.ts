@@ -18,7 +18,8 @@ export class Patient extends BaseModel {
 	}
 
 	get age(): number {
-		return DateTime.now().diff(DateTime.fromJSDate(this.dateBirth), 'years').years
+		const age = DateTime.now().diff(DateTime.fromJSDate(this.dateBirth), 'years').years
+		return Math.floor(age)
 	}
 
 	get fullName(): string {

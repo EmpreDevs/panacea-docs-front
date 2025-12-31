@@ -1,5 +1,6 @@
 import { Component, computed, input } from '@angular/core'
 import { RouterLink, RouterLinkActive } from '@angular/router'
+
 import { LinkColor, LinkVariant } from './link.type'
 
 @Component({
@@ -21,7 +22,7 @@ export class UiLink {
 		// Clases base comunes a todos los botones
 		const baseClasses =
 			this.variant() !== 'link'
-				? `flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer ${css}`
+				? `flex w-full justify-center items-center gap-1 rounded-md px-3 py-1.5 text-sm/6 font-semibold shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer ${css}`
 				: css
 
 		if (this.variant() === 'button') {

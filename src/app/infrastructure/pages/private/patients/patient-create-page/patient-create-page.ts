@@ -25,8 +25,8 @@ export class PatientCreatePage {
 	loading$ = this.patienFacade.loading$()
 
 	async savePatient(dto: PatientFormDto) {
-		const payload: CreatePatientDto = PatientMapper.toCreateDto(dto)
+		const payload: CreatePatientDto = PatientMapper.toCreateDto(dto, '')
 		const patient = await this.patienFacade.create(payload)
-		this.router.navigate([this.rootPath, APP_ROUTES.patients.details(patient.id)])
+		//this.router.navigate([this.rootPath, APP_ROUTES.patients.details(patient.id)])
 	}
 }

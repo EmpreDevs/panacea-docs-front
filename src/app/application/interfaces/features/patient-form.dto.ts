@@ -6,5 +6,4 @@ export interface PatientFormDto {
 	address: string
 	dateBirth: Date
 	gender: string
-	healthProviderId: string
 }
