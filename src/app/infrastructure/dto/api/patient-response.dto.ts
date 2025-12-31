@@ -1,6 +1,5 @@
-import { BaseModel } from './common/base.model'
-
-export interface Patient extends BaseModel {
+export interface PatientResponseDto {
+	id: string
 	firstName: string
 	lastName: string
 	email?: string
