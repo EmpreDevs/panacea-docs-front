@@ -17,7 +17,7 @@ export const patientsRoutes: Routes = [
 				component: PatientsListPage,
 			},
 			{
-				path: PATIENT_PATHS.DETAIL,
+				path: PATIENT_PATHS.DETAIL_RAW,
 				component: PatientsDetailPage,
 				data: {
 					breadcrumb: 'Detalle',

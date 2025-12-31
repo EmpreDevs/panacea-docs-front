@@ -1,4 +1,4 @@
 <app-ui-card rounded="md">
 	<h2 class="text-base/7 font-semibold">Nuevo Paciente</h2>
-	<app-patient-form />
+	<app-patient-form (formSubmit)="savePatient($event)" />
 </app-ui-card>

@@ -1,7 +1,8 @@
 import { Component, effect, inject, input, output } from '@angular/core'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 
-import { CreatePatientDto, UpdatePatientDto } from '@infra/dto'
+import { PatientFormDto } from '@app/interfaces/features'
+
 import { UiButton, UiIcon } from '@infra/ui/atoms'
 import { UiFormGroup, UiInput, UiSelect } from '@infra/ui/molecules'
 
@@ -15,7 +16,7 @@ export class PatientForm {
 	fb = inject(FormBuilder)
 	healthProviderId = input<string>('')
 
-	formSubmit = output<CreatePatientDto | UpdatePatientDto>()
+	formSubmit = output<PatientFormDto>()
 
 	form = this.fb.nonNullable.group({
 		firstName: ['', [Validators.required]],
@@ -45,7 +46,6 @@ export class PatientForm {
 			this.form.markAllAsTouched()
 			return
 		}
-		const value = this.form.getRawValue()
-		this.formSubmit.emit(value)
+		this.formSubmit.emit(this.form.getRawValue())
 	}
 }
