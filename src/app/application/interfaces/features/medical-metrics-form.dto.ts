@@ -1,4 +1,4 @@
-export interface IMedicalMetricsFormDto {
+export interface MedicalMetricsFormDto {
 	weight: number
 	temperature: number
 	arterialPressure: string

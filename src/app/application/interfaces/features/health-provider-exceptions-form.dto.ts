@@ -1,4 +1,4 @@
-export interface IHealthProviderExceptionsFormDto {
+export interface HealthProviderExceptionsFormDto {
 	startDate: Date
 	endDate: Date
 	description: string

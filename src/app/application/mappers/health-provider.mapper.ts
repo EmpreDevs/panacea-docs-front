@@ -1,9 +1,9 @@
-import { IHealthProviderFormDto } from '@app/interfaces/features'
+import { HealthProviderFormDto } from '@app/interfaces/features'
 
 import { CreateHealthProviderDto, UpdateHealthProviderDto } from '@infra/dto'
 
 export class HealthProviderMapper {
-	toCreateDto(form: IHealthProviderFormDto): CreateHealthProviderDto {
+	static toCreateDto(form: HealthProviderFormDto): CreateHealthProviderDto {
 		return {
 			firstName: form.firstName,
 			lastName: form.lastName,
@@ -13,7 +13,7 @@ export class HealthProviderMapper {
 		}
 	}
 
-	toUpdateDto(form: IHealthProviderFormDto): UpdateHealthProviderDto {
+	static toUpdateDto(form: HealthProviderFormDto): UpdateHealthProviderDto {
 		return {
 			firstName: form.firstName,
 			lastName: form.lastName,

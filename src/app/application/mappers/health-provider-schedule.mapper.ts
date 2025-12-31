@@ -1,9 +1,9 @@
-import { IHealthProviderScheduleFormDto } from '@app/interfaces/features'
+import { HealthProviderScheduleFormDto } from '@app/interfaces/features'
 
 import { CreateHealthProviderScheduleDto, UpdateHealthProviderScheduleDto } from '@infra/dto'
 
 export class HealthProviderScheduleMapper {
-	toCreateDto(form: IHealthProviderScheduleFormDto): CreateHealthProviderScheduleDto {
+	static toCreateDto(form: HealthProviderScheduleFormDto): CreateHealthProviderScheduleDto {
 		return {
 			healthProviderId: form.healthProviderId,
 			day: form.day,
@@ -12,7 +12,7 @@ export class HealthProviderScheduleMapper {
 		}
 	}
 
-	toUpdateDto(form: IHealthProviderScheduleFormDto): UpdateHealthProviderScheduleDto {
+	static toUpdateDto(form: HealthProviderScheduleFormDto): UpdateHealthProviderScheduleDto {
 		return {
 			healthProviderId: form.healthProviderId,
 			day: form.day,

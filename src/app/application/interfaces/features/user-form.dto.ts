@@ -1,4 +1,4 @@
-export interface IUserFormDto {
+export interface UserFormDto {
 	username: string
 	name: string
 	email: string

@@ -1,9 +1,9 @@
-import { ISubscriptionFormDto } from '@app/interfaces/features'
+import { SubscriptionFormDto } from '@app/interfaces/features'
 
 import { CreateSubscriptionDto, UpdateSubscriptionDto } from '@infra/dto'
 
 export class SubscriptionMapper {
-	toCreateDto(form: ISubscriptionFormDto): CreateSubscriptionDto {
+	static toCreateDto(form: SubscriptionFormDto): CreateSubscriptionDto {
 		return {
 			startDate: form.startDate,
 			endDate: form.endDate,
@@ -16,7 +16,7 @@ export class SubscriptionMapper {
 		}
 	}
 
-	toUpdateDto(form: ISubscriptionFormDto): UpdateSubscriptionDto {
+	static toUpdateDto(form: SubscriptionFormDto): UpdateSubscriptionDto {
 		return {
 			startDate: form.startDate,
 			endDate: form.endDate,

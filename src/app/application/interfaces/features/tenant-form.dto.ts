@@ -1,4 +1,4 @@
-export interface ITenantFormDto {
+export interface TenantFormDto {
 	type: string
 	phone: string
 	billingName: string

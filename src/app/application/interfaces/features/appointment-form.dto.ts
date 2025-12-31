@@ -1,4 +1,4 @@
-export interface IAppointmentFormDto {
+export interface AppointmentFormDto {
 	startDate: Date
 	endDate: Date
 	estimation: number

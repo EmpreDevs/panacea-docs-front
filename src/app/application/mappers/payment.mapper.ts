@@ -1,9 +1,9 @@
-import { IPaymentFormDto } from '@app/interfaces/features'
+import { PaymentFormDto } from '@app/interfaces/features'
 
 import { CreatePaymentDto, UpdatePaymentDto } from '@infra/dto'
 
 export class PaymentMapper {
-	toCreateDto(form: IPaymentFormDto): CreatePaymentDto {
+	static toCreateDto(form: PaymentFormDto): CreatePaymentDto {
 		return {
 			healthProviderId: form.healthProviderId,
 			amount: form.amount,
@@ -13,7 +13,7 @@ export class PaymentMapper {
 		}
 	}
 
-	toUpdateDto(form: IPaymentFormDto): UpdatePaymentDto {
+	static toUpdateDto(form: PaymentFormDto): UpdatePaymentDto {
 		return {
 			healthProviderId: form.healthProviderId,
 			amount: form.amount,

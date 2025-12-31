@@ -1,9 +1,9 @@
-import { IScheduleFormDto } from '@app/interfaces/features'
+import { ScheduleFormDto } from '@app/interfaces/features'
 
 import { CreateScheduleDto, UpdateScheduleDto } from '@infra/dto'
 
 export class ScheduleMapper {
-	toCreateDto(form: IScheduleFormDto): CreateScheduleDto {
+	static toCreateDto(form: ScheduleFormDto): CreateScheduleDto {
 		return {
 			start: form.start,
 			end: form.end,
@@ -12,7 +12,7 @@ export class ScheduleMapper {
 		}
 	}
 
-	toUpdateDto(form: IScheduleFormDto): UpdateScheduleDto {
+	static toUpdateDto(form: ScheduleFormDto): UpdateScheduleDto {
 		return {
 			start: form.start,
 			end: form.end,

@@ -1,9 +1,9 @@
-import { IHealthProviderExceptionsFormDto } from '@app/interfaces/features'
+import { HealthProviderExceptionsFormDto } from '@app/interfaces/features'
 
 import { CreateHealthProviderExceptionsDto, UpdateHealthProviderExceptionsDto } from '@infra/dto'
 
 export class HealthProviderExceptionsMapper {
-	toCreateDto(form: IHealthProviderExceptionsFormDto): CreateHealthProviderExceptionsDto {
+	static toCreateDto(form: HealthProviderExceptionsFormDto): CreateHealthProviderExceptionsDto {
 		return {
 			startDate: form.startDate,
 			endDate: form.endDate,
@@ -12,7 +12,7 @@ export class HealthProviderExceptionsMapper {
 		}
 	}
 
-	toUpdateDto(form: IHealthProviderExceptionsFormDto): UpdateHealthProviderExceptionsDto {
+	static toUpdateDto(form: HealthProviderExceptionsFormDto): UpdateHealthProviderExceptionsDto {
 		return {
 			startDate: form.startDate,
 			endDate: form.endDate,

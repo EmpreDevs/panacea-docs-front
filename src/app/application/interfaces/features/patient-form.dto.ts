@@ -1,4 +1,4 @@
-export interface IPatientFormDto {
+export interface PatientFormDto {
 	firstName: string
 	lastName: string
 	email: string

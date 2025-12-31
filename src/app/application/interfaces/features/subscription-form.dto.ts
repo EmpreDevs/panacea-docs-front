@@ -1,4 +1,4 @@
-export interface ISubscriptionFormDto {
+export interface SubscriptionFormDto {
 	startDate: Date
 	endDate: Date
 	status: string

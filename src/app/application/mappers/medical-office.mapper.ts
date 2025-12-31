@@ -1,9 +1,9 @@
-import { IMedicalOfficeFormDto } from '@app/interfaces/features'
+import { MedicalOfficeFormDto } from '@app/interfaces/features'
 
 import { CreateMedicalOfficeDto, UpdateMedicalOfficeDto } from '@infra/dto'
 
 export class MedicalOfficeMapper {
-	toCreateDto(form: IMedicalOfficeFormDto): CreateMedicalOfficeDto {
+	static toCreateDto(form: MedicalOfficeFormDto): CreateMedicalOfficeDto {
 		return {
 			name: form.name,
 			address: form.address,
@@ -11,7 +11,7 @@ export class MedicalOfficeMapper {
 		}
 	}
 
-	toUpdateDto(form: IMedicalOfficeFormDto): UpdateMedicalOfficeDto {
+	static toUpdateDto(form: MedicalOfficeFormDto): UpdateMedicalOfficeDto {
 		return {
 			name: form.name,
 			address: form.address,

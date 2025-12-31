@@ -1,9 +1,9 @@
-import { INotesFormDto } from '@app/interfaces/features'
+import { NotesFormDto } from '@app/interfaces/features'
 
 import { CreateNotesDto, UpdateNotesDto } from '@infra/dto'
 
 export class NotesMapper {
-	toCreateDto(form: INotesFormDto): CreateNotesDto {
+	static toCreateDto(form: NotesFormDto): CreateNotesDto {
 		return {
 			date: form.date,
 			observations: form.observations,
@@ -12,7 +12,7 @@ export class NotesMapper {
 		}
 	}
 
-	toUpdateDto(form: INotesFormDto): UpdateNotesDto {
+	static toUpdateDto(form: NotesFormDto): UpdateNotesDto {
 		return {
 			date: form.date,
 			observations: form.observations,

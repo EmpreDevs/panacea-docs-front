@@ -1,4 +1,4 @@
-export interface IPaymentFormDto {
+export interface PaymentFormDto {
 	healthProviderId: string
 	amount: number
 	stripeProductId: string

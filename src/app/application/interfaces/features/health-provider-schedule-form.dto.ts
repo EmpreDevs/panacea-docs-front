@@ -1,4 +1,4 @@
-export interface IHealthProviderScheduleFormDto {
+export interface HealthProviderScheduleFormDto {
 	healthProviderId: string
 	day: string
 	start: string

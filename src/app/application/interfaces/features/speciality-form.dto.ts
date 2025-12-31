@@ -1,4 +1,4 @@
-export interface ISpecialityFormDto {
+export interface SpecialityFormDto {
 	name: string
 	description: string
 }

@@ -1,4 +1,4 @@
-export interface IMedicalOfficeFormDto {
+export interface MedicalOfficeFormDto {
 	name: string
 	address: string
 	phone: string

@@ -1,9 +1,9 @@
-import { IPatientFormDto } from '@app/interfaces/features'
+import { PatientFormDto } from '@app/interfaces/features'
 
 import { CreatePatientDto, UpdatePatientDto } from '@infra/dto'
 
 export class PatientMapper {
-	toCreateDto(form: IPatientFormDto): CreatePatientDto {
+	static toCreateDto(form: PatientFormDto): CreatePatientDto {
 		return {
 			firstName: form.firstName,
 			lastName: form.lastName,
@@ -16,7 +16,7 @@ export class PatientMapper {
 		}
 	}
 
-	toUpdateDto(form: IPatientFormDto): UpdatePatientDto {
+	static toUpdateDto(form: PatientFormDto): UpdatePatientDto {
 		return {
 			firstName: form.firstName,
 			lastName: form.lastName,

@@ -1,9 +1,9 @@
-import { ITenantFormDto } from '@app/interfaces/features'
+import { TenantFormDto } from '@app/interfaces/features'
 
 import { CreateTenantDto, UpdateTenantDto } from '@infra/dto'
 
 export class TenantMapper {
-	toCreateDto(form: ITenantFormDto): CreateTenantDto {
+	static toCreateDto(form: TenantFormDto): CreateTenantDto {
 		return {
 			type: form.type,
 			phone: form.phone,
@@ -16,7 +16,7 @@ export class TenantMapper {
 		}
 	}
 
-	toUpdateDto(form: ITenantFormDto): UpdateTenantDto {
+	static toUpdateDto(form: TenantFormDto): UpdateTenantDto {
 		return {
 			type: form.type,
 			phone: form.phone,

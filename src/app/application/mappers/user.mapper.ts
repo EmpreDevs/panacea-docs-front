@@ -1,9 +1,9 @@
-import { IUserFormDto } from '@app/interfaces/features'
+import { UserFormDto } from '@app/interfaces/features'
 
 import { CreateUserDto, UpdateUserDto } from '@infra/dto'
 
 export class UserMapper {
-	toCreateDto(form: IUserFormDto): CreateUserDto {
+	static toCreateDto(form: UserFormDto): CreateUserDto {
 		return {
 			username: form.username,
 			name: form.name,
@@ -15,7 +15,7 @@ export class UserMapper {
 		}
 	}
 
-	toUpdateDto(form: IUserFormDto): UpdateUserDto {
+	static toUpdateDto(form: UserFormDto): UpdateUserDto {
 		return {
 			username: form.username,
 			name: form.name,

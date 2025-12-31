@@ -1,9 +1,9 @@
-import { IAppointmentFormDto } from '@app/interfaces/features'
+import { AppointmentFormDto } from '@app/interfaces/features'
 
 import { CreateAppointmentDto, UpdateAppointmentDto } from '@infra/dto'
 
 export class AppointmentMapper {
-	toCreateDto(form: IAppointmentFormDto): CreateAppointmentDto {
+	static toCreateDto(form: AppointmentFormDto): CreateAppointmentDto {
 		return {
 			startDate: form.startDate,
 			endDate: form.endDate,
@@ -16,7 +16,7 @@ export class AppointmentMapper {
 		}
 	}
 
-	toUpdateDto(form: IAppointmentFormDto): UpdateAppointmentDto {
+	static toUpdateDto(form: AppointmentFormDto): UpdateAppointmentDto {
 		return {
 			startDate: form.startDate,
 			endDate: form.endDate,

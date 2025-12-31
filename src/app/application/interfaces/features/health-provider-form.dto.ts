@@ -1,4 +1,4 @@
-export interface IHealthProviderFormDto {
+export interface HealthProviderFormDto {
 	firstName: string
 	lastName: string
 	email: string

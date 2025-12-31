@@ -1,9 +1,9 @@
-import { IMedicalMetricsFormDto } from '@app/interfaces/features'
+import { MedicalMetricsFormDto } from '@app/interfaces/features'
 
 import { CreateMedicalMetricsDto, UpdateMedicalMetricsDto } from '@infra/dto'
 
 export class MedicalMetricsMapper {
-	toCreateDto(form: IMedicalMetricsFormDto): CreateMedicalMetricsDto {
+	static toCreateDto(form: MedicalMetricsFormDto): CreateMedicalMetricsDto {
 		return {
 			weight: form.weight,
 			temperature: form.temperature,
@@ -14,7 +14,7 @@ export class MedicalMetricsMapper {
 		}
 	}
 
-	toUpdateDto(form: IMedicalMetricsFormDto): UpdateMedicalMetricsDto {
+	static toUpdateDto(form: MedicalMetricsFormDto): UpdateMedicalMetricsDto {
 		return {
 			weight: form.weight,
 			temperature: form.temperature,

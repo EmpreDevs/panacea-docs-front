@@ -1,9 +1,9 @@
-import { IPlanFormDto } from '@app/interfaces/features'
+import { PlanFormDto } from '@app/interfaces/features'
 
 import { CreatePlanDto, UpdatePlanDto } from '@infra/dto'
 
 export class PlanMapper {
-	toCreateDto(form: IPlanFormDto): CreatePlanDto {
+	static toCreateDto(form: PlanFormDto): CreatePlanDto {
 		return {
 			name: form.name,
 			cost: form.cost,
@@ -12,7 +12,7 @@ export class PlanMapper {
 		}
 	}
 
-	toUpdateDto(form: IPlanFormDto): UpdatePlanDto {
+	static toUpdateDto(form: PlanFormDto): UpdatePlanDto {
 		return {
 			name: form.name,
 			cost: form.cost,
