@@ -1,0 +1,82 @@
+<form
+	[formGroup]="form"
+	(ngSubmit)="submit()"
+>
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+		<div class="lg:col-span-3">
+			<app-ui-form-group>
+				<app-ui-input
+					id="firstName"
+					name="firstName"
+					formControlName="firstName"
+					label="Nombre"
+				/>
+			</app-ui-form-group>
+		</div>
+		<div class="lg:col-span-3">
+			<app-ui-form-group>
+				<app-ui-input
+					id="lastName"
+					name="lastName"
+					formControlName="lastName"
+					label="Apellido"
+				/>
+			</app-ui-form-group>
+		</div>
+		<app-ui-form-group>
+			<app-ui-input
+				id="dateBirth"
+				name="dateBirth"
+				formControlName="dateBirth"
+				label="Fecha de nacimiento"
+				type="date"
+			/>
+		</app-ui-form-group>
+		<app-ui-form-group>
+			<app-ui-select
+				id="gender"
+				name="gender"
+				formControlName="gender"
+				label="Género"
+				[options]="genderOptions"
+			/>
+		</app-ui-form-group>
+		<div class="lg:col-span-2">
+			<app-ui-form-group>
+				<app-ui-input
+					id="phone"
+					name="phone"
+					formControlName="phone"
+					label="Teléfono"
+				/>
+			</app-ui-form-group>
+		</div>
+		<div class="lg:col-span-2">
+			<app-ui-form-group>
+				<app-ui-input
+					id="email"
+					name="email"
+					formControlName="email"
+					label="E-mail"
+				/>
+			</app-ui-form-group>
+		</div>
+
+		<div class="md:col-span-2 lg:col-span-6">
+			<app-ui-form-group>
+				<app-ui-input
+					id="address"
+					name="address"
+					formControlName="address"
+					label="Dirección"
+				/>
+			</app-ui-form-group>
+		</div>
+	</div>
+	<div class="flex justify-end mt-4">
+		<app-ui-button>
+			<app-ui-icon name="save" />
+			Guardar
+		</app-ui-button>
+	</div>
+</form>
