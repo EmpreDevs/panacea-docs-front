@@ -6,13 +6,13 @@ import { HealthProviderScheduleResponseDto } from './health-provider-schedule-re
 
 export class HealthProviderScheduleMapper implements IMapper<HealthProviderSchedule, HealthProviderScheduleResponseDto> {
 	toModel(data: HealthProviderScheduleResponseDto): HealthProviderSchedule {
-		return {
+		return new HealthProviderSchedule({
 			id: data.id,
 			healthProviderId: data.healthProviderId,
 			day: data.day,
 			start: data.start,
 			end: data.end,
-		}
+		})
 	}
 
 	toDto(data: HealthProviderSchedule): HealthProviderScheduleResponseDto {

@@ -6,7 +6,7 @@ import { AppointmentResponseDto } from './appointment-response.dto'
 
 export class AppointmentMapper implements IMapper<Appointment, AppointmentResponseDto> {
 	toModel(data: AppointmentResponseDto): Appointment {
-		return {
+		return new Appointment({
 			id: data.id,
 			startDate: data.startDate,
 			endDate: data.endDate,
@@ -16,7 +16,7 @@ export class AppointmentMapper implements IMapper<Appointment, AppointmentRespon
 			tenantId: data.tenantId,
 			title: data.title,
 			properties: data.properties,
-		}
+		})
 	}
 
 	toDto(data: Appointment): AppointmentResponseDto {

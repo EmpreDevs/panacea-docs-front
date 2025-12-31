@@ -1,9 +1,14 @@
-import { BaseModel } from "./common/base.model";
+import { BaseModel } from './common/base.model'
 
-export interface Payment extends BaseModel {
-  healthProviderId: string
-  amount: number
-  stripeProductId: string
-  stripeSubscriptionId: string
-  stripeInvoiceId: string
+export class Payment extends BaseModel {
+	healthProviderId!: string
+	amount!: number
+	stripeProductId!: string
+	stripeSubscriptionId!: string
+	stripeInvoiceId!: string
+
+	constructor(data: Partial<Payment>) {
+		super(data)
+		Object.assign(this, data)
+	}
 }

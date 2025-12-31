@@ -1,6 +1,11 @@
-import { BaseModel } from "./common/base.model";
+import { BaseModel } from './common/base.model'
 
-export interface Speciality extends BaseModel {
-  name: string
-  description: string
+export class Speciality extends BaseModel {
+	name!: string
+	description!: string
+
+	constructor(data: Partial<Speciality>) {
+		super(data)
+		Object.assign(this, data)
+	}
 }

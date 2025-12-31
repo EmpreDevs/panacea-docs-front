@@ -1,6 +1,10 @@
 import { User } from './user.model'
 
-export interface Auth {
-	accessToken: string
-	user: User
+export class Auth {
+	accessToken!: string
+	user!: User
+
+	constructor(data: Partial<Auth>) {
+		Object.assign(this, data)
+	}
 }

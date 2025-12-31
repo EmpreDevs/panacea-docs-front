@@ -6,7 +6,7 @@ import { SubscriptionResponseDto } from './subscription-response.dto'
 
 export class SubscriptionMapper implements IMapper<Subscription, SubscriptionResponseDto> {
 	toModel(data: SubscriptionResponseDto): Subscription {
-		return {
+		return new Subscription({
 			id: data.id,
 			startDate: data.startDate,
 			endDate: data.endDate,
@@ -16,7 +16,7 @@ export class SubscriptionMapper implements IMapper<Subscription, SubscriptionRes
 			healthProviderId: data.healthProviderId,
 			planId: data.planId,
 			stripeSubscriptionId: data.stripeSubscriptionId,
-		}
+		})
 	}
 
 	toDto(data: Subscription): SubscriptionResponseDto {

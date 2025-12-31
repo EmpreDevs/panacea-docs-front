@@ -1,8 +1,13 @@
-import { BaseModel } from "./common/base.model";
+import { BaseModel } from './common/base.model'
 
-export interface Plan extends BaseModel {
-  name: string
-  cost: number
-  frequency: string
-  stripeProductId: string
+export class Plan extends BaseModel {
+	name!: string
+	cost!: number
+	frequency!: string
+	stripeProductId!: string
+
+	constructor(data: Partial<Plan>) {
+		super(data)
+		Object.assign(this, data)
+	}
 }

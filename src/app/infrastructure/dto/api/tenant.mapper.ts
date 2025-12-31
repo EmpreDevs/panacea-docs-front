@@ -6,7 +6,7 @@ import { TenantResponseDto } from './tenant-response.dto'
 
 export class TenantMapper implements IMapper<Tenant, TenantResponseDto> {
 	toModel(data: TenantResponseDto): Tenant {
-		return {
+		return new Tenant({
 			id: data.id,
 			type: data.type,
 			phone: data.phone,
@@ -16,7 +16,7 @@ export class TenantMapper implements IMapper<Tenant, TenantResponseDto> {
 			billingPostalCode: data.billingPostalCode,
 			billingCountry: data.billingCountry,
 			email: data.email,
-		}
+		})
 	}
 
 	toDto(data: Tenant): TenantResponseDto {

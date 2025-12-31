@@ -1,9 +1,14 @@
-import { BaseModel } from "./common/base.model";
+import { BaseModel } from './common/base.model'
 
-export interface HealthProvider extends BaseModel {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  title: string
+export class HealthProvider extends BaseModel {
+	firstName!: string
+	lastName!: string
+	email!: string
+	phone!: string
+	title!: string
+
+	constructor(data: Partial<HealthProvider>) {
+		super(data)
+		Object.assign(this, data)
+	}
 }

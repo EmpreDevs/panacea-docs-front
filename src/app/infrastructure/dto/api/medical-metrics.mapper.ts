@@ -6,7 +6,7 @@ import { MedicalMetricsResponseDto } from './medical-metrics-response.dto'
 
 export class MedicalMetricsMapper implements IMapper<MedicalMetrics, MedicalMetricsResponseDto> {
 	toModel(data: MedicalMetricsResponseDto): MedicalMetrics {
-		return {
+		return new MedicalMetrics({
 			id: data.id,
 			weight: data.weight,
 			temperature: data.temperature,
@@ -14,7 +14,7 @@ export class MedicalMetricsMapper implements IMapper<MedicalMetrics, MedicalMetr
 			height: data.height,
 			heartRate: data.heartRate,
 			patientId: data.patientId,
-		}
+		})
 	}
 
 	toDto(data: MedicalMetrics): MedicalMetricsResponseDto {

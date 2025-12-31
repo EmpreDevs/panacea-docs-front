@@ -6,13 +6,13 @@ import { PlanResponseDto } from './plan-response.dto'
 
 export class PlanMapper implements IMapper<Plan, PlanResponseDto> {
 	toModel(data: PlanResponseDto): Plan {
-		return {
+		return new Plan({
 			id: data.id,
 			name: data.name,
 			cost: data.cost,
 			frequency: data.frequency,
 			stripeProductId: data.stripeProductId,
-		}
+		})
 	}
 
 	toDto(data: Plan): PlanResponseDto {

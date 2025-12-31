@@ -9,10 +9,10 @@ export class AuthMapper implements IMapper<Auth, AuthResponseDto> {
 	private userMapper = new UserMapper()
 
 	toModel(data: AuthResponseDto): Auth {
-		return {
+		return new Auth({
 			accessToken: data.accessToken,
 			user: this.userMapper.toModel(data.user),
-		}
+		})
 	}
 
 	toDto(data: Auth): AuthResponseDto {

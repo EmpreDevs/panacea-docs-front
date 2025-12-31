@@ -6,13 +6,13 @@ import { HealthProviderExceptionsResponseDto } from './health-provider-exception
 
 export class HealthProviderExceptionsMapper implements IMapper<HealthProviderExceptions, HealthProviderExceptionsResponseDto> {
 	toModel(data: HealthProviderExceptionsResponseDto): HealthProviderExceptions {
-		return {
+		return new HealthProviderExceptions({
 			id: data.id,
 			startDate: data.startDate,
 			endDate: data.endDate,
 			description: data.description,
 			healthProviderId: data.healthProviderId,
-		}
+		})
 	}
 
 	toDto(data: HealthProviderExceptions): HealthProviderExceptionsResponseDto {

@@ -6,14 +6,14 @@ import { PaymentResponseDto } from './payment-response.dto'
 
 export class PaymentMapper implements IMapper<Payment, PaymentResponseDto> {
 	toModel(data: PaymentResponseDto): Payment {
-		return {
+		return new Payment({
 			id: data.id,
 			healthProviderId: data.healthProviderId,
 			amount: data.amount,
 			stripeProductId: data.stripeProductId,
 			stripeSubscriptionId: data.stripeSubscriptionId,
 			stripeInvoiceId: data.stripeInvoiceId,
-		}
+		})
 	}
 
 	toDto(data: Payment): PaymentResponseDto {

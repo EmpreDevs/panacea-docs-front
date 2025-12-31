@@ -6,7 +6,7 @@ import { PatientResponseDto } from './patient-response.dto'
 
 export class PatientMapper implements IMapper<Patient, PatientResponseDto> {
 	toModel(data: PatientResponseDto): Patient {
-		return {
+		return new Patient({
 			id: data.id,
 			firstName: data.firstName,
 			lastName: data.lastName,
@@ -16,7 +16,7 @@ export class PatientMapper implements IMapper<Patient, PatientResponseDto> {
 			dateBirth: data.dateBirth,
 			healthProviderId: data.healthProviderId,
 			gender: data.gender,
-		}
+		})
 	}
 
 	toDto(data: Patient): PatientResponseDto {
