@@ -1,4 +1,5 @@
-import { inject, Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
+
 import {
 	ForgotPasswordUseCase,
 	LoginUseCase,
@@ -7,7 +8,9 @@ import {
 	RegisterUseCase,
 	ResetPasswordUseCase,
 } from '@app/use-cases'
+
 import { User } from '@domain/models'
+
 import { AuthState } from '../states/auth.state'
 
 @Injectable({ providedIn: 'root' })
@@ -24,10 +27,7 @@ export class AuthFacade {
 		try {
 			this.authState.setLoading(true)
 			const auth = await this.loginUC.execute(email, password)
-			await Promise.all([
-				this.authState.saveUserData(auth.user),
-				this.authState.saveAccessToken(auth.accessToken),
-			])
+			await Promise.all([this.authState.saveUserData(auth), this.authState.saveAccessToken(auth.accessToken)])
 			this.authState.setLoading(false)
 			return this.authState.isAuthenticated()
 		} catch (error: any) {

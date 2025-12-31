@@ -3,7 +3,7 @@ import { Injectable, OnDestroy, computed, signal } from '@angular/core'
 import * as CryptoJS from 'crypto-js'
 import { DBSchema, IDBPDatabase, openDB } from 'idb'
 
-import { User } from '@domain/models'
+import { Auth } from '@domain/models'
 
 interface AuthDB extends DBSchema {
 	auth: {
@@ -19,7 +19,7 @@ interface AuthDB extends DBSchema {
 @Injectable({ providedIn: 'root' })
 export class AuthState implements OnDestroy {
 	private readonly isLogued$ = signal<boolean>(false)
-	private readonly user$ = signal<User | null>(null)
+	private readonly user$ = signal<Auth | null>(null)
 	private readonly isLoading$ = signal<boolean>(false)
 	private readonly error$ = signal<string | null>(null)
 
@@ -142,19 +142,19 @@ export class AuthState implements OnDestroy {
 	}
 
 	// 👤 ESTRATEGIA 3: DATOS DE USUARIO (no sensibles)
-	async saveUserData(userData: User): Promise<void> {
+	async saveUserData(userData: Auth): Promise<void> {
 		try {
 			await this.dbReady
 
 			// Datos no sensibles pueden ir en localStorage
 			const publicData = {
 				id: userData.id,
+				username: userData.username,
 				name: userData.name,
 				email: userData.email,
-				roleName: userData.roleName,
+				active: userData.active,
 				roleId: userData.roleId,
-				avatar: userData.avatar,
-				preferences: userData.preferences,
+				roleName: userData.roleName,
 			}
 
 			// Guardar en IDB para mejor performance
@@ -164,7 +164,7 @@ export class AuthState implements OnDestroy {
 			localStorage.setItem('user_public_data', JSON.stringify(publicData))
 
 			// Actualizar signal
-			this.user$.set(publicData as User)
+			this.user$.set(userData)
 			this.error$.set(null)
 		} catch (error) {
 			console.error('Error saving user data:', error)
@@ -174,20 +174,22 @@ export class AuthState implements OnDestroy {
 	}
 
 	// 📖 CARGAR DATOS DE USUARIO
-	private async loadUserData(): Promise<User | null> {
+	private async loadUserData(): Promise<Auth | null> {
 		try {
 			await this.dbReady
 
 			// Intentar cargar desde IDB primero
 			const idbData = await this.getFromIDB('user_data')
 			if (idbData) {
-				return JSON.parse(idbData)
+				const userData = JSON.parse(idbData)
+				return new Auth(userData)
 			}
 
 			// Fallback a localStorage
 			const localData = localStorage.getItem('user_public_data')
 			if (localData) {
-				return JSON.parse(localData)
+				const userData = JSON.parse(localData)
+				return new Auth(userData)
 			}
 
 			return null
@@ -470,10 +472,10 @@ export class AuthState implements OnDestroy {
 	}
 
 	// Método para actualizar datos del usuario
-	updateUserData(updates: Partial<User>): void {
+	updateUserData(updates: Partial<Auth>): void {
 		const currentUser = this.user$()
 		if (currentUser) {
-			const updatedUser = { ...currentUser, ...updates }
+			const updatedUser = new Auth({ ...currentUser, ...updates })
 			this.user$.set(updatedUser)
 			this.saveUserData(updatedUser)
 

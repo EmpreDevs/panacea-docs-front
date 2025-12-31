@@ -1,24 +1,18 @@
 import { Auth } from '@domain/models'
 
-import { IMapper } from '@infra/dto/common/mapper.interface'
-
 import { AuthResponseDto } from './auth-response.dto'
-import { UserMapper } from './user.mapper'
 
-export class AuthMapper implements IMapper<Auth, AuthResponseDto> {
-	private userMapper = new UserMapper()
-
-	toModel(data: AuthResponseDto): Auth {
+export class AuthMapper {
+	static toModel(data: AuthResponseDto): Auth {
 		return new Auth({
 			accessToken: data.accessToken,
-			user: this.userMapper.toModel(data.user),
+			id: data.user.id,
+			username: data.user.username,
+			name: data.user.name,
+			email: data.user.email,
+			active: data.user.active,
+			roleId: data.user.roleId,
+			roleName: data.user.roleName,
 		})
-	}
-
-	toDto(data: Auth): AuthResponseDto {
-		return {
-			accessToken: data.accessToken,
-			user: this.userMapper.toDto(data.user),
-		}
 	}
 }

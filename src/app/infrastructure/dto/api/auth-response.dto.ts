@@ -1,6 +1,12 @@
-import { UserResponseDto } from './user-response.dto'
-
 export interface AuthResponseDto {
 	accessToken: string
-	user: UserResponseDto
+	user: {
+		id: string
+		username: string
+		name: string
+		email: string
+		active: boolean
+		roleId: string
+		roleName: string
+	}
 }
