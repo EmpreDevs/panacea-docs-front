@@ -1,3 +1,4 @@
+export * from './iu-chart/iu-chart'
 export * from './network-status/network-status'
 export * from './ui-accordion/ui-accordion'
 export * from './ui-async-select/ui-async-select'

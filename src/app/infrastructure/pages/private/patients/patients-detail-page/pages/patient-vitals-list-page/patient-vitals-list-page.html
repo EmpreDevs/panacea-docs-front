@@ -7,7 +7,41 @@
 			/>
 			<app-ui-h2>Presion arterial</app-ui-h2>
 		</div>
-		<app-ui-accordion title="Historico"></app-ui-accordion>
+		<app-ui-chart
+			type="line"
+			[data]="{
+				labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+				datasets: [
+					{
+						label: 'Sistolica',
+						data: [120, 130, 125, 135, 140, 200],
+						borderColor: 'rgba(255, 99, 132, 1)',
+						fill: false,
+					},
+					{
+						label: 'Diastolica',
+						data: [80, 90, 100, 110, 120, 130],
+						borderColor: 'rgba(255, 99, 255, 1)',
+						fill: false,
+					},
+				],
+			}"
+			[options]="{
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						display: true,
+					},
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+					},
+				},
+			}"
+			height="200px"
+		></app-ui-chart>
 	</app-ui-card>
 	<app-ui-card rounded="md">
 		<div class="flex items-center gap-2 text-blue-500">
@@ -17,7 +51,35 @@
 			/>
 			<app-ui-h2>Frecuencia cardíaca</app-ui-h2>
 		</div>
-		<app-ui-accordion title="Historico"></app-ui-accordion>
+		<app-ui-chart
+			type="line"
+			[data]="{
+				labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+				datasets: [
+					{
+						label: 'Presión arterial',
+						data: [120, 130, 125, 135, 140, 145],
+						borderColor: 'rgba(0, 0, 255, 1)',
+						fill: false,
+					},
+				],
+			}"
+			[options]="{
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						display: false,
+					},
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+					},
+				},
+			}"
+			height="200px"
+		></app-ui-chart>
 	</app-ui-card>
 	<app-ui-card rounded="md">
 		<div class="flex items-center gap-2 text-green-500">
@@ -25,18 +87,106 @@
 				name="weight"
 				[size]="35"
 			/>
-			<app-ui-h2>Peso</app-ui-h2>
+			<app-ui-h2>Superficie corporal</app-ui-h2>
 		</div>
-		<app-ui-accordion title="Historico"></app-ui-accordion>
-	</app-ui-card>
-	<app-ui-card rounded="md">
-		<div class="flex items-center gap-2 text-orange-500">
-			<app-ui-icon
-				name="heart-pulse"
-				[size]="35"
-			/>
-			<app-ui-h2>Temperatura</app-ui-h2>
-		</div>
-		<app-ui-accordion title="Historico"></app-ui-accordion>
+		<app-ui-chart
+			type="line"
+			[data]="{
+				labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+				datasets: [
+					{
+						label: 'Presión arterial',
+						data: [120, 130, 125, 135, 140, 145],
+						borderColor: 'rgba(0, 128, 0, 1)',
+						fill: false,
+					},
+				],
+			}"
+			[options]="{
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						display: false,
+					},
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+					},
+				},
+			}"
+			height="200px"
+		></app-ui-chart>
 	</app-ui-card>
 </div>
+
+<app-ui-card rounded="md">
+	<app-ui-h2>Mediciones recientes</app-ui-h2>
+
+	<table class="w-full text-sm text-left rtl:text-right text-body">
+		<thead class="text-sm text-body border-b rounded-base border-default">
+			<tr>
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					Fecha
+				</th>
+
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					Presión arterial
+				</th>
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					Frecuencia cardíaca
+				</th>
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					Temperatura
+				</th>
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					Talla
+				</th>
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					Peso
+				</th>
+				<th
+					scope="col"
+					class="px-6 py-3 font-medium"
+				>
+					SP
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="bg-neutral-primary border-b border-default">
+				<th
+					scope="row"
+					class="px-6 py-4 font-medium text-heading whitespace-nowrap"
+				>
+					2023-01-01
+				</th>
+				<td class="px-6 py-4">120/80</td>
+				<td class="px-6 py-4">70</td>
+				<td class="px-6 py-4">36.6</td>
+				<td class="px-6 py-4">175 cm</td>
+				<td class="px-6 py-4">68.5 kg</td>
+				<td class="px-6 py-4">231</td>
+			</tr>
+		</tbody>
+	</table>
+</app-ui-card>
