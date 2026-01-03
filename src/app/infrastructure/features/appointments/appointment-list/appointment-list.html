@@ -1,7 +1,41 @@
-<app-ui-calendar
-	[view]="view()"
-	[events]="events()"
-	(eventClick)="clickOnEvent($event)"
-	(eventDrop)="dropEvent($event)"
-	(select)="selectEvent($event)"
-/>
+@let list = appointments();
+<ul class="space-y-2 text-body list-inside">
+	@for (appointment of list; track appointment.id) {
+		<li
+			class="flex items-top gap-2 w-full cursor-pointer"
+			(click)="selected(appointment)"
+			role="button"
+		>
+			<span
+				[class.text-green-500]="!isPendding(appointment)"
+				class="w-5"
+			>
+				<app-ui-icon
+					[name]="isPendding(appointment) ? 'calendar-clock' : 'check'"
+					[size]="20"
+				/>
+			</span>
+			<div class="w-full">
+				<div class="flex justify-between">
+					<time
+						[attr.datetime]="appointment.startDate | date: 'yyyy-MM-ddTHH:mm'"
+						class="block"
+					>
+						{{ appointment.startDate | date: 'HH:mm' }} -
+						{{ appointment.endDate | date: 'HH:mm' }}
+					</time>
+
+					<time
+						[attr.datetime]="appointment.startDate | date: 'yyyy-MM-dd'"
+						class="block"
+					>
+						{{ appointment.startDate | date: 'dd MM yyyy' }}
+					</time>
+				</div>
+				{{ appointment.title }}
+			</div>
+		</li>
+	} @empty {
+		<span class="text-center text-sm italic text-gray-400">No hay citas registradas</span>
+	}
+</ul>

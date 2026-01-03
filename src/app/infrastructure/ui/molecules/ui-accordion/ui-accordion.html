@@ -1,0 +1,57 @@
+<div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+	<!-- Header con título y botón -->
+	<button
+		type="button"
+		(click)="toggle()"
+		class="w-full flex items-center justify-between px-4 py-3 bg-surface hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+	>
+		<span class="font-medium text-gray-900 dark:text-gray-100">
+			{{ title }}
+		</span>
+
+		<!-- Ícono con rotación animada -->
+		<div
+			class="transition-transform duration-300 ease-in-out"
+			[class.rotate-180]="isOpen()"
+		>
+			<app-ui-icon
+				[name]="!isOpen() ? 'chevron-down' : 'chevron-up'"
+				[size]="20"
+				class="text-gray-500 dark:text-gray-400"
+			/>
+		</div>
+	</button>
+
+	<!-- Contenido con animación -->
+	@if (isOpen()) {
+		<div class="accordion-content">
+			<div class="px-4 py-3 bg-surface border-t border-gray-200 dark:border-gray-700">
+				<ng-content></ng-content>
+			</div>
+		</div>
+	}
+</div>
+
+<style>
+	@keyframes accordion-open {
+		from {
+			opacity: 0;
+			max-height: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			max-height: 1000px;
+			transform: translateY(0);
+		}
+	}
+
+	.accordion-content {
+		animation: accordion-open 0.3s ease-in-out;
+		overflow: hidden;
+	}
+
+	.rotate-180 {
+		transform: rotate(180deg);
+	}
+</style>

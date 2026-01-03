@@ -1,4 +1,5 @@
 export * from './network-status/network-status'
+export * from './ui-accordion/ui-accordion'
 export * from './ui-async-select/ui-async-select'
 export * from './ui-breadcrumbs/ui-breadcrumbs'
 export * from './ui-form-group/ui-form-group'

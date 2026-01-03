@@ -3,6 +3,7 @@ import { Routes } from '@angular/router'
 import { PatientCreatePage } from './patient-create-page/patient-create-page'
 import { PATIENT_PATHS } from './patient-paths'
 import { PatientsDetailPage } from './patients-detail-page/patients-detail-page'
+import { patientsDetailRoutes } from './patients-detail-page/patients-detail.routing'
 import { PatientsListPage } from './patients-list-page/patients-list-page'
 
 export const patientsRoutes: Routes = [
@@ -22,6 +23,7 @@ export const patientsRoutes: Routes = [
 				data: {
 					breadcrumb: 'Detalle',
 				},
+				children: patientsDetailRoutes,
 			},
 			{
 				path: PATIENT_PATHS.NEW,

@@ -1,0 +1,50 @@
+@let patient = Patient();
+
+@if (patient) {
+	<div class="mt-6 border-t border-gray-100 dark:border-white/10">
+		<dl class="grid grid-cols-2">
+			<div class="">
+				<div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+					<dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Nombre</dt>
+					<dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
+						{{ patient.fullName }}
+					</dd>
+				</div>
+
+				<div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+					<dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Genero</dt>
+					<dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
+						{{ patient.gender }}
+					</dd>
+				</div>
+				<div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 hidden md:block">
+					<dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Email</dt>
+					<dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
+						{{ patient.email }}
+					</dd>
+				</div>
+			</div>
+			<div>
+				<div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+					<dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Edad</dt>
+					<dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
+						{{ patient.age }} años
+					</dd>
+				</div>
+				<div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+					<dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Telefono</dt>
+					<dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
+						{{ patient.phone }}
+					</dd>
+				</div>
+
+				<div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 hidden md:block">
+					<dt class="text-sm/6 font-medium text-gray-900 dark:text-gray-100">Direccion</dt>
+					<dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0 dark:text-gray-400">
+						{{ patient.address }}
+					</dd>
+				</div>
+			</div>
+		</dl>
+	</div>
+}

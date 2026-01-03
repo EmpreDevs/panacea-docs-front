@@ -1,4 +1,5 @@
-import { Component, computed, input, Input } from '@angular/core'
+import { Component, Input, computed, input, output } from '@angular/core'
+
 import { ButtonColor, ButtonType, ButtonVariant } from './button.type'
 
 @Component({
@@ -12,6 +13,7 @@ export class UiButton {
 	variant = input<ButtonVariant>('solid')
 	color = input<ButtonColor>('health')
 	loading = input<boolean>(false)
+	Click = output<void>()
 
 	clasesBtn = computed(() => {
 		// Clases base comunes a todos los botones
@@ -91,4 +93,8 @@ export class UiButton {
 
 		return baseClasses
 	})
+
+	clicked() {
+		this.Click.emit()
+	}
 }

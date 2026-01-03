@@ -4,12 +4,12 @@ import { ScreenSize, ScreenSizeService } from '@app/services'
 
 import { Appointment } from '@domain/models'
 
-import { AppointmentList, AppointmentSidebar, AppointmentSidebarView } from '@infra/features/appointments'
+import { AppointmentSidebar, AppointmentSidebarView, AppointmentTable } from '@infra/features/appointments'
 import { UiCard } from '@infra/ui/atoms'
 
 @Component({
 	selector: 'app-appointments-list-page',
-	imports: [UiCard, AppointmentList, AppointmentSidebar],
+	imports: [UiCard, AppointmentTable, AppointmentSidebar],
 	templateUrl: './appointments-list-page.html',
 	styles: ``,
 })

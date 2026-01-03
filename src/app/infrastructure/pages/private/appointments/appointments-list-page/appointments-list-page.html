@@ -1,10 +1,10 @@
 <app-ui-card rounded="sm">
-	<app-appointment-list
+	<app-appointment-table
 		[events]="appointments"
 		(eventClick)="launchViewDetail($event)"
 		(eventDrop)="updateAppointment($event)"
 		(createEvent)="createAppointment($event)"
-	></app-appointment-list>
+	></app-appointment-table>
 </app-ui-card>
 
 <app-appointment-sidebar

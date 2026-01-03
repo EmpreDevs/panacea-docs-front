@@ -1,15 +1,24 @@
 import { Component, computed, input } from '@angular/core'
 
 import {
+	ActivityIcon,
+	CalendarClockIcon,
+	CalendarIcon,
+	CalendarPlusIcon,
+	CheckIcon,
 	ChevronDownIcon,
+	ChevronUpIcon,
 	FrownIcon,
+	HeartPulseIcon,
 	LoaderCircleIcon,
 	LucideAngularModule,
+	NotebookPenIcon,
 	PencilIcon,
 	PlusIcon,
 	SaveIcon,
 	SearchIcon,
 	Trash2Icon,
+	WeightIcon,
 	XIcon,
 } from 'lucide-angular'
 
@@ -35,6 +44,15 @@ export class UiIcon {
 			save: SaveIcon,
 			trash: Trash2Icon,
 			plus: PlusIcon,
+			check: CheckIcon,
+			'calendar-clock': CalendarClockIcon,
+			'chevron-up': ChevronUpIcon,
+			'calendar-plus': CalendarPlusIcon,
+			'notebook-pen': NotebookPenIcon,
+			calendar: CalendarIcon,
+			'heart-pulse': HeartPulseIcon,
+			activity: ActivityIcon,
+			weight: WeightIcon,
 		}
 
 		return icons[this.name()]

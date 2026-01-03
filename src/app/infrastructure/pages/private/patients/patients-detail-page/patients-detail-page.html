@@ -1,1 +1,28 @@
-<p>patients-detail-page works!</p>
+<app-ui-card rounded="md">
+	<div class="flex items-center justify-between">
+		<app-ui-h2>Información General</app-ui-h2>
+		<div class="flex gap-2">
+			<app-ui-button
+				variant="outline"
+				color="info"
+				type="button"
+			>
+				<app-ui-icon
+					name="pencil"
+					[size]="18"
+				/>
+				<span class="hidden md:block">Editar</span>
+			</app-ui-button>
+		</div>
+	</div>
+	<app-patient-detail [Patient]="Patient()" />
+</app-ui-card>
+
+<div class="mt-2">
+	<app-ui-tabs
+		[tabs]="tabs"
+		type="link"
+	/>
+</div>
+
+<div class="mt-2"><router-outlet /></div>
