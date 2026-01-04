@@ -24,7 +24,7 @@
 	},
 	"private": true,
 	"dependencies": {
-		"@angular/animations": "^20.3.13",
+		"@angular/animations": "20.3.13",
 		"@angular/common": "20.3.13",
 		"@angular/compiler": "20.3.13",
 		"@angular/core": "20.3.13",
@@ -44,7 +44,7 @@
 		"idb": "^8.0.3",
 		"lucide-angular": "^0.554.0",
 		"luxon": "^3.7.2",
-		"ngx-quill": "^30.0.1",
+		"ngx-quill": "28.0.2",
 		"ngx-toastr": "^19.1.0",
 		"postcss": "^8.5.6",
 		"quill": "^2.0.3",

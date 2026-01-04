@@ -1,13 +1,18 @@
-<div [ngClass]="getContainerClasses()" [ngStyle]="getContainerStyles()">
-	<div
-		*ngFor="let row of rowsArray; let rowIndex = index"
-		[ngClass]="getRowClasses(row)"
-		[ngStyle]="getRowStyles(row)"
-	>
+<div
+	[ngClass]="getContainerClasses()"
+	[ngStyle]="getContainerStyles()"
+>
+	@for (row of rowsArray; track $index) {
 		<div
-			*ngFor="let col of getColumnsArray(row); let colIndex = index"
-			[ngClass]="getSkeletonClasses(row)"
-			[ngStyle]="getSkeletonStyles(row)"
-		></div>
-	</div>
+			[ngClass]="getRowClasses(row)"
+			[ngStyle]="getRowStyles(row)"
+		>
+			@for (col of getColumnsArray(row); track $index) {
+				<div
+					[ngClass]="getSkeletonClasses(row)"
+					[ngStyle]="getSkeletonStyles(row)"
+				></div>
+			}
+		</div>
+	}
 </div>

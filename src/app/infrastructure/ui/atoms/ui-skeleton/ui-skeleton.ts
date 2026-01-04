@@ -1,5 +1,6 @@
+import { NgClass, NgStyle } from '@angular/common'
 import { Component, Input, OnInit } from '@angular/core'
-import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common'
+
 import {
 	SkeletonOptions,
 	SkeletonRow,
@@ -10,7 +11,7 @@ import {
 
 @Component({
 	selector: 'app-ui-skeleton',
-	imports: [NgClass, NgFor, NgIf, NgStyle],
+	imports: [NgClass, NgStyle],
 	templateUrl: './ui-skeleton.html',
 })
 export class UiSkeleton implements OnInit {

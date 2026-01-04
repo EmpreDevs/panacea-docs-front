@@ -18,19 +18,23 @@ import { UiCard, UiH2, UiIcon, UiLink } from '@infra/ui/atoms'
 	styles: ``,
 })
 export class PatientNoteListPage {
-	                                        route = inject(ActivatedRoute)               
+	route = inject(ActivatedRoute)
 	screenSize = inject(ScreenSizeService)
 	noteFacade = inject(NotesFacade)
 
-	patientId = computed(() => this.route.parent?.snapshot.paramMap.get('id') || '');
-
+	patientId = computed(() => this.route.parent?.snapshot.paramMap.get('id') || '')
 
 	previewNote = signal<Note | null>(null)
 	isMobile = computed(() => this.screenSize.isMobile)
 
 	linkDetailNote: string[] = []
 	linkNote = (noteId: string, appointmentId: string) => {
-		return [getAppPath(APP_ROUTES.patients.root, APP_ROUTES.patients.notesDetail(this.patientId(), noteId, appointmentId))]
+		return [
+			getAppPath(
+				APP_ROUTES.patients.root,
+				APP_ROUTES.patients.notesDetail(this.patientId(), noteId, appointmentId),
+			),
+		]
 	}
 	notes = [
 		new Note({
@@ -139,7 +143,12 @@ export class PatientNoteListPage {
 	]
 
 	noteSelected(note: Note) {
-		this.linkDetailNote = [getAppPath(APP_ROUTES.patients.root, APP_ROUTES.patients.notesDetail(this.patientId(), note.id, note.appointmentId))]
+		this.linkDetailNote = [
+			getAppPath(
+				APP_ROUTES.patients.root,
+				APP_ROUTES.patients.notesDetail(this.patientId(), note.id, note.appointmentId),
+			),
+		]
 		this.previewNote.set(note)
 	}
 }
