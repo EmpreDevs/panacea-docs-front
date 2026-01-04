@@ -8,7 +8,7 @@ import { APP_ROUTES } from '@shared/constants'
 import { Note } from '@domain/models/notes.model'
 
 import { NoteDetail, NoteTable } from '@infra/features/notes'
-import { NotesFacade } from '@infra/store/facades'
+import { NoteFacade } from '@infra/store/facades'
 import { UiCard, UiH2, UiIcon, UiLink } from '@infra/ui/atoms'
 
 @Component({
@@ -20,7 +20,7 @@ import { UiCard, UiH2, UiIcon, UiLink } from '@infra/ui/atoms'
 export class PatientNoteListPage {
 	route = inject(ActivatedRoute)
 	screenSize = inject(ScreenSizeService)
-	noteFacade = inject(NotesFacade)
+	noteFacade = inject(NoteFacade)
 
 	patientId = computed(() => this.route.parent?.snapshot.paramMap.get('id') || '')
 

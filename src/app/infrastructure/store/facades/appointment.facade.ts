@@ -32,7 +32,7 @@ export class AppointmentFacade extends BaseFacade<Appointment> {
 			patientId: '',
 			startDate: new Date(),
 			endDate: new Date(),
-			title: "Ejemplo de cita"
+			title: 'Ejemplo de cita',
 		})
 	}
 }

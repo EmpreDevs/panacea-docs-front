@@ -1,0 +1,35 @@
+@let appointment = appointmentResource.value();
+@let notes = notesResource.value();
+
+<div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4">
+	<div class="grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-1 md:gap-4 gap-2 content-start">
+		<div class="hidden md:block md:col-span-2 lg:col-span-1">
+			<app-ui-link
+				variant="button"
+				color="health"
+				[link]="[newNoteLink()]"
+			>
+				<app-ui-icon name="plus" />
+				<span>Nota</span>
+			</app-ui-link>
+		</div>
+		<app-ui-accordion
+			title="Cita"
+			[defaultOpen]="!isMobile()"
+		>
+			<app-appointment-detail [appointment]="appointment" />
+		</app-ui-accordion>
+		<app-ui-accordion
+			title="Notas tomadas"
+			[defaultOpen]="!isMobile()"
+		>
+			<app-note-table
+				[notes]="notes"
+				[linkToDetail]="detailNoteLink"
+			/>
+		</app-ui-accordion>
+	</div>
+	<div class="lg:col-span-2 xl:col-span-3">
+		<router-outlet />
+	</div>
+</div>

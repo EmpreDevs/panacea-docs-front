@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+	<app-ui-select
+		id="type"
+		name="type"
+		[formControl]="form.controls.type"
+		[options]="noteTypes"
+	></app-ui-select>
+</form>

@@ -1,27 +1,28 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { ScreenSizeService } from '@app/services';
-import { Appointment, Note } from '@domain/models';
-import { AppointmentDetail } from "@infra/features/appointments";
-import { NoteDetail, NoteTable } from "@infra/features/notes";
-import { AppointmentFacade, NotesFacade } from '@infra/store/facades';
-import { UiCard, UiH2, UiIcon, UiLink } from "@infra/ui/atoms";
-import { UiAccordion } from "@infra/ui/molecules";
+import { Component, inject, resource } from '@angular/core'
+import { toSignal } from '@angular/core/rxjs-interop'
+import { ActivatedRoute } from '@angular/router'
+
+import { NoteDetail } from '@infra/features/notes'
+import { NoteFacade } from '@infra/store/facades'
+import { UiCard, UiH2 } from '@infra/ui/atoms'
 
 @Component({
-  selector: 'app-patient-note-detail-page',
-  imports: [UiCard, NoteDetail, UiH2, AppointmentDetail, NoteTable, UiAccordion, UiLink, UiIcon],
-  templateUrl: './patient-note-detail-page.html',
-  styles: ``,
+	selector: 'app-patient-note-detail-page',
+	imports: [NoteDetail, UiCard, UiH2],
+	templateUrl: './patient-note-detail-page.html',
+	styles: ``,
 })
 export class PatientNoteDetailPage {
-                                screenService = inject(ScreenSizeService); 
-    noteFacade = inject(NotesFacade); 
-    appointmentFacade = inject(AppointmentFacade)
+	route = inject(ActivatedRoute)
+	noteFacade = inject(NoteFacade)
 
-    isMobile = computed(() => this.screenService.isMobile)
+	private params = toSignal(this.route.params)
+	private noteId = this.params()?.['noteId']
 
-    appointment = signal<Appointment | null>(null)
-    notes = signal<Note[]>([])
-    note = signal<Note | null>(null)
-
+	noteResource = resource({
+		loader: async () => {
+			const id = this.noteId
+			return this.noteFacade.getCurrentNote(id)
+		},
+	})
 }

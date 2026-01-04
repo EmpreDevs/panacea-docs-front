@@ -1,31 +1,6 @@
-<div class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4">
-	<div class="grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-1 md:gap-4 gap-2 content-start">
-		<div class="hidden md:block md:col-span-2 lg:col-span-1">
-			<app-ui-link
-				variant="button"
-				color="health"
-			>
-				<app-ui-icon name="plus" />
-				<span>Nota</span>
-			</app-ui-link>
-		</div>
-		<app-ui-accordion
-			title="Cita"
-			[defaultOpen]="!isMobile()"
-		>
-			<app-appointment-detail [appointment]="appointment()" />
-		</app-ui-accordion>
-		<app-ui-accordion
-			title="Notas tomadas"
-			[defaultOpen]="!isMobile()"
-		>
-			<app-note-table [notes]="notes()" />
-		</app-ui-accordion>
-	</div>
-	<div class="lg:col-span-2 xl:col-span-3">
-		<app-ui-card rounded="md">
-			<app-ui-h2>Detalle</app-ui-h2>
-			<app-note-detail [note]="notes()[0]" />
-		</app-ui-card>
-	</div>
-</div>
+@let note = noteResource.value();
+
+<app-ui-card rounded="md">
+	<app-ui-h2 className="mb-4">Detalle de la nota</app-ui-h2>
+	<app-note-detail [note]="note" />
+</app-ui-card>

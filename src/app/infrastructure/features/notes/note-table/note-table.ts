@@ -3,16 +3,16 @@ import { Component, input, output } from '@angular/core'
 
 import { Note } from '@domain/models'
 
-import { UiLink } from '@infra/ui/atoms'
+import { UiLink, UiLoadingError, UiSkeleton } from '@infra/ui/atoms'
 
 @Component({
 	selector: 'app-note-table',
-	imports: [UiLink, DatePipe],
+	imports: [UiLink, DatePipe, UiSkeleton, UiLoadingError],
 	templateUrl: './note-table.html',
 	styles: ``,
 })
 export class NoteTable {
-	notes = input<Note[]>([])
+	notes = input<Note[] | null | undefined>(undefined)
 	emit = input<boolean>(false)
 	linkToDetail = input<(id: string, appointmentId: string) => string[]>(() => [])
 

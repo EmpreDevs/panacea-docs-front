@@ -18,3 +18,4 @@ export type IconName =
 	| 'activity'
 	| 'weight'
 	| 'maximize-2'
+	| 'triangle-alert'

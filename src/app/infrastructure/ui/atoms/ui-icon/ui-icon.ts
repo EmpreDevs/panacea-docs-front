@@ -19,6 +19,7 @@ import {
 	SaveIcon,
 	SearchIcon,
 	Trash2Icon,
+	TriangleAlertIcon,
 	WeightIcon,
 	XIcon,
 } from 'lucide-angular'
@@ -55,6 +56,7 @@ export class UiIcon {
 			activity: ActivityIcon,
 			weight: WeightIcon,
 			'maximize-2': Maximize2Icon,
+			'triangle-alert': TriangleAlertIcon,
 		}
 
 		return icons[this.name()]

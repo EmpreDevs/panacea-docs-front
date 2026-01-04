@@ -1,16 +1,31 @@
-@let schedule = appointment();
-@if (schedule) {
+@let data = appointment();
+
+@if (data === undefined) {
+	<app-ui-skeleton
+		[columns]="1"
+		[rows]="1"
+		height="1.5rem"
+		className="mb-4"
+	/>
+	<app-ui-skeleton
+		[columns]="2"
+		[rows]="2"
+		columnGap="5rem"
+	/>
+} @else if (data === null) {
+	<app-ui-loading-error message="No se encontró la información de la cita." />
+} @else {
 	<ul role="list">
 		<li class="text-lg font-semibold mb-4">
-			{{ schedule.title }}
+			{{ data.title }}
 		</li>
 		<li class="overflow-hidden rounded-xl outline outline-gray-200 dark:-outline-offset-1 dark:outline-white/10">
 			<dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm/6 dark:divide-white/10">
 				<div class="flex justify-between gap-x-4 py-3">
 					<dt class="text-gray-500 dark:text-gray-400">Inicio</dt>
 					<dd class="text-gray-700 dark:text-gray-300">
-						<time [attr.datetime]="schedule.startDate">
-							{{ schedule.startDate | date: 'medium' }}
+						<time [attr.datetime]="data.startDate">
+							{{ data.startDate | date: 'medium' }}
 						</time>
 					</dd>
 				</div>
@@ -18,7 +33,7 @@
 					<dt class="text-gray-500 dark:text-gray-400">Fin</dt>
 					<dd class="flex items-start gap-x-2">
 						<div class="font-medium text-gray-900 dark:text-white">
-							{{ schedule.endDate | date: 'medium' }}
+							{{ data.endDate | date: 'medium' }}
 						</div>
 					</dd>
 				</div>

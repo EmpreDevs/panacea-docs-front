@@ -1,50 +1,71 @@
-<table class="relative min-w-full divide-y divide-gray-300 dark:divide-white/15">
-	<thead>
-		<tr>
-			<th
-				scope="col"
-				class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0 dark:text-white"
-			>
-				Tipo
-			</th>
-			<th
-				scope="col"
-				class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white"
-			>
-				Fecha
-			</th>
-		</tr>
-	</thead>
-	<tbody class="divide-y divide-gray-200 dark:divide-white/10">
-		@for (note of notes(); track note.id) {
+@let data = notes();
+
+@if (data === undefined) {
+	<app-ui-skeleton
+		[columns]="2"
+		[rows]="1"
+		columnGap="1rem"
+		height="1.5rem"
+		className="mb-4"
+	/>
+	<app-ui-skeleton
+		[columns]="2"
+		[rows]="3"
+		columnGap="1rem"
+	/>
+} @else if (data === null) {
+	<app-ui-loading-error message="Hubo un error al cargar las notas" />
+} @else {
+	<table class="relative min-w-full divide-y divide-gray-300 dark:divide-white/15">
+		<thead>
 			<tr>
-				<td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0 dark:text-white">
-					@if (emit()) {
-						<button
-							class="cursor-pointer"
-							(click)="noteSelected(note)"
-						>
-							{{ note.type }}
-						</button>
-					} @else {
-						<app-ui-link [link]="linkToDetail()(note.id, note.appointmentId)">
-							{{ note.type }}
-						</app-ui-link>
-					}
-				</td>
-				<td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
-					{{ note.date | date: 'short' }}
-				</td>
-			</tr>
-		} @empty {
-			<tr>
-				<td
-					colspan="2"
-					class="py-4 pr-3 pl-4 text-sm font-light whitespace-nowrap text-gray-400 text-center"
+				<th
+					scope="col"
+					class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0 dark:text-white"
 				>
-					No hay notas
-				</td>
+					Tipo
+				</th>
+				<th
+					scope="col"
+					class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white"
+				>
+					Fecha
+				</th>
 			</tr>
-		}
-	</tbody>
-</table>
+		</thead>
+		<tbody class="divide-y divide-gray-200 dark:divide-white/10">
+			@for (note of notes(); track note.id) {
+				<tr>
+					<td
+						class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0 dark:text-white"
+					>
+						@if (emit()) {
+							<button
+								class="cursor-pointer"
+								(click)="noteSelected(note)"
+							>
+								{{ note.type }}
+							</button>
+						} @else {
+							<app-ui-link [link]="linkToDetail()(note.id, note.appointmentId)">
+								{{ note.type }}
+							</app-ui-link>
+						}
+					</td>
+					<td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
+						{{ note.date | date: 'short' }}
+					</td>
+				</tr>
+			} @empty {
+				<tr>
+					<td
+						colspan="2"
+						class="py-4 pr-3 pl-4 text-sm font-light whitespace-nowrap text-gray-400 text-center"
+					>
+						No hay notas
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

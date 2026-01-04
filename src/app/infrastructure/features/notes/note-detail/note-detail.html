@@ -1,5 +1,22 @@
 @let detail = note();
 
-@if (detail != null) {
+@if (detail === undefined) {
+	<app-ui-skeleton
+		[columns]="1"
+		[rows]="3"
+		className="mb-5"
+	/>
+	<app-ui-skeleton
+		[columns]="3"
+		[rows]="5"
+		className="mb-5"
+	/>
+	<app-ui-skeleton
+		[columns]="1"
+		[rows]="5"
+	/>
+} @else if (detail === null) {
+	<app-ui-loading-error message="No se encontró la nota." />
+} @else {
 	<app-ui-html-render [content]="detail.content" />
 }

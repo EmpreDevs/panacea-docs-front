@@ -14,7 +14,7 @@ import { NotesState } from '../states'
 import { BaseFacade } from './common/base.facade'
 
 @Injectable({ providedIn: 'root' })
-export class NotesFacade extends BaseFacade<Note> {
+export class NoteFacade extends BaseFacade<Note> {
 	constructor(
 		createUseCase: CreateNotesUseCase,
 		findOneUseCase: FindNotesByIdUseCase,
@@ -26,12 +26,19 @@ export class NotesFacade extends BaseFacade<Note> {
 		super(createUseCase, findOneUseCase, findAllUseCase, updateUseCase, deleteUseCase, state)
 	}
 
-	getCurrentNote(id:string) {
+	getNotesByAppointmentId(id: string) {
+		const arr = []
+		const note = this.getCurrentNote(id)
+		arr.push(note)
+		return arr
+	}
+
+	getCurrentNote(id: string) {
 		return new Note({
-        id: '1',
-        type: 'Consulta',
-        date: new Date(),
-        content: `<div class="nota-medica">
+			id: '1',
+			type: 'Consulta',
+			date: new Date(),
+			content: `<div class="nota-medica">
       <h1 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 20px;">NOTA MÉDICA - CONSULTA EXTERNA</h1>
       
       <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #3498db;">
@@ -129,6 +136,6 @@ export class NotesFacade extends BaseFacade<Note> {
           <p>Teléfono: 555-123-4567 • www.clinicamedicaejemplo.com</p>
       </div>
   </div>`,
-      })
+		})
 	}
 }
