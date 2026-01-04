@@ -1,1 +1,35 @@
-<p>patient-note-list-page works!</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+	<app-ui-card rounded="md">
+		<app-ui-h2>Notas del paciente</app-ui-h2>
+		<app-note-table
+			(Selected)="noteSelected($event)"
+			[notes]="notes"
+			[linkToDetail]="linkNote"
+			[emit]="true"
+		/>
+	</app-ui-card>
+	<div class="hidden md:block lg:col-span-2">
+		<app-ui-card rounded="md">
+			<div class="flex justify-between">
+				<app-ui-h2>Notas</app-ui-h2>
+				@if (previewNote() != null) {
+					<app-ui-link
+						color="neutral"
+						variant="button"
+						[link]="linkDetailNote"
+					>
+						<app-ui-icon
+							name="maximize-2"
+							[size]="15"
+						/>
+					</app-ui-link>
+				}
+			</div>
+			@if (previewNote() != null) {
+				<app-note-detail [note]="previewNote()" />
+			} @else {
+				<p class="text-center text-gray-400 font-light">Seleccione una nota</p>
+			}
+		</app-ui-card>
+	</div>
+</div>

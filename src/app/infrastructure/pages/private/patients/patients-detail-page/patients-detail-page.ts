@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core'
+import { Component, inject, signal } from '@angular/core'
 import { ActivatedRoute, RouterOutlet } from '@angular/router'
 
 import { getAppPath } from '@app/helpers/route-builder'
@@ -10,14 +10,12 @@ import { Patient } from '@domain/models'
 import { PatientDetail } from '@infra/features/patient'
 import { PatientFacade } from '@infra/store/facades'
 import { UiButton, UiCard, UiH2, UiIcon } from '@infra/ui/atoms'
-import { UiModalBody } from '@infra/ui/molecules'
 import { Tab } from '@infra/ui/molecules/ui-tabs/tab.type'
 import { UiTabs } from '@infra/ui/molecules/ui-tabs/ui-tabs'
-import { UiModal } from '@infra/ui/organism'
 
 @Component({
 	selector: 'app-patients-detail-page',
-	imports: [UiCard, UiH2, PatientDetail, UiButton, UiIcon, UiTabs, UiModal, UiModalBody, RouterOutlet],
+	imports: [UiCard, UiH2, PatientDetail, UiButton, UiIcon, UiTabs, RouterOutlet],
 	templateUrl: './patients-detail-page.html',
 	styles: ``,
 })
@@ -48,7 +46,7 @@ export class PatientsDetailPage {
 		},
 	]
 
-	Patient = input<Patient>(
+	Patient = signal<Patient>(
 		new Patient({
 			id: '7b2a1-45c8',
 			firstName: 'Juan',

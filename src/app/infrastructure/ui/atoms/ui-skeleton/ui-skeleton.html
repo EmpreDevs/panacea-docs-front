@@ -1,0 +1,13 @@
+<div [ngClass]="getContainerClasses()" [ngStyle]="getContainerStyles()">
+	<div
+		*ngFor="let row of rowsArray; let rowIndex = index"
+		[ngClass]="getRowClasses(row)"
+		[ngStyle]="getRowStyles(row)"
+	>
+		<div
+			*ngFor="let col of getColumnsArray(row); let colIndex = index"
+			[ngClass]="getSkeletonClasses(row)"
+			[ngStyle]="getSkeletonStyles(row)"
+		></div>
+	</div>
+</div>

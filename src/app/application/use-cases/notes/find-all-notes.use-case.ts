@@ -1,14 +1,18 @@
-import { Inject, Injectable } from "@angular/core";
-import { FindAllUseCase } from "../common";
-import { Notes } from "@domain/models/notes.model";
-import { notesToken } from "@infra/di/tokens";
-import { NotesRepository } from "@domain/repositories";
+import { Inject, Injectable } from '@angular/core'
 
-@Injectable({providedIn: 'root'})
-export class FindAllNotesUseCase extends FindAllUseCase<Notes> {
-  constructor(
-    @Inject(notesToken) 
-    private readonly repository: NotesRepository) {
-    super(repository)
-  }
+import { Note } from '@domain/models/notes.model'
+import { NotesRepository } from '@domain/repositories'
+
+import { notesToken } from '@infra/di/tokens'
+
+import { FindAllUseCase } from '../common'
+
+@Injectable({ providedIn: 'root' })
+export class FindAllNotesUseCase extends FindAllUseCase<Note> {
+	constructor(
+		@Inject(notesToken)
+		private readonly repository: NotesRepository,
+	) {
+		super(repository)
+	}
 }

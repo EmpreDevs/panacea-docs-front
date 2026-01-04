@@ -17,3 +17,4 @@ export type IconName =
 	| 'heart-pulse'
 	| 'activity'
 	| 'weight'
+	| 'maximize-2'

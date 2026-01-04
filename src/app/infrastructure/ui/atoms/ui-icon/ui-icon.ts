@@ -12,6 +12,7 @@ import {
 	HeartPulseIcon,
 	LoaderCircleIcon,
 	LucideAngularModule,
+	Maximize2Icon,
 	NotebookPenIcon,
 	PencilIcon,
 	PlusIcon,
@@ -53,6 +54,7 @@ export class UiIcon {
 			'heart-pulse': HeartPulseIcon,
 			activity: ActivityIcon,
 			weight: WeightIcon,
+			'maximize-2': Maximize2Icon,
 		}
 
 		return icons[this.name()]

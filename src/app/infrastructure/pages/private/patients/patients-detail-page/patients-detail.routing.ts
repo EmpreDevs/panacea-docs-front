@@ -15,20 +15,7 @@ export const patientsDetailRoutes: Routes = [
 	},
 	{
 		path: PATIENT_PATHS.DETAIL_NOTES,
-		children: [
-			{
-				path: '',
-				component: PatientNoteListPage,
-			},
-			{
-				path: PATIENT_PATHS.DETAIL_NOTES_NEW,
-				component: PatientCreatePage,
-			},
-			{
-				path: PATIENT_PATHS.DETAIL_NOTES_DETAIL,
-				component: PatientNoteDetailPage,
-			},
-		],
+		component: PatientNoteListPage,
 	},
 	{
 		path: PATIENT_PATHS.DETAIL_VITALS,
@@ -37,5 +24,13 @@ export const patientsDetailRoutes: Routes = [
 	{
 		path: PATIENT_PATHS.DETAIL_APPOINTMENTS,
 		component: PatientAppointmentsListPage,
+	},
+	{
+		path: PATIENT_PATHS.DETAIL_NOTES_NEW,
+		component: PatientCreatePage,
+	},
+	{
+		path: PATIENT_PATHS.DETAIL_NOTES_DETAIL,
+		component: PatientNoteDetailPage,
 	},
 ]

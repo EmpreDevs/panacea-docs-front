@@ -1,27 +1,29 @@
-import { Notes } from '@domain/models'
+import { Note } from '@domain/models'
 
 import { IMapper } from '@infra/dto/common/mapper.interface'
 
 import { NotesResponseDto } from './notes-response.dto'
 
-export class NotesMapper implements IMapper<Notes, NotesResponseDto> {
-	toModel(data: NotesResponseDto): Notes {
-		return new Notes({
+export class NotesMapper implements IMapper<Note, NotesResponseDto> {
+	toModel(data: NotesResponseDto): Note {
+		return new Note({
 			id: data.id,
 			date: data.date,
-			observations: data.observations,
+			type: data.note_type,
 			content: data.content,
 			patientId: data.patientId,
+			appointmentId: data.appointmentId,
 		})
 	}
 
-	toDto(data: Notes): NotesResponseDto {
+	toDto(data: Note): NotesResponseDto {
 		return {
 			id: data.id,
 			date: data.date,
-			observations: data.observations,
+			note_type: data.type,
 			content: data.content,
 			patientId: data.patientId,
+			appointmentId: data.appointmentId,
 		}
 	}
 }

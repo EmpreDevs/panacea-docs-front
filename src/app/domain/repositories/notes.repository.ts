@@ -1,4 +1,5 @@
-import { Notes } from "@domain/models/notes.model";
-import { CrudRepository } from "./common/crud.repository";
+import { Note } from '@domain/models/notes.model'
 
-export interface NotesRepository extends CrudRepository<Notes> {}
+import { CrudRepository } from './common/crud.repository'
+
+export interface NotesRepository extends CrudRepository<Note> {}

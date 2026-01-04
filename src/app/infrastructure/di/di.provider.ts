@@ -1,32 +1,34 @@
 import { Provider } from "@angular/core";
-import { authToken } from "./tokens/auth.token";
+import { AppointmentImpRepository } from "@infra/repositories/appointment.imp-repository";
 import { AuthImpRepository } from "@infra/repositories/auth.imp-repository";
-import { specialityToken } from "./tokens/speciality.token";
-import { SpecialityImpRepository } from "@infra/repositories/speciality.imp-repository";
-import { healthProviderToken } from "./tokens/health-provider.token";
-import { HealthProviderImpRepository } from "@infra/repositories/health-provider.imp-repository";
-import { medicalOfficeToken } from "./tokens/medical-office.token";
-import { MedicalOfficeImpRepository } from "@infra/repositories/medical-office.imp-repository";
-import { scheduleToken } from "./tokens/schedule.token";
-import { ScheduleImpRepository } from "@infra/repositories/schedule.imp-repository";
-import { patientToken } from "./tokens/patient.token";
-import { PatientImpRepository } from "@infra/repositories/patient.imp-repository";
-import { notesToken } from "./tokens/notes.token";
-import { NotesImpRepository } from "@infra/repositories/notes.imp-repository";
-import { medicalMetricsToken } from "./tokens/medical-metrics.token";
-import { MedicalMetricsImpRepository } from "@infra/repositories/medical-metrics.imp-repository";
-import { healthProviderScheduleToken } from "./tokens/health-provider-schedule.token";
-import { HealthProviderScheduleImpRepository } from "@infra/repositories/health-provider-schedule.imp-repository";
-import { healthProviderExceptionsToken } from "./tokens/health-provider-exceptions.token";
 import { HealthProviderExceptionsImpRepository } from "@infra/repositories/health-provider-exceptions.imp-repository";
-import { subscriptionToken } from "./tokens/subscription.token";
-import { SubscriptionImpRepository } from "@infra/repositories/subscription.imp-repository";
-import { planToken } from "./tokens/plan.token";
-import { PlanImpRepository } from "@infra/repositories/plan.imp-repository";
-import { paymentToken } from "./tokens/payment.token";
+import { HealthProviderScheduleImpRepository } from "@infra/repositories/health-provider-schedule.imp-repository";
+import { HealthProviderImpRepository } from "@infra/repositories/health-provider.imp-repository";
+import { MedicalMetricsImpRepository } from "@infra/repositories/medical-metrics.imp-repository";
+import { MedicalOfficeImpRepository } from "@infra/repositories/medical-office.imp-repository";
+import { NotesImpRepository } from "@infra/repositories/notes.imp-repository";
+import { PatientImpRepository } from "@infra/repositories/patient.imp-repository";
 import { PaymentImpRepository } from "@infra/repositories/payment.imp-repository";
-import { tenantToken } from "./tokens/tenant.token";
+import { PlanImpRepository } from "@infra/repositories/plan.imp-repository";
+import { ScheduleImpRepository } from "@infra/repositories/schedule.imp-repository";
+import { SpecialityImpRepository } from "@infra/repositories/speciality.imp-repository";
+import { SubscriptionImpRepository } from "@infra/repositories/subscription.imp-repository";
 import { TenantImpRepository } from "@infra/repositories/tenant.imp-repository";
+import { appointmentToken } from "./tokens/appointment.token";
+import { authToken } from "./tokens/auth.token";
+import { healthProviderExceptionsToken } from "./tokens/health-provider-exceptions.token";
+import { healthProviderScheduleToken } from "./tokens/health-provider-schedule.token";
+import { healthProviderToken } from "./tokens/health-provider.token";
+import { medicalMetricsToken } from "./tokens/medical-metrics.token";
+import { medicalOfficeToken } from "./tokens/medical-office.token";
+import { notesToken } from "./tokens/notes.token";
+import { patientToken } from "./tokens/patient.token";
+import { paymentToken } from "./tokens/payment.token";
+import { planToken } from "./tokens/plan.token";
+import { scheduleToken } from "./tokens/schedule.token";
+import { specialityToken } from "./tokens/speciality.token";
+import { subscriptionToken } from "./tokens/subscription.token";
+import { tenantToken } from "./tokens/tenant.token";
 
 export const diProvider: Provider[] = [
   { provide: authToken, useClass: AuthImpRepository },
@@ -42,5 +44,6 @@ export const diProvider: Provider[] = [
   { provide: subscriptionToken, useClass: SubscriptionImpRepository },
   { provide: planToken, useClass: PlanImpRepository },
   { provide: paymentToken, useClass: PaymentImpRepository },
-  { provide: tenantToken, useClass: TenantImpRepository }
+  { provide: tenantToken, useClass: TenantImpRepository },
+  { provide: appointmentToken, useClass: AppointmentImpRepository },
 ]

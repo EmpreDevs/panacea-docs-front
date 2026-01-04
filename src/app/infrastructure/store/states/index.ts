@@ -1,3 +1,4 @@
+export * from './appointment.state'
 export * from './health-provider.state'
 export * from './health-provider-exceptions.state'
 export * from './health-provider-schedule.state'

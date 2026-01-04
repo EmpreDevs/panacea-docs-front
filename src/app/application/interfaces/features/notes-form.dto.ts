@@ -1,6 +1,5 @@
 export interface NotesFormDto {
 	date: Date
-	observations: string
+	type: string
 	content: string
-	patientId: string
 }

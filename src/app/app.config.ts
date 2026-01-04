@@ -1,15 +1,15 @@
 import {
 	ApplicationConfig,
+	isDevMode,
 	provideBrowserGlobalErrorListeners,
 	provideZoneChangeDetection,
-	isDevMode,
 } from '@angular/core'
 import { provideAnimations } from '@angular/platform-browser/animations'
-import { provideRouter } from '@angular/router'
-import { routes } from './app.routes'
+import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router'
 import { provideServiceWorker } from '@angular/service-worker'
 import { diProvider } from '@infra/di/di.provider'
 import { provideToastr } from 'ngx-toastr'
+import { routes } from './app.routes'
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
 		...diProvider,
 		provideBrowserGlobalErrorListeners(),
 		provideZoneChangeDetection({ eventCoalescing: true }),
-		provideRouter(routes),
+		provideRouter(routes, withComponentInputBinding(), withRouterConfig({ paramsInheritanceStrategy: 'always' })),
 		provideServiceWorker('ngsw-worker.js', {
 			enabled: !isDevMode(),
 			registrationStrategy: 'registerWhenStable:30000',

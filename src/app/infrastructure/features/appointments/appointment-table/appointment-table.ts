@@ -13,7 +13,7 @@ import { UiCalendar } from '@infra/ui/organism'
 	styles: ``,
 })
 export class AppointmentTable {
-	view = input<'dayGridMonth' | 'timeGridWeek' | 'timeGridDay'>('timeGridWeek')
+	view = input<'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listWeek'>('timeGridWeek')
 	events = input<Appointment[]>([])
 
 	eventDrop = output<Appointment>()

@@ -1,11 +1,14 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-2">
 	<app-ui-card rounded="md">
 		<div class="flex items-center gap-2 text-red-500">
 			<app-ui-icon
 				name="heart-pulse"
 				[size]="35"
 			/>
-			<app-ui-h2>Presion arterial</app-ui-h2>
+			<app-ui-h2>
+				<span class="md:hidden lg:block">Presión arterial</span>
+				<span class="hidden md:block lg:hidden">PA</span>
+			</app-ui-h2>
 		</div>
 		<app-ui-chart
 			type="line"
@@ -31,7 +34,7 @@
 				maintainAspectRatio: false,
 				plugins: {
 					legend: {
-						display: true,
+						display: false,
 					},
 				},
 				scales: {
@@ -40,7 +43,7 @@
 					},
 				},
 			}"
-			height="200px"
+			height="130px"
 		></app-ui-chart>
 	</app-ui-card>
 	<app-ui-card rounded="md">
@@ -49,7 +52,10 @@
 				name="activity"
 				[size]="35"
 			/>
-			<app-ui-h2>Frecuencia cardíaca</app-ui-h2>
+			<app-ui-h2>
+				<span class="md:hidden lg:block">Frecuencia cardíaca</span>
+				<span class="hidden md:block lg:hidden">FC</span>
+			</app-ui-h2>
 		</div>
 		<app-ui-chart
 			type="line"
@@ -78,7 +84,7 @@
 					},
 				},
 			}"
-			height="200px"
+			height="130px"
 		></app-ui-chart>
 	</app-ui-card>
 	<app-ui-card rounded="md">
@@ -87,7 +93,10 @@
 				name="weight"
 				[size]="35"
 			/>
-			<app-ui-h2>Superficie corporal</app-ui-h2>
+			<app-ui-h2>
+				<span class="md:hidden lg:block">Superficie corporal</span>
+				<span class="hidden md:block lg:hidden">SC</span>
+			</app-ui-h2>
 		</div>
 		<app-ui-chart
 			type="line"
@@ -116,7 +125,7 @@
 					},
 				},
 			}"
-			height="200px"
+			height="130px"
 		></app-ui-chart>
 	</app-ui-card>
 </div>
@@ -173,7 +182,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="bg-neutral-primary border-b border-default">
+			<tr class="border-b border-default">
 				<th
 					scope="row"
 					class="px-6 py-4 font-medium text-heading whitespace-nowrap"

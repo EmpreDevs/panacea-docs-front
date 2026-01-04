@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Sora:wght@100..800&display=swap");
 @import "tailwindcss";
 @import "ngx-toastr/toastr";
+@import "quill/dist/quill.snow.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -264,4 +265,329 @@ html {
 	.fc-event-title {
 		font-size: 11px;
 	}
+}
+
+/* ==================== WYSIWYG Editor Styles ==================== */
+
+/* Editor Container */
+.wysiwyg-editor {
+	@apply rounded-lg overflow-hidden;
+}
+
+/* Toolbar Styles */
+.wysiwyg-editor .ql-toolbar {
+	@apply border-0 border-b border-gray-200 bg-gray-50 rounded-t-lg;
+}
+
+.dark .wysiwyg-editor .ql-toolbar {
+	@apply border-gray-600 bg-gray-700;
+}
+
+/* Toolbar buttons */
+.wysiwyg-editor .ql-toolbar button,
+.wysiwyg-editor .ql-toolbar .ql-picker-label {
+	@apply text-gray-700 hover:text-primary-600;
+}
+
+.dark .wysiwyg-editor .ql-toolbar button,
+.dark .wysiwyg-editor .ql-toolbar .ql-picker-label {
+	@apply text-gray-300 hover:text-primary-400;
+}
+
+/* Active toolbar buttons */
+.wysiwyg-editor .ql-toolbar button.ql-active,
+.wysiwyg-editor .ql-toolbar .ql-picker-label.ql-active {
+	@apply text-primary-600;
+}
+
+.dark .wysiwyg-editor .ql-toolbar button.ql-active,
+.dark .wysiwyg-editor .ql-toolbar .ql-picker-label.ql-active {
+	@apply text-primary-400;
+}
+
+/* Toolbar icons */
+.wysiwyg-editor .ql-toolbar .ql-stroke {
+	@apply stroke-current;
+}
+
+.wysiwyg-editor .ql-toolbar .ql-fill {
+	@apply fill-current;
+}
+
+/* Dropdown menus */
+.wysiwyg-editor .ql-picker-options {
+	@apply bg-white border border-gray-200 shadow-lg rounded-md;
+}
+
+.dark .wysiwyg-editor .ql-picker-options {
+	@apply bg-gray-800 border-gray-600;
+}
+
+.wysiwyg-editor .ql-picker-item {
+	@apply text-gray-700 hover:bg-gray-100;
+}
+
+.dark .wysiwyg-editor .ql-picker-item {
+	@apply text-gray-300 hover:bg-gray-700;
+}
+
+/* Editor Content */
+.wysiwyg-editor .ql-container {
+	@apply border-0 text-gray-900 bg-white rounded-b-lg;
+	font-family: "Sora", sans-serif;
+}
+
+.dark .wysiwyg-editor .ql-container {
+	@apply text-gray-100 bg-gray-800;
+}
+
+/* Editor placeholder */
+.wysiwyg-editor .ql-editor.ql-blank::before {
+	@apply text-gray-400 italic;
+}
+
+.dark .wysiwyg-editor .ql-editor.ql-blank::before {
+	@apply text-gray-500;
+}
+
+/* Editor min height */
+.wysiwyg-editor .ql-editor {
+	@apply min-h-[200px] text-base;
+}
+
+/* Links in editor */
+.wysiwyg-editor .ql-editor a {
+	@apply text-primary-600 hover:text-primary-700 underline;
+}
+
+.dark .wysiwyg-editor .ql-editor a {
+	@apply text-primary-400 hover:text-primary-300;
+}
+
+/* Blockquotes */
+.wysiwyg-editor .ql-editor blockquote {
+	@apply border-l-4 border-gray-300 pl-4 italic my-4;
+}
+
+.dark .wysiwyg-editor .ql-editor blockquote {
+	@apply border-gray-600;
+}
+
+/* Code blocks */
+.wysiwyg-editor .ql-editor pre.ql-syntax {
+	@apply bg-gray-900 text-gray-100 rounded-md p-4 overflow-x-auto;
+}
+
+.dark .wysiwyg-editor .ql-editor pre.ql-syntax {
+	@apply bg-gray-950 text-gray-200;
+}
+
+/* Tables */
+.wysiwyg-editor .ql-editor table {
+	@apply border-collapse w-full my-4;
+}
+
+.wysiwyg-editor .ql-editor table td,
+.wysiwyg-editor .ql-editor table th {
+	@apply border border-gray-300 px-3 py-2;
+}
+
+.dark .wysiwyg-editor .ql-editor table td,
+.dark .wysiwyg-editor .ql-editor table th {
+	@apply border-gray-600;
+}
+
+.wysiwyg-editor .ql-editor table th {
+	@apply bg-gray-100 font-semibold;
+}
+
+.dark .wysiwyg-editor .ql-editor table th {
+	@apply bg-gray-700;
+}
+
+/* Lists */
+.wysiwyg-editor .ql-editor ul,
+.wysiwyg-editor .ql-editor ol {
+	@apply pl-6 my-2;
+}
+
+/* Headings */
+.wysiwyg-editor .ql-editor h1 {
+	@apply text-3xl font-bold my-4;
+}
+
+.wysiwyg-editor .ql-editor h2 {
+	@apply text-2xl font-bold my-3;
+}
+
+.wysiwyg-editor .ql-editor h3 {
+	@apply text-xl font-bold my-3;
+}
+
+.wysiwyg-editor .ql-editor h4 {
+	@apply text-lg font-bold my-2;
+}
+
+.wysiwyg-editor .ql-editor h5 {
+	@apply text-base font-bold my-2;
+}
+
+.wysiwyg-editor .ql-editor h6 {
+	@apply text-sm font-bold my-2;
+}
+
+/* Disabled state */
+.wysiwyg-editor.ql-disabled .ql-editor {
+	@apply cursor-not-allowed opacity-60;
+}
+
+/* Focus state */
+.wysiwyg-editor .ql-container.ql-snow {
+	@apply border-0;
+}
+
+/* Tooltips */
+.ql-toolbar button:hover .ql-tooltip,
+.ql-toolbar .ql-picker:hover .ql-tooltip {
+	@apply visible;
+}
+
+.ql-tooltip {
+	@apply bg-gray-900 text-white text-xs rounded px-2 py-1 shadow-lg;
+}
+
+.dark .ql-tooltip {
+	@apply bg-gray-700;
+}
+
+/* ==================== Skeleton Loader Styles ==================== */
+
+/* Contenedor del skeleton */
+.skeleton-container {
+	@apply flex flex-col w-full;
+}
+
+/* Fila del skeleton */
+.skeleton-row {
+	@apply flex w-full;
+}
+
+/* Item base del skeleton */
+.skeleton-item {
+	@apply bg-gray-200 dark:bg-gray-700;
+	min-height: 1rem;
+}
+
+/* Tipos de skeleton */
+.skeleton-text {
+	@apply w-full;
+	height: 1rem;
+}
+
+.skeleton-line {
+	@apply w-full;
+	height: 0.75rem;
+}
+
+.skeleton-circle {
+	@apply rounded-full;
+	aspect-ratio: 1;
+}
+
+.skeleton-avatar {
+	@apply rounded-full;
+	aspect-ratio: 1;
+}
+
+.skeleton-square {
+	aspect-ratio: 1;
+}
+
+.skeleton-rectangle {
+	@apply w-full;
+}
+
+.skeleton-card {
+	@apply w-full rounded-lg;
+	min-height: 10rem;
+}
+
+/* Animación shimmer */
+@keyframes skeleton-shimmer {
+	0% {
+		background-position: -468px 0;
+	}
+	100% {
+		background-position: 468px 0;
+	}
+}
+
+.skeleton-animate {
+	animation: skeleton-shimmer 1.5s ease-in-out infinite;
+	background: linear-gradient(
+		to right,
+		#e5e7eb 0%,
+		#f3f4f6 20%,
+		#e5e7eb 40%,
+		#e5e7eb 100%
+	);
+	background-size: 800px 100%;
+}
+
+.dark .skeleton-animate {
+	background: linear-gradient(
+		to right,
+		#374151 0%,
+		#4b5563 20%,
+		#374151 40%,
+		#374151 100%
+	);
+	background-size: 800px 100%;
+}
+
+/* Variantes de tamaño para texto */
+.skeleton-text.skeleton-xs {
+	height: 0.625rem;
+}
+
+.skeleton-text.skeleton-sm {
+	height: 0.875rem;
+}
+
+.skeleton-text.skeleton-md {
+	height: 1rem;
+}
+
+.skeleton-text.skeleton-lg {
+	height: 1.25rem;
+}
+
+.skeleton-text.skeleton-xl {
+	height: 1.5rem;
+}
+
+.skeleton-text.skeleton-2xl {
+	height: 2rem;
+}
+
+/* Utilitarios para grid responsive */
+@media (max-width: 640px) {
+	.skeleton-row.grid {
+		@apply grid-cols-1;
+	}
+}
+
+/* Efecto de pulso alternativo (puede activarse con clase custom) */
+@keyframes skeleton-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.skeleton-pulse {
+	animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

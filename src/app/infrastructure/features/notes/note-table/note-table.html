@@ -16,11 +16,35 @@
 		</tr>
 	</thead>
 	<tbody class="divide-y divide-gray-200 dark:divide-white/10">
-		<tr>
-			<td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0 dark:text-white">
-				Lindsay Walton
-			</td>
-			<td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">Front-end Developer</td>
-		</tr>
+		@for (note of notes(); track note.id) {
+			<tr>
+				<td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0 dark:text-white">
+					@if (emit()) {
+						<button
+							class="cursor-pointer"
+							(click)="noteSelected(note)"
+						>
+							{{ note.type }}
+						</button>
+					} @else {
+						<app-ui-link [link]="linkToDetail()(note.id, note.appointmentId)">
+							{{ note.type }}
+						</app-ui-link>
+					}
+				</td>
+				<td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
+					{{ note.date | date: 'short' }}
+				</td>
+			</tr>
+		} @empty {
+			<tr>
+				<td
+					colspan="2"
+					class="py-4 pr-3 pl-4 text-sm font-light whitespace-nowrap text-gray-400 text-center"
+				>
+					No hay notas
+				</td>
+			</tr>
+		}
 	</tbody>
 </table>

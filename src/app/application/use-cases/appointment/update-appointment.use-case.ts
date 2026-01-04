@@ -1,16 +1,14 @@
-import { Appointment } from "@domain/models/appointment.model";
 import { Inject, Injectable } from "@angular/core";
-import { appointmentToken } from "@infra/di/tokens/appointment.token";
+import { Appointment } from "@domain/models/appointment.model";
 import { AppointmentRepository } from "@domain/repositories";
-import { UpdateAppointmentDto } from "@infra/dto";
+import { appointmentToken } from "@infra/di/tokens/appointment.token";
+import { UpdateUseCase } from "../common";
 
 @Injectable({providedIn: 'root'})
-export class UpdateAppointmentUseCase {
+export class UpdateAppointmentUseCase extends UpdateUseCase<Appointment> {
   constructor(
     @Inject(appointmentToken)
-    private readonly repository: AppointmentRepository) {}
-
-  execute(payload: UpdateAppointmentDto, id: string): Promise<Appointment> {
-    return this.repository.update(payload, id);
-  }
+    private readonly repository: AppointmentRepository) {
+      super(repository)
+    }
 }

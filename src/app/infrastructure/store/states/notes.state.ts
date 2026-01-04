@@ -1,11 +1,12 @@
-import { Injectable } from "@angular/core";
-import { BaseState } from "./common/base.state";
-import { Notes } from "@domain/models";
+import { Injectable } from '@angular/core'
+
+import { Note } from '@domain/models'
+
+import { BaseState } from './common/base.state'
 
 @Injectable({ providedIn: 'root' })
-export class NotesState extends BaseState<Notes> {
-
-  constructor() {
-    super({ storable: true, storageKey: 'notes'})
-  }
+export class NotesState extends BaseState<Note> {
+	constructor() {
+		super({ storable: true, storageKey: 'notes' })
+	}
 }

@@ -1,7 +1,8 @@
 export interface NotesResponseDto {
 	id: string
 	date: Date
-	observations: string
+	note_type: string
 	content: string
 	patientId: string
+	appointmentId: string
 }

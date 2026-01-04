@@ -1,12 +1,13 @@
 import { BaseModel } from './common/base.model'
 
-export class Notes extends BaseModel {
+export class Note extends BaseModel {
 	date!: Date
-	observations!: string
+	type!: string
 	content!: string
 	patientId!: string
+	appointmentId!: string
 
-	constructor(data: Partial<Notes>) {
+	constructor(data: Partial<Note>) {
 		super(data)
 		Object.assign(this, data)
 	}

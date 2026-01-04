@@ -1,1 +1,17 @@
-<p>patient-appointments-list-page works!</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+	<div class="lg:col-span-1">
+		<app-ui-accordion
+			title="Agendar nueva cita"
+			[defaultOpen]="!isMobile()"
+		>
+			<app-appointment-form />
+		</app-ui-accordion>
+	</div>
+
+	<div class="lg:col-span-2">
+		<app-ui-card rounded="md">
+			<app-ui-h2>Agenda</app-ui-h2>
+			<app-appointment-list />
+		</app-ui-card>
+	</div>
+</div>
